@@ -5,39 +5,44 @@
   <meta charset="UTF-8">
   <title>House of Dragon Royalties</title>
 
+  <!-- Google Font fallback for Charlesworth -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
       height: 100vh;
-      background: 
+      background:
         linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)),
         url("https://images.unsplash.com/photo-1505843513577-22bb7d21e455");
       background-size: cover;
       background-position: center;
       color: gold;
-      font-family: "Georgia", serif;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       overflow: hidden;
-    }
-
-    h1 {
-      font-size: 48px;
-      letter-spacing: 3px;
       text-align: center;
-      margin-bottom: 10px;
-      text-shadow: 0 0 15px rgba(255,215,0,0.7);
-      z-index: 3;
+      font-family: serif;
     }
 
-    h2 {
-      font-size: 26px;
-      letter-spacing: 2px;
-      margin-bottom: 40px;
-      color: #d4af37;
+    /* TEXT STYLES */
+    .welcome-text {
+      font-family: "Lucida Handwriting", "Segoe Script", "Brush Script MT", cursive;
+      font-size: 56px;
+      margin-bottom: 6px;
       z-index: 3;
+      text-shadow: 0 0 12px rgba(255,215,0,0.6);
+    }
+
+    .house-text {
+      font-family: "Charlesworth", "Cinzel", serif;
+      font-size: 38px;
+      letter-spacing: 4px;
+      margin-bottom: 40px;
+      z-index: 3;
+      text-shadow: 0 0 18px rgba(255,215,0,0.8);
     }
 
     /* DOOR FRAME */
@@ -95,7 +100,7 @@
       z-index: 3;
     }
 
-    /* FOG */
+    /* FOG EFFECT */
     .fog {
       position: fixed;
       top: 0;
@@ -104,56 +109,4 @@
       height: 200%;
       background: url("https://i.imgur.com/cZ6F9Jb.png");
       background-size: cover;
-      opacity: 0.18;
-      animation: fogMove 80s linear infinite;
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    @keyframes fogMove {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-  </style>
-</head>
-
-<body>
-
-  <h1>Welcome to the</h1>
-  <h2>House of Dragon Royalties</h2>
-
-  <!-- DOUBLE DOOR USING ONE IMAGE -->
-  <div class="door-frame" onclick="openDoor()">
-    <div class="door left">
-      <img src="door.png">
-    </div>
-    <div class="door right">
-      <img src="door.png">
-    </div>
-  </div>
-
-  <div class="hint">Click the doors to enter</div>
-
-  <div class="fog"></div>
-
-  <!-- SOUND -->
-  <audio id="doorSound" src="door.mp3"></audio>
-
-  <script>
-    function openDoor() {
-      const frame = document.querySelector(".door-frame");
-      const sound = document.getElementById("doorSound");
-
-      sound.volume = 0.7;
-      sound.play();
-
-      frame.classList.add("open");
-
-      setTimeout(() => {
-        window.location.href = "characters.html";
-      }, 1800);
-    }
-  </script>
-
-</body>
-</html>
+      opacity:
