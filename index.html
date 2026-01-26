@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>House of Dragon Royalties</title>
+
   <style>
     body {
       margin: 0;
@@ -33,60 +34,32 @@
       color: #d4af37;
     }
 
+    /* DOOR FRAME */
     .door-frame {
       position: relative;
       width: 360px;
       height: 520px;
-      border: 8px solid #4b0000;
-      box-shadow: 0 0 30px rgba(255,0,0,0.4);
-      background: linear-gradient(to bottom, #2b0000, #120000);
-    }
-
-    .door {
-      position: absolute;
-      top: 0;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(to bottom, #5b0000, #2b0000);
-      border: 2px solid #8b0000;
-      transition: transform 1s ease;
+      overflow: hidden;
+      perspective: 1200px;
       cursor: pointer;
     }
 
-    .door.left {
-      left: 0;
+    /* SINGLE DOOR */
+    .single-door {
+      width: 100%;
+      height: 100%;
       transform-origin: left center;
+      transition: transform 1.5s ease;
     }
 
-    .door.right {
-      right: 0;
-      transform-origin: right center;
+    .door-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .handle {
-      position: absolute;
-      top: 50%;
-      width: 14px;
-      height: 40px;
-      background: gold;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(255,215,0,0.8);
-    }
-
-    .left .handle {
-      right: 10px;
-    }
-
-    .right .handle {
-      left: 10px;
-    }
-
-    .open .left {
-      transform: rotateY(-75deg);
-    }
-
-    .open .right {
-      transform: rotateY(75deg);
+    .open .single-door {
+      transform: rotateY(-95deg);
     }
 
     .hint {
@@ -95,32 +68,62 @@
       letter-spacing: 1px;
       font-size: 14px;
     }
+
+    /* FOG EFFECT */
+    .fog {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background: url("https://i.imgur.com/cZ6F9Jb.png");
+      background-size: cover;
+      opacity: 0.18;
+      animation: fogMove 70s linear infinite;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    @keyframes fogMove {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
   </style>
 </head>
+
 <body>
 
   <h1>Welcome to the</h1>
   <h2>House of Dragon Royalties</h2>
 
+  <!-- SINGLE DOOR -->
   <div class="door-frame" onclick="openDoor()">
-    <div class="door left">
-      <div class="handle"></div>
-    </div>
-    <div class="door right">
-      <div class="handle"></div>
+    <div class="single-door">
+      <img src="door.png" class="door-img">
     </div>
   </div>
 
-  <div class="hint">Click the doors to enter</div>
+  <div class="hint">Click the door to enter</div>
+
+  <!-- FOG -->
+  <div class="fog"></div>
+
+  <!-- SOUND -->
+  <audio id="doorSound" src="door.mp3"></audio>
 
   <script>
     function openDoor() {
       const frame = document.querySelector(".door-frame");
+      const sound = document.getElementById("doorSound");
+
+      sound.volume = 0.7;
+      sound.play();
+
       frame.classList.add("open");
 
       setTimeout(() => {
         window.location.href = "characters.html";
-      }, 1200);
+      }, 1600);
     }
   </script>
 
