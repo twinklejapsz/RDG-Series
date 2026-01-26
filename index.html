@@ -5,14 +5,13 @@
   <meta charset="UTF-8">
   <title>House of Dragon Royalties</title>
 
-  <!-- Fallback font for Charlesworth -->
+  <!-- Google Font fallback for Charlesworth -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* PAGE BASE */
     body {
       margin: 0;
-      min-height: 100vh;
+      height: 100vh;
       background:
         linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)),
         url("https://images.unsplash.com/photo-1505843513577-22bb7d21e455");
@@ -22,29 +21,28 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      overflow-x: hidden;
+      justify-content: center;
+      overflow: hidden;
       text-align: center;
       font-family: serif;
-      padding-top: 40px;
     }
 
-    /* TEXT */
+    /* TEXT STYLES */
     .welcome-text {
       font-family: "Lucida Handwriting", "Segoe Script", "Brush Script MT", cursive;
       font-size: 56px;
-      margin-top: 20px;
       margin-bottom: 6px;
-      text-shadow: 0 0 12px rgba(255,215,0,0.6);
       z-index: 3;
+      text-shadow: 0 0 12px rgba(255,215,0,0.6);
     }
 
     .house-text {
       font-family: "Charlesworth", "Cinzel", serif;
       font-size: 38px;
       letter-spacing: 4px;
-      margin-bottom: 30px;
-      text-shadow: 0 0 18px rgba(255,215,0,0.8);
+      margin-bottom: 40px;
       z-index: 3;
+      text-shadow: 0 0 18px rgba(255,215,0,0.8);
     }
 
     /* DOOR FRAME */
@@ -55,7 +53,6 @@
       perspective: 1400px;
       cursor: pointer;
       z-index: 3;
-      margin-top: 20px;
     }
 
     .door {
@@ -103,7 +100,7 @@
       z-index: 3;
     }
 
-    /* FOG */
+    /* FOG EFFECT */
     .fog {
       position: fixed;
       top: 0;
@@ -121,23 +118,6 @@
     @keyframes fogMove {
       from { transform: translateX(0); }
       to { transform: translateX(-50%); }
-    }
-
-    /* MOBILE ADJUSTMENTS */
-    @media (max-width: 600px) {
-      .welcome-text {
-        font-size: 42px;
-      }
-
-      .house-text {
-        font-size: 28px;
-        letter-spacing: 2px;
-      }
-
-      .door-frame {
-        width: 320px;
-        height: 480px;
-      }
     }
   </style>
 </head>
