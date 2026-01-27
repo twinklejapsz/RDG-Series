@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Princes | RDG</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: "Georgia", serif;
+  background: url("princes-bg.jpg") center/cover no-repeat fixed;
+  color: #fff;
+}
+
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  z-index:-1;
+  pointer-events:none;
+}
+
+/* CONTAINER */
+.container {
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:40px 20px;
+}
+
+/* TITLE */
+.container h1 {
+  font-size:56px;
+  color:gold;
+  letter-spacing:3px;
+  margin:0;
+}
+
+/* SUBTITLE */
+.container h2 {
+  font-size:22px;
+  color:#d4af37;
+  margin:20px 0 40px;
+  letter-spacing:2px;
+}
+
+/* MESSAGE */
+.message {
+  max-width:700px;
+  font-size:20px;
+  line-height:1.8;
+  margin-bottom:60px;
+  opacity:0.95;
+}
+
+/* DIVIDER */
+.divider {
+  width:120px;
+  height:2px;
+  background:gold;
+  margin:30px auto;
+}
+
+/* NAVIGATION */
+.nav {
+  margin-top:60px;
+}
+.nav a {
+  display:block;
+  margin:15px 0;
+  font-size:18px;
+  color:#d4af37;
+  text-decoration:none;
+  letter-spacing:2px;
+}
+.nav a:hover {
+  color:gold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>The Princes</h1>
+  <h2>The Knights of the Royal Dragon Gang</h2>
+
+  <div class="divider"></div>
+
+  <div class="message">
+    This chapter of the house is still being written.
+    <br><br>
+    The Princes stand in the shadows—watching, training, and waiting.
+    Their stories, loyalty, and purpose will soon be revealed.
+    <br><br>
+    <strong>PUBLISHED SOON.</strong>
+  </div>
+
+  <div class="nav">
+    <a href="members.html">← Back to The Royal Members</a>
+    <a href="lobby.html">← Back to the Royal Lobby</a>
+    <a href="index.html">← Back to the Entrance</a>
+  </div>
+</div>
+
+</body>
+</html>
