@@ -2,300 +2,281 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Kings</title>
+<title>The Kings | Royal Dragon Gang</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+body {
+  margin: 0;
+  font-family: "Georgia", serif;
+  background: url("kings-bg.jpg") center/cover no-repeat fixed;
+  color: #fff;
 }
 
-body{
-  min-height:100vh;
-  background:
-    linear-gradient(
-      rgba(0,0,0,0.35),
-      rgba(0,0,0,0.65)
-    ),
-    url("kings-bg.jpg") center/cover no-repeat;
-  font-family:"Georgia", serif;
-  color:#ffffff;
+/* Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: -1;
 }
 
-/* ================= */
-/* PAGE LAYOUT */
-/* ================= */
-
-.page{
-  padding:90px 20px 160px;
-  text-align:center;
+/* Header */
+.header {
+  text-align: center;
+  padding: 60px 20px 30px;
 }
 
-/* ================= */
-/* HEADER */
-/* ================= */
-
-h1{
-  font-size:54px;
-  letter-spacing:6px;
-  color:#d4af37;
-  margin-bottom:14px;
-  text-shadow:0 0 25px rgba(212,175,55,0.6);
+.header h1 {
+  font-size: 48px;
+  color: gold;
+  letter-spacing: 3px;
+  margin: 0;
 }
 
-.subtitle{
-  font-size:20px;
-  letter-spacing:4px;
-  color:#e6c46a;
-  margin-bottom:90px;
+.header p {
+  color: #d4af37;
+  margin-top: 10px;
+  font-size: 18px;
 }
 
-/* ================= */
-/* KINGS GRID */
-/* ================= */
-
-.kings-lineup{
-  display:flex;
-  justify-content:center;
-  align-items:flex-end;
-  gap:80px;
-  flex-wrap:wrap;
+/* Kings Grid */
+.kings {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 40px;
+  padding: 60px;
+  max-width: 1100px;
+  margin: auto;
 }
 
-/* ================= */
-/* KING CARD */
-/* ================= */
-
-.king{
-  cursor:pointer;
-  transition:transform 0.4s ease;
+.king {
+  text-align: center;
+  cursor: pointer;
 }
 
-.king:hover{
-  transform:translateY(-14px);
+.king img {
+  width: 100%;
+  max-width: 240px;
+  border: 10px solid transparent;
+  border-image: url("royal-border.jpg") 30 round;
+  transition: transform .3s;
 }
 
-/* ROYAL FRAME */
-.king-frame{
-  padding:26px;
-  border:26px solid transparent;
-  border-image:url("royal-border.jpg") 80 round;
-  background:rgba(0,0,0,0.25);
+.king:hover img {
+  transform: scale(1.05);
 }
 
-.king-frame img{
-  height:480px;
-  display:block;
-  filter:drop-shadow(0 30px 55px rgba(0,0,0,0.9));
+.king-name {
+  margin-top: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
 }
 
-/* KING NAME — UPDATED */
-.king-name{
-  margin-top:22px;
-  font-size:24px;          /* BIGGER */
-  font-weight:800;         /* BOLD */
-  letter-spacing:2px;
-  color:#ffffff;           /* WHITE */
-  text-shadow:0 0 12px rgba(0,0,0,0.8);
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
 }
 
-/* ================= */
-/* LORE SECTION */
-/* ================= */
-
-.lore{
-  max-width:900px;
-  margin:100px auto 0;
-  font-size:20px;
-  line-height:1.9;
-  font-weight:600;
-  color:#f5f5f5;
-  text-shadow:0 0 10px rgba(0,0,0,0.6);
+.modal-content {
+  background: linear-gradient(145deg,#1b1b1b,#000);
+  border: 8px solid gold;
+  max-width: 900px;
+  width: 90%;
+  padding: 30px;
+  position: relative;
 }
 
-/* ================= */
-/* NAVIGATION */
-/* ================= */
-
-.navigation{
-  margin-top:120px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  cursor: pointer;
+  color: gold;
 }
 
-.navigation a{
-  font-size:22px;
-  letter-spacing:3px;
-  color:#d4af37;
-  text-decoration:none;
+/* Profile Layout */
+.profile {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
 }
 
-.navigation a:hover{
-  color:#ffffff;
+.profile img {
+  width: 100%;
+  border: 6px solid gold;
 }
 
-.navigation .spacer{
-  height:30px;
+.profile h2 {
+  margin: 0;
+  color: gold;
+  font-size: 32px;
 }
 
-/* ================= */
-/* MODAL */
-/* ================= */
-
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.92);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:999;
+.profile h3 {
+  margin: 5px 0 15px;
+  font-style: italic;
+  color: #d4af37;
 }
 
-.modal.active{display:flex;}
-
-.modal-box{
-  max-width:850px;
-  width:90%;
-  padding:48px;
-  border:28px solid transparent;
-  border-image:url("royal-border.jpg") 80 round;
-  background:linear-gradient(145deg,#1a1208,#000);
-  text-align:center;
-  position:relative;
+.profile strong {
+  color: gold;
 }
 
-.modal-box h2{
-  font-size:38px;
-  color:#d4af37;
-  margin-bottom:12px;
+.profile p {
+  font-size: 15px;
+  line-height: 1.6;
 }
-
-.modal-role{
-  font-size:16px;
-  letter-spacing:3px;
-  color:#e6c46a;
-  margin-bottom:26px;
-}
-
-.modal-text{
-  font-size:18px;
-  line-height:1.9;
-  font-weight:600;
-}
-
-.close{
-  position:absolute;
-  top:18px;
-  right:22px;
-  font-size:30px;
-  cursor:pointer;
-  color:#d4af37;
-}
-
-/* ================= */
-/* MOBILE */
-/* ================= */
 
 @media(max-width:768px){
-  h1{font-size:40px;}
-  .subtitle{font-size:17px;}
-  .king-frame img{height:330px;}
-  .king-frame{padding:18px;border-width:18px;}
-  .king-name{font-size:20px;}
-  .modal-box h2{font-size:28px;}
-  .modal-text{font-size:16px;}
-  .lore{font-size:18px;}
+  .profile {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="page">
-
-  <h1>THE KINGS</h1>
-  <div class="subtitle">Founders • Pillars • Sovereigns</div>
-
-  <div class="kings-lineup">
-
-    <div class="king" onclick="openModal(1)">
-      <div class="king-frame">
-        <img src="king1.png">
-      </div>
-      <div class="king-name">Zhmer Smith</div>
-    </div>
-
-    <div class="king" onclick="openModal(2)">
-      <div class="king-frame">
-        <img src="king2.png">
-      </div>
-      <div class="king-name">Cleint Lee</div>
-    </div>
-
-    <div class="king" onclick="openModal(3)">
-      <div class="king-frame">
-        <img src="king3.png">
-      </div>
-      <div class="king-name">Syle Zion Buenavista</div>
-    </div>
-
-    <div class="king" onclick="openModal(4)">
-      <div class="king-frame">
-        <img src="king4.png">
-      </div>
-      <div class="king-name">John Tedd Dela Serna</div>
-    </div>
-
-  </div>
-
-  <!-- LORE -->
-  <div class="lore">
-    The Kings stand as the founders and pillars of the Royal Dragon Gang.  
-    Bound by loyalty, forged by power, and crowned by influence, they rule from
-    the shadows where wealth, strategy, and authority decide the fate of all who
-    walk beneath their reign.
-  </div>
-
-  <!-- NAVIGATION -->
-  <div class="navigation">
-    <a href="members.html">← BACK TO THE ROYAL MEMBERS</a>
-    <div class="spacer"></div>
-    <a href="index.html">← BACK TO THE ENTRANCE</a>
-  </div>
-
+<div class="header">
+  <h1>The Kings</h1>
+  <p>The Pillars of the Royal Dragon Gang</p>
 </div>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-  <div class="modal-box">
-    <div class="close" onclick="closeModal()">×</div>
-    <h2 id="modalName"></h2>
-    <div class="modal-role" id="modalRole"></div>
-    <div class="modal-text" id="modalText"></div>
+<div class="kings">
+  <div class="king" onclick="openModal('k1')">
+    <img src="king1.png">
+    <div class="king-name">Zhmer Smith</div>
+  </div>
+  <div class="king" onclick="openModal('k2')">
+    <img src="king2.png">
+    <div class="king-name">Cleint Lee</div>
+  </div>
+  <div class="king" onclick="openModal('k3')">
+    <img src="king3.png">
+    <div class="king-name">Syle Zion Buenavista</div>
+  </div>
+  <div class="king" onclick="openModal('k4')">
+    <img src="king4.png">
+    <div class="king-name">John Tedd Dela Serna</div>
+  </div>
+</div>
+
+<!-- MODALS -->
+
+<div class="modal" id="k1">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+    <div class="profile">
+      <img src="king1.png">
+      <div>
+        <h2>Zhmer Smith</h2>
+        <h3>First King</h3>
+        <p><strong>FACTS</strong><br>
+        • Half Filipino, Half American<br>
+        • Founder of the Royal Dragon Gang<br>
+        • Master marksman and weapons specialist<br>
+        • Born into the influential Smith family</p>
+
+        <p><strong>TRAITS</strong><br>
+        • Dangerous in the Arena<br>
+        • Compassionate to friends<br>
+        • Gentle to his girl</p>
+
+        <p><strong>LORE</strong><br>
+        The First King rules with precision and restraint. His loyalty is unbreakable, his aim unmatched.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="k2">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+    <div class="profile">
+      <img src="king2.png">
+      <div>
+        <h2>Cleint Lee</h2>
+        <h3>Second King</h3>
+        <p><strong>FACTS</strong><br>
+        • Half Filipino, Half Korean<br>
+        • Elite racer, undefeated<br>
+        • Fluent in Korean</p>
+
+        <p><strong>TRAITS</strong><br>
+        • Quiet<br>
+        • Cold<br>
+        • Lethal when provoked</p>
+
+        <p><strong>LORE</strong><br>
+        Speed obeys him. Silence follows him. Victory arrives before the chase begins.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="k3">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+    <div class="profile">
+      <img src="king3.png">
+      <div>
+        <h2>Syle Zion Buenavista</h2>
+        <h3>Third King</h3>
+        <p><strong>FACTS</strong><br>
+        • Strategic mastermind<br>
+        • Anonymous pro player “Zion”</p>
+
+        <p><strong>TRAITS</strong><br>
+        • Intelligent<br>
+        • Strategic<br>
+        • Menacing calm</p>
+
+        <p><strong>LORE</strong><br>
+        Wars end before they begin when Zion is involved.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="k4">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+    <div class="profile">
+      <img src="king4.png">
+      <div>
+        <h2>John Tedd Dela Serna</h2>
+        <h3>Fourth King</h3>
+        <p><strong>FACTS</strong><br>
+        • Vocalist of Midnight Blue Band<br>
+        • Advanced hand-to-hand fighter</p>
+
+        <p><strong>TRAITS</strong><br>
+        • Reckless<br>
+        • Charismatic<br>
+        • Fiercely loyal</p>
+
+        <p><strong>LORE</strong><br>
+        A star on stage, a nightmare in the streets.</p>
+      </div>
+    </div>
   </div>
 </div>
 
 <script>
-const profiles={
-  1:{name:"Zhmer Smith",role:"Founder",text:"Write Zhmer Smith’s profile here."},
-  2:{name:"Cleint Lee",role:"Co-Founder",text:"Write Cleint Lee’s profile here."},
-  3:{name:"Syle Zion Buenavista",role:"Strategist",text:"Write Syle Zion Buenavista’s profile here."},
-  4:{name:"John Tedd Dela Serna",role:"Enforcer",text:"Write John Tedd Dela Serna’s profile here."}
-};
-
 function openModal(id){
-  modal.classList.add("active");
-  modalName.innerText=profiles[id].name;
-  modalRole.innerText=profiles[id].role;
-  modalText.innerText=profiles[id].text;
+  document.getElementById(id).style.display = "flex";
 }
-
 function closeModal(){
-  modal.classList.remove("active");
+  document.querySelectorAll(".modal").forEach(m => m.style.display="none");
 }
 </script>
 
