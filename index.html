@@ -21,6 +21,7 @@
       font-family: "Cinzel", serif;
     }
 
+    /* ===== LAYOUT ===== */
     .entrance-wrapper {
       height: 100vh;
       display: grid;
@@ -125,7 +126,7 @@
       transform: rotateY(80deg);
     }
 
-    /* ===== LOGO ===== */
+    /* ===== LOGO + MOTTO ===== */
     .crest {
       margin-bottom: 26px;
     }
@@ -203,7 +204,7 @@
       </div>
     </div>
 
-    <!-- LOGO -->
+    <!-- LOGO + MOTTO -->
     <div class="crest">
       <img src="logo.png" alt="House Logo">
       <div class="motto">The Gang Rules. Dragons Decide.</div>
@@ -215,19 +216,29 @@
   <script>
     const doorFrame = document.getElementById("doorFrame");
 
-    // IF coming back, show OPEN first (no animation), then CLOSE with animation
-    if (sessionStorage.getItem("doorState") === "open") {
-      doorFrame.classList.add("open");
+    // 🔥 Handle BACK button properly
+    window.addEventListener("pageshow", (event) => {
+      if (sessionStorage.getItem("doorState") === "open") {
 
-      setTimeout(() => {
-        doorFrame.classList.remove("no-transition"); // enable animation
-        doorFrame.classList.remove("open");          // close door
-        sessionStorage.removeItem("doorState");
-      }, 150);
-    } else {
-      doorFrame.classList.remove("no-transition");
-    }
+        // Show door OPEN instantly (no animation)
+        doorFrame.classList.add("open");
+        doorFrame.classList.add("no-transition");
 
+        // Next frame: allow animation, then CLOSE
+        requestAnimationFrame(() => {
+          doorFrame.classList.remove("no-transition");
+
+          setTimeout(() => {
+            doorFrame.classList.remove("open"); // CLOSE animation
+            sessionStorage.removeItem("doorState");
+          }, 100);
+        });
+      } else {
+        doorFrame.classList.remove("no-transition");
+      }
+    });
+
+    // Open door and go to lobby
     function openDoor() {
       doorFrame.classList.add("open");
       sessionStorage.setItem("doorState", "open");
