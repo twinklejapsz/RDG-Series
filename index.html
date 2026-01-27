@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <title>House of Dragon Royalties</title>
 
-  <!-- Fallback font -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -35,28 +34,10 @@
       z-index: 3;
     }
 
-    /* LOGO – FORCED VISIBLE */
-    .logo {
-      margin-top: 24px;
-      width: 150px;
-      position: relative;
-      z-index: 20;
-      padding: 10px;
-      background: rgba(0,0,0,0.35);   /* ensures visibility */
-      border-radius: 14px;
-      backdrop-filter: blur(4px);
-      filter: drop-shadow(0 0 22px rgba(255,215,0,0.9));
-      transition: opacity 0.9s ease;
-    }
-
-    .logo.hide {
-      opacity: 0;
-    }
-
     /* TEXT */
     .text-wrapper {
-      margin-top: 20px;
-      margin-bottom: 20px;
+      margin-top: 40px;
+      margin-bottom: 10px;
     }
 
     .welcome-text {
@@ -73,13 +54,31 @@
       text-shadow: 0 0 22px rgba(255,215,0,0.9);
     }
 
+    /* LOGO – CENTERED ABOVE DOOR */
+    .logo {
+      margin: 24px 0 12px 0;
+      width: 180px;               /* BIGGER */
+      position: relative;
+      z-index: 10;
+      padding: 10px;
+      background: rgba(0,0,0,0.35);
+      border-radius: 16px;
+      backdrop-filter: blur(4px);
+      filter: drop-shadow(0 0 26px rgba(255,215,0,0.9));
+      transition: opacity 0.9s ease;
+    }
+
+    .logo.hide {
+      opacity: 0;
+    }
+
     /* DOOR */
     .door-wrapper {
       flex-grow: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: -20px;
+      margin-top: -10px;
     }
 
     .door-frame {
@@ -156,11 +155,6 @@
 
     /* MOBILE */
     @media (max-width: 600px) {
-      .logo {
-        width: 110px;
-        padding: 8px;
-      }
-
       .welcome-text {
         font-size: 46px;
       }
@@ -168,6 +162,11 @@
       .house-text {
         font-size: 30px;
         letter-spacing: 2px;
+      }
+
+      .logo {
+        width: 130px;
+        padding: 8px;
       }
 
       .door-frame {
@@ -182,16 +181,16 @@
 
   <div class="center-wrapper">
 
-    <!-- LOGO -->
-    <img src="logo.png" class="logo" id="logo" alt="House Logo">
-
     <!-- TEXT -->
     <div class="text-wrapper">
       <div class="welcome-text">Welcome to the</div>
       <div class="house-text">House of Dragon Royalties</div>
     </div>
 
-    <!-- DOORS -->
+    <!-- LOGO (CENTERED ABOVE DOOR) -->
+    <img src="logo.png" class="logo" id="logo" alt="House Logo">
+
+    <!-- DOOR -->
     <div class="door-wrapper">
       <div class="door-frame" onclick="openDoor()">
         <div class="door left">
