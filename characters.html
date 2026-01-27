@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>The Royal Lobby</title>
 
-  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -12,7 +11,7 @@
       margin: 0;
       min-height: 100vh;
       background:
-        linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.75)),
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.8)),
         url("lobby-bg.jpg");
       background-size: cover;
       background-position: center;
@@ -21,7 +20,7 @@
       color: gold;
     }
 
-    /* ===== MAIN LAYOUT ===== */
+    /* ===== PAGE ===== */
     .page {
       min-height: 100vh;
       display: flex;
@@ -45,44 +44,49 @@
 
     .subtitle {
       margin-top: 6px;
-      font-size: 15px;
+      font-size: 16px;
       letter-spacing: 4px;
       color: #e6c46a;
     }
 
-    /* ===== STORY BLOCK ===== */
+    /* ===== DESCRIPTION (MIDDLE) ===== */
     .story-zone {
-      max-width: 760px;
-      margin-top: 18px;
-      padding: 0 22px;
+      max-width: 820px;
+      margin-top: 48px;
+      padding: 0 24px;
       text-align: center;
     }
 
     .story {
-      font-size: 14px;
-      line-height: 1.6;
+      font-size: 16px; /* BIGGER */
+      line-height: 1.7;
       color: #e6c46a;
       opacity: 0.95;
     }
 
     .divider {
-      width: 220px;
+      width: 260px;
       height: 2px;
-      margin: 14px auto;
+      margin: 20px auto;
       background: linear-gradient(to right, transparent, #d4af37, transparent);
-      box-shadow: 0 0 10px rgba(212,175,55,0.7);
+      box-shadow: 0 0 12px rgba(212,175,55,0.8);
     }
 
     .warning {
-      font-size: 13px;
+      font-size: 14px;
       letter-spacing: 4px;
-      color: #cfae60;
+      color: #d6b760;
       opacity: 0.9;
     }
 
-    /* ===== DOOR ZONE ===== */
+    /* ===== PUSH DOORS DOWN ===== */
+    .spacer {
+      flex: 1;
+    }
+
+    /* ===== DOORS ===== */
     .door-zone {
-      margin-top: 90px; /* pushes doors DOWN */
+      margin-bottom: 10px;
       display: flex;
       justify-content: center;
       gap: 140px;
@@ -144,9 +148,9 @@
       color: #e6c46a;
     }
 
-    /* ===== NAVIGATION ===== */
+    /* ===== NAV ===== */
     .nav {
-      margin: 40px 0 28px;
+      margin: 22px 0 30px;
       font-size: 18px;
       letter-spacing: 4px;
       cursor: pointer;
@@ -169,11 +173,10 @@
       }
 
       .story {
-        font-size: 13px;
+        font-size: 15px;
       }
 
       .door-zone {
-        margin-top: 60px;
         flex-direction: column;
         gap: 50px;
       }
@@ -204,7 +207,7 @@
       <div class="subtitle">Choose your path</div>
     </div>
 
-    <!-- STORY -->
+    <!-- DESCRIPTION -->
     <div class="story-zone">
       <div class="story">
         RDG Series follows the story of a well-known gang bound by loyalty, friendship,
@@ -220,6 +223,9 @@
         Once entered, there’s no turning back
       </div>
     </div>
+
+    <!-- PUSH CONTENT DOWN -->
+    <div class="spacer"></div>
 
     <!-- DOORS -->
     <div class="door-zone">
@@ -242,7 +248,7 @@
 
     </div>
 
-    <!-- NAVIGATION -->
+    <!-- NAV -->
     <div class="nav" onclick="goToEntrance()">
       <span>←</span>
       <div>To the Entrance</div>
@@ -264,7 +270,6 @@
       window.location.href = "index.html";
     }
 
-    // Ensure doors close when returning
     window.addEventListener("pageshow", () => {
       document.querySelectorAll(".door-frame").forEach(d => {
         d.classList.remove("open");
