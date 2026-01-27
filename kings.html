@@ -15,23 +15,19 @@
 body{
   min-height:100vh;
   background:
-    linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.92)),
+    linear-gradient(rgba(0,0,0,0.82),rgba(0,0,0,0.95)),
     url("kings-bg.jpg") center/cover no-repeat;
   font-family:"Georgia", serif;
   color:#ffffff;
 }
 
 /* ================= */
-/* ROYAL FRAME */
+/* PAGE LAYOUT */
 /* ================= */
 
-.royal-frame{
-  max-width:1200px;
-  margin:60px auto;
-  padding:90px 60px;
-  border:40px solid transparent;
-  border-image: url("royal-border.jpg") 80 round;
-  background:rgba(0,0,0,0.65);
+.page{
+  padding:90px 20px 140px;
+  text-align:center;
 }
 
 /* ================= */
@@ -42,13 +38,11 @@ h1{
   font-size:54px;
   letter-spacing:6px;
   color:#d4af37;
-  text-align:center;
   margin-bottom:14px;
   text-shadow:0 0 25px rgba(212,175,55,0.6);
 }
 
 .subtitle{
-  text-align:center;
   font-size:20px;
   letter-spacing:4px;
   color:#e6c46a;
@@ -56,7 +50,7 @@ h1{
 }
 
 /* ================= */
-/* KINGS LINEUP */
+/* KINGS GRID */
 /* ================= */
 
 .kings-lineup{
@@ -67,6 +61,10 @@ h1{
   flex-wrap:wrap;
 }
 
+/* ================= */
+/* KING CARD */
+/* ================= */
+
 .king{
   cursor:pointer;
   transition:transform 0.4s ease;
@@ -76,19 +74,27 @@ h1{
   transform:translateY(-14px);
 }
 
-.king img{
+/* ROYAL FRAME PER KING */
+.king-frame{
+  padding:26px;
+  border:26px solid transparent;
+  border-image:url("royal-border.jpg") 80 round;
+  background:rgba(0,0,0,0.55);
+}
+
+/* KING IMAGE */
+.king-frame img{
   height:480px;
-  max-width:100%;
   display:block;
   filter:drop-shadow(0 30px 55px rgba(0,0,0,0.9));
 }
 
+/* NAME */
 .king-name{
   margin-top:18px;
   font-size:20px;
   letter-spacing:3px;
   color:#d4af37;
-  text-align:center;
 }
 
 /* ================= */
@@ -105,16 +111,14 @@ h1{
   z-index:999;
 }
 
-.modal.active{
-  display:flex;
-}
+.modal.active{display:flex;}
 
 .modal-box{
   max-width:850px;
   width:90%;
   padding:48px;
   border:28px solid transparent;
-  border-image: url("royal-border.jpg") 80 round;
+  border-image:url("royal-border.jpg") 80 round;
   background:linear-gradient(145deg,#1a1208,#000);
   text-align:center;
   position:relative;
@@ -149,7 +153,7 @@ h1{
 }
 
 /* ================= */
-/* NAVIGATION */
+/* NAV */
 /* ================= */
 
 .navigation{
@@ -166,34 +170,19 @@ h1{
   text-decoration:none;
 }
 
-.navigation a:hover{
-  color:#ffffff;
-}
+.navigation a:hover{color:#ffffff;}
 
-.navigation .spacer{
-  height:30px;
-}
+.navigation .spacer{height:30px;}
 
 /* ================= */
 /* MOBILE */
 /* ================= */
 
 @media(max-width:768px){
-  .royal-frame{
-    padding:60px 30px;
-    border-width:26px;
-  }
-
   h1{font-size:40px;}
   .subtitle{font-size:17px;}
-
-  .king img{height:330px;}
-
-  .modal-box{
-    padding:30px;
-    border-width:20px;
-  }
-
+  .king-frame img{height:330px;}
+  .king-frame{padding:18px;border-width:18px;}
   .modal-box h2{font-size:28px;}
   .modal-text{font-size:16px;}
 }
@@ -202,38 +191,43 @@ h1{
 
 <body>
 
-<div class="royal-frame">
+<div class="page">
 
-  <!-- HEADER -->
   <h1>THE KINGS</h1>
   <div class="subtitle">Founders • Pillars • Sovereigns</div>
 
-  <!-- KINGS -->
   <div class="kings-lineup">
 
     <div class="king" onclick="openModal(1)">
-      <img src="king1.png">
+      <div class="king-frame">
+        <img src="king1.png">
+      </div>
       <div class="king-name">KING NAME</div>
     </div>
 
     <div class="king" onclick="openModal(2)">
-      <img src="king2.png">
+      <div class="king-frame">
+        <img src="king2.png">
+      </div>
       <div class="king-name">KING NAME</div>
     </div>
 
     <div class="king" onclick="openModal(3)">
-      <img src="king3.png">
+      <div class="king-frame">
+        <img src="king3.png">
+      </div>
       <div class="king-name">KING NAME</div>
     </div>
 
     <div class="king" onclick="openModal(4)">
-      <img src="king4.png">
+      <div class="king-frame">
+        <img src="king4.png">
+      </div>
       <div class="king-name">KING NAME</div>
     </div>
 
   </div>
 
-  <!-- NAV -->
   <div class="navigation">
     <a href="members.html">← BACK TO THE ROYAL MEMBERS</a>
     <div class="spacer"></div>
