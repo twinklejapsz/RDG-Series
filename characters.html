@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 
-  <!-- CACHE BUSTER -->
+  <!-- CACHE CONTROL -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -21,86 +21,73 @@
         url("lobby-bg.jpg");
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
-      color: gold;
       font-family: "Cinzel", serif;
+      color: gold;
     }
 
-    /* ===== WRAPPER ===== */
-    .lobby-wrapper {
+    .wrapper {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    /* ===== HEADER ===== */
-    .lobby-header {
+    /* HEADER */
+    .header {
       margin-top: 24px;
       text-align: center;
     }
 
-    .lobby-title {
+    .title {
       font-size: 56px;
       letter-spacing: 6px;
-      text-shadow:
-        0 0 18px rgba(255,215,0,0.9),
-        0 0 36px rgba(255,215,0,0.6);
+      text-shadow: 0 0 18px rgba(255,215,0,0.8);
     }
 
-    .lobby-subtitle {
-      margin-top: 6px;
+    .subtitle {
       font-size: 16px;
       letter-spacing: 4px;
       color: #e6c46a;
+      margin-top: 6px;
     }
 
-    /* ===== STORY (COMPACT) ===== */
-    .story-zone {
-      max-width: 780px;
+    /* STORY (COMPACT – DOES NOT PUSH DOORS) */
+    .story {
+      max-width: 760px;
       margin-top: 16px;
       padding: 0 20px;
       text-align: center;
-    }
-
-    .story-block {
       font-size: 14px;
       line-height: 1.5;
       color: #e6c46a;
       opacity: 0.9;
     }
 
-    .royal-divider {
+    .divider {
       width: 220px;
       height: 2px;
       margin: 14px auto;
       background: linear-gradient(to right, transparent, #d4af37, transparent);
-      box-shadow: 0 0 12px rgba(212,175,55,0.8);
     }
 
-    .warning-line {
+    .warning {
       font-size: 13px;
       letter-spacing: 4px;
       color: #cfae60;
-      opacity: 0.85;
     }
 
-    /* ===== DOORS (PUSHED DOWN) ===== */
+    /* DOORS — PUSHED DOWN */
     .door-zone {
-      margin-top: 90px; /* RESTORES ORIGINAL SPACING */
-      text-align: center;
-    }
-
-    .door-hall {
+      margin-top: 90px;
       display: flex;
       justify-content: center;
       gap: 140px;
-      align-items: center;
     }
 
     .door-wrapper {
       perspective: 1600px;
       cursor: pointer;
+      text-align: center;
     }
 
     .door-frame {
@@ -111,15 +98,11 @@
 
     .door {
       position: absolute;
-      top: 0;
       width: 50%;
       height: 100%;
-      overflow: hidden;
+      top: 0;
       transition: transform 1.6s ease;
-    }
-
-    .no-transition .door {
-      transition: none !important;
+      overflow: hidden;
     }
 
     .door.left {
@@ -150,159 +133,100 @@
       transform: rotateY(80deg);
     }
 
-    .door-label {
-      margin-top: 16px;
+    .label {
+      margin-top: 14px;
       font-size: 18px;
       letter-spacing: 4px;
       color: #e6c46a;
     }
 
-    /* ===== NAV ===== */
-    .nav-entrance {
-      margin: 30px auto 40px;
+    /* NAV */
+    .nav {
+      margin: 40px 0;
       font-size: 18px;
       letter-spacing: 4px;
-      color: #e6c46a;
       cursor: pointer;
-      display: inline-flex;
+      display: flex;
       align-items: center;
       gap: 14px;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .nav-entrance span {
-      font-size: 26px;
-    }
-
-    .nav-entrance:hover {
-      opacity: 0.85;
-      transform: translateY(2px);
-    }
-
-    /* ===== MOBILE ===== */
-    @media (max-width: 768px) {
-      .lobby-title {
-        font-size: 40px;
-      }
-
-      .story-block {
-        font-size: 13px;
-      }
-
-      .door-zone {
-        margin-top: 60px;
-      }
-
-      .door-hall {
-        flex-direction: column;
-        gap: 50px;
-      }
-
-      .door-frame {
-        width: 260px;
-        height: 380px;
-      }
-
-      .door-label {
-        font-size: 16px;
-      }
-
-      .nav-entrance {
-        font-size: 16px;
-      }
+      color: #e6c46a;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="lobby-wrapper">
+  <div class="wrapper">
 
-    <!-- HEADER -->
-    <div class="lobby-header">
-      <div class="lobby-title">The Royal Lobby</div>
-      <div class="lobby-subtitle">Choose your path</div>
+    <div class="header">
+      <div class="title">The Royal Lobby</div>
+      <div class="subtitle">Choose your path</div>
     </div>
 
-    <!-- STORY -->
-    <div class="story-zone">
-      <div class="story-block">
-        RDG Series follows the story of a well-known gang bound by loyalty, friendship,
-        and the streets they rule. Behind their tough image, each member hides a story
-        of love — some painful, some pure, and others fueled by hatred.
-        As they face conflicts, rivalries, and secrets from their past,
-        love becomes both their greatest strength and deepest weakness.
-      </div>
-
-      <div class="royal-divider"></div>
-
-      <div class="warning-line">
-        Once entered, there’s no turning back
-      </div>
+    <div class="story">
+      RDG Series follows the story of a well-known gang bound by loyalty, friendship,
+      and the streets they rule. Behind their tough image, each member hides a story
+      of love — some painful, some pure, and others fueled by hatred.
+      As they face conflicts, rivalries, and secrets from their past,
+      love becomes both their greatest strength and deepest weakness.
     </div>
 
-    <!-- DOORS -->
+    <div class="divider"></div>
+    <div class="warning">Once entered, there’s no turning back</div>
+
     <div class="door-zone">
 
-      <div class="door-hall">
-
-        <div class="door-wrapper" onclick="openLobbyDoor('ownerDoor', 'house-owner.html')">
-          <div class="door-frame no-transition" id="ownerDoor">
-            <div class="door left"><img src="lobby-door.jpg"></div>
-            <div class="door right"><img src="lobby-door.jpg"></div>
-          </div>
-          <div class="door-label">House Owner</div>
+      <div class="door-wrapper" onclick="openDoor('owner', 'house-owner.html')">
+        <div class="door-frame" id="owner">
+          <div class="door left"><img src="lobby-door.jpg"></div>
+          <div class="door right"><img src="lobby-door.jpg"></div>
         </div>
-
-        <div class="door-wrapper" onclick="openLobbyDoor('membersDoor', 'members.html')">
-          <div class="door-frame no-transition" id="membersDoor">
-            <div class="door left"><img src="lobby-door.jpg"></div>
-            <div class="door right"><img src="lobby-door.jpg"></div>
-          </div>
-          <div class="door-label">Members</div>
-        </div>
-
+        <div class="label">House Owner</div>
       </div>
 
-      <div class="nav-entrance" onclick="goToEntrance()">
-        <span>←</span>
-        <div>To the Entrance</div>
+      <div class="door-wrapper" onclick="openDoor('members', 'members.html')">
+        <div class="door-frame" id="members">
+          <div class="door left"><img src="lobby-door.jpg"></div>
+          <div class="door right"><img src="lobby-door.jpg"></div>
+        </div>
+        <div class="label">Members</div>
       </div>
 
+    </div>
+
+    <div class="nav" onclick="goBack()">
+      <span>←</span>
+      <div>To the Entrance</div>
     </div>
 
   </div>
 
   <script>
-    function openLobbyDoor(doorId, target) {
-      const doorFrame = document.getElementById(doorId);
-      doorFrame.classList.add("open");
-      sessionStorage.setItem("lobbyDoorOpen", doorId);
+    function openDoor(id, target) {
+      const door = document.getElementById(id);
+      door.classList.add("open");
+      sessionStorage.setItem("openDoor", id);
 
       setTimeout(() => {
-        window.location.href = target;
+        window.location.href = target + "?v=" + Date.now();
       }, 1600);
     }
 
     window.addEventListener("pageshow", () => {
-      const openDoorId = sessionStorage.getItem("lobbyDoorOpen");
-      if (openDoorId) {
-        const doorFrame = document.getElementById(openDoorId);
-        doorFrame.classList.add("open");
-        doorFrame.classList.add("no-transition");
+      const id = sessionStorage.getItem("openDoor");
+      if (id) {
+        const door = document.getElementById(id);
+        door.classList.add("open");
 
-        requestAnimationFrame(() => {
-          doorFrame.classList.remove("no-transition");
-          setTimeout(() => {
-            doorFrame.classList.remove("open");
-            sessionStorage.removeItem("lobbyDoorOpen");
-          }, 100);
-        });
+        setTimeout(() => {
+          door.classList.remove("open");
+          sessionStorage.removeItem("openDoor");
+        }, 100);
       }
     });
 
-    function goToEntrance() {
-      window.location.href = "index.html";
+    function goBack() {
+      window.location.href = "index.html?v=" + Date.now();
     }
   </script>
 
