@@ -27,10 +27,10 @@
       text-align: center;
     }
 
-    /* 🔑 TEXT BLOCK – MOVED DOWN */
+    /* ===== TEXT BLOCK ===== */
     .lobby-text {
       position: absolute;
-      top: 22vh;                      /* THIS controls vertical placement */
+      top: 22vh;
       left: 50%;
       transform: translateX(-50%);
       width: 100%;
@@ -38,19 +38,37 @@
     }
 
     .lobby-title {
-      font-size: 88px;                /* BIGGER */
-      letter-spacing: 8px;
-      text-shadow: 0 0 36px rgba(255,215,0,1);
+      font-size: 104px; /* MUCH BIGGER */
+      letter-spacing: 10px;
+      text-shadow:
+        0 0 18px rgba(255,215,0,0.8),
+        0 0 40px rgba(255,215,0,0.6);
+    }
+
+    /* ORNAMENT DIVIDER */
+    .ornament {
+      width: 420px;
+      height: 2px;
+      margin: 22px auto;
+      background: linear-gradient(
+        to right,
+        transparent,
+        gold,
+        #fff2b0,
+        gold,
+        transparent
+      );
+      box-shadow: 0 0 18px rgba(255,215,0,0.8);
     }
 
     .lobby-subtitle {
-      font-size: 28px;
-      letter-spacing: 5px;
+      font-size: 30px;
+      letter-spacing: 6px;
       color: #e6c46a;
-      margin-top: 16px;
+      text-shadow: 0 0 14px rgba(255,215,0,0.6);
     }
 
-    /* DOORS (UNCHANGED) */
+    /* ===== DOORS ===== */
     .door-hall {
       position: absolute;
       top: 58%;
@@ -111,20 +129,21 @@
       letter-spacing: 5px;
       text-transform: uppercase;
       color: #e6c46a;
+      text-shadow: 0 0 10px rgba(255,215,0,0.6);
     }
 
-    /* TABLET */
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .lobby-title {
-        font-size: 62px;
+        font-size: 70px;
       }
 
       .lobby-subtitle {
         font-size: 22px;
       }
 
-      .lobby-text {
-        top: 20vh;
+      .ornament {
+        width: 300px;
       }
 
       .door-hall {
@@ -142,20 +161,23 @@
       }
     }
 
-    /* MOBILE */
     @media (max-width: 600px) {
       .lobby-text {
         top: 18vh;
       }
 
       .lobby-title {
-        font-size: 46px;
+        font-size: 48px;
         letter-spacing: 4px;
       }
 
       .lobby-subtitle {
         font-size: 18px;
         letter-spacing: 3px;
+      }
+
+      .ornament {
+        width: 220px;
       }
 
       .door-hall {
@@ -181,9 +203,10 @@
 
   <div class="lobby-wrapper">
 
-    <!-- TEXT (MOVED DOWN) -->
+    <!-- TEXT & DECORATION -->
     <div class="lobby-text">
       <div class="lobby-title">The Royal Lobby</div>
+      <div class="ornament"></div>
       <div class="lobby-subtitle">Two paths lie before you</div>
     </div>
 
@@ -191,22 +214,14 @@
     <div class="door-hall">
 
       <div class="lobby-door" onclick="openLobbyDoor(this, 'house-owner.html')">
-        <div class="door-panel left">
-          <img src="lobby-door.jpg">
-        </div>
-        <div class="door-panel right">
-          <img src="lobby-door.jpg">
-        </div>
+        <div class="door-panel left"><img src="lobby-door.jpg"></div>
+        <div class="door-panel right"><img src="lobby-door.jpg"></div>
         <div class="door-label">The House Owner</div>
       </div>
 
       <div class="lobby-door" onclick="openLobbyDoor(this, 'members.html')">
-        <div class="door-panel left">
-          <img src="lobby-door.jpg">
-        </div>
-        <div class="door-panel right">
-          <img src="lobby-door.jpg">
-        </div>
+        <div class="door-panel left"><img src="lobby-door.jpg"></div>
+        <div class="door-panel right"><img src="lobby-door.jpg"></div>
         <div class="door-label">The Members</div>
       </div>
 
