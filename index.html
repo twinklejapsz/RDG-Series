@@ -74,15 +74,15 @@
     }
 
     .door-wrapper {
-      perspective: 1600px;
+      perspective: 1800px;
       cursor: pointer;
     }
 
-    /* 🔥 BIGGER DOOR */
+    /* 🔥 SLIGHTLY BIGGER DOOR */
     .door-frame {
       position: relative;
-      width: 420px;   /* INCREASED */
-      height: 620px;  /* INCREASED */
+      width: 460px;   /* increased */
+      height: 680px;  /* increased */
     }
 
     .door {
@@ -114,6 +114,7 @@
       margin-left: -100%;
     }
 
+    /* OPEN STATE */
     .open .door.left {
       transform: rotateY(-80deg);
     }
@@ -122,19 +123,19 @@
       transform: rotateY(80deg);
     }
 
-    /* ===== LOGO + MOTTO (BIGGER) ===== */
+    /* ===== LOGO + MOTTO (SLIGHTLY BIGGER) ===== */
     .crest {
-      margin-top: 26px;
+      margin-top: 28px;
       transition: opacity 1s ease;
     }
 
     .crest img {
-      width: 160px;   /* BIGGER LOGO */
+      width: 180px; /* increased */
     }
 
     .motto {
-      margin-top: 12px;
-      font-size: 22px; /* BIGGER MOTTO */
+      margin-top: 14px;
+      font-size: 24px; /* increased */
       letter-spacing: 5px;
       color: #e6c46a;
       text-transform: uppercase;
@@ -168,16 +169,16 @@
       }
 
       .door-frame {
-        width: 280px;
-        height: 420px;
+        width: 300px;
+        height: 450px;
       }
 
       .crest img {
-        width: 120px;
+        width: 130px;
       }
 
       .motto {
-        font-size: 16px;
+        font-size: 18px;
         letter-spacing: 3px;
       }
     }
@@ -200,7 +201,7 @@
 
       <!-- DOOR -->
       <div class="door-wrapper" onclick="openDoor()">
-        <div class="door-frame">
+        <div class="door-frame" id="doorFrame">
           <div class="door left"><img src="door.png"></div>
           <div class="door right"><img src="door.png"></div>
         </div>
@@ -218,13 +219,24 @@
   </div>
 
   <script>
+    const doorFrame = document.getElementById("doorFrame");
+    const crest = document.getElementById("crest");
+
+    // CLOSE door automatically when coming back
+    if (sessionStorage.getItem("doorOpen") === "true") {
+      doorFrame.classList.remove("open");
+      sessionStorage.removeItem("doorOpen");
+    }
+
     function openDoor() {
-      document.querySelector(".door-frame").classList.add("open");
-      document.getElementById("crest").classList.add("hide");
+      doorFrame.classList.add("open");
+      crest.classList.add("hide");
+
+      sessionStorage.setItem("doorOpen", "true");
 
       setTimeout(() => {
         window.location.href = "characters.html";
-      }, 1600);
+      }, 1700);
     }
   </script>
 
