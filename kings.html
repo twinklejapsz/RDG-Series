@@ -18,7 +18,7 @@ body::before {
   inset:0;
   background:rgba(0,0,0,0.5);
   z-index:-1;
-  pointer-events:none; /* ✅ FIX: allows clicks */
+  pointer-events:none;
 }
 
 /* HEADER */
@@ -50,7 +50,7 @@ body::before {
   text-align:center;
   cursor:pointer;
   position:relative;
-  z-index:2; /* ✅ FIX: ensures clickable */
+  z-index:2;
 }
 
 .king img {
@@ -271,7 +271,7 @@ body::before {
   </div>
 </div>
 
-<!-- NAVIGATION -->
+<!-- NAVIGATION (FIXED) -->
 <div class="nav">
   <a href="lobby.html">← Back to the Royal Lobby</a>
   <a href="members.html">← Back to The Royal Members</a>
@@ -280,13 +280,11 @@ body::before {
 
 <script>
 function openModal(id){
-  const modal = document.getElementById(id);
-  modal.style.display = "flex";
+  document.getElementById(id).style.display="flex";
 }
-
 function closeModal(){
-  document.querySelectorAll(".modal").forEach(m => {
-    m.style.display = "none";
+  document.querySelectorAll(".modal").forEach(m=>{
+    m.style.display="none";
   });
 }
 </script>
