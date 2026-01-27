@@ -9,191 +9,172 @@
   <style>
     body {
       margin: 0;
-      min-height: 100vh;
+      height: 100vh;
       background:
-        linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.9)),
+        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.75)),
         url("lobby-bg.jpg");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       color: gold;
       font-family: "Cinzel", serif;
-      overflow: hidden;
     }
 
+    /* ===== LAYOUT ===== */
     .lobby-wrapper {
-      min-height: 100vh;
-      position: relative;
+      height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      align-items: center;
       text-align: center;
+      position: relative;
     }
 
-    /* ===== TEXT BLOCK ===== */
-    .lobby-text {
-      position: absolute;
-      top: 22vh;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      z-index: 5;
+    /* ===== HEADER ===== */
+    .lobby-header {
+      margin-top: 24px;
     }
 
     .lobby-title {
-      font-size: 104px; /* MUCH BIGGER */
-      letter-spacing: 10px;
+      font-size: 60px;
+      letter-spacing: 6px;
       text-shadow:
-        0 0 18px rgba(255,215,0,0.8),
+        0 0 20px rgba(255,215,0,0.9),
         0 0 40px rgba(255,215,0,0.6);
     }
 
-    /* ORNAMENT DIVIDER */
-    .ornament {
-      width: 420px;
-      height: 2px;
-      margin: 22px auto;
-      background: linear-gradient(
-        to right,
-        transparent,
-        gold,
-        #fff2b0,
-        gold,
-        transparent
-      );
-      box-shadow: 0 0 18px rgba(255,215,0,0.8);
-    }
-
     .lobby-subtitle {
-      font-size: 30px;
-      letter-spacing: 6px;
+      margin-top: 8px;
+      font-size: 18px;
+      letter-spacing: 4px;
       color: #e6c46a;
-      text-shadow: 0 0 14px rgba(255,215,0,0.6);
     }
 
     /* ===== DOORS ===== */
     .door-hall {
-      position: absolute;
-      top: 58%;
-      left: 50%;
-      transform: translate(-50%, -45%);
       display: flex;
-      gap: 220px;
+      justify-content: center;
+      gap: 140px;
+      align-items: center;
     }
 
-    .lobby-door {
-      position: relative;
-      width: 420px;
-      height: 620px;
+    .door-wrapper {
       perspective: 1600px;
       cursor: pointer;
     }
 
-    .door-panel {
+    .door-frame {
+      position: relative;
+      width: 320px;
+      height: 480px;
+    }
+
+    .door {
       position: absolute;
       top: 0;
       width: 50%;
       height: 100%;
       overflow: hidden;
-      transition: transform 1.8s ease;
+      transition: transform 1.6s ease;
     }
 
-    .door-panel.left {
+    /* disable animation temporarily */
+    .no-transition .door {
+      transition: none !important;
+    }
+
+    .door.left {
       left: 0;
       transform-origin: left center;
     }
 
-    .door-panel.right {
+    .door.right {
       right: 0;
       transform-origin: right center;
     }
 
-    .door-panel img {
+    .door img {
       width: 200%;
       height: 100%;
       object-fit: cover;
     }
 
-    .door-panel.right img {
+    .door.right img {
       margin-left: -100%;
     }
 
-    .open .door-panel.left {
-      transform: rotateY(-85deg);
+    .open .door.left {
+      transform: rotateY(-80deg);
     }
 
-    .open .door-panel.right {
-      transform: rotateY(85deg);
+    .open .door.right {
+      transform: rotateY(80deg);
     }
 
     .door-label {
-      margin-top: 660px;
-      font-size: 26px;
-      letter-spacing: 5px;
-      text-transform: uppercase;
+      margin-top: 16px;
+      font-size: 20px;
+      letter-spacing: 4px;
       color: #e6c46a;
-      text-shadow: 0 0 10px rgba(255,215,0,0.6);
     }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 1024px) {
-      .lobby-title {
-        font-size: 70px;
-      }
-
-      .lobby-subtitle {
-        font-size: 22px;
-      }
-
-      .ornament {
-        width: 300px;
-      }
-
-      .door-hall {
-        gap: 100px;
-      }
-
-      .lobby-door {
-        width: 300px;
-        height: 450px;
-      }
-
-      .door-label {
-        margin-top: 480px;
-        font-size: 18px;
-      }
+    /* ===== FOOTER ===== */
+    .lobby-hint {
+      margin-bottom: 20px;
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: #aaa;
     }
 
-    @media (max-width: 600px) {
-      .lobby-text {
-        top: 18vh;
-      }
+    /* ===== BACK TO ENTRANCE ===== */
+    .back-entrance {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: #e6c46a;
+      cursor: pointer;
+      user-select: none;
+      z-index: 999;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
 
+    .back-entrance span {
+      font-size: 22px;
+    }
+
+    .back-entrance:hover {
+      opacity: 0.85;
+      transform: translateX(-4px);
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 768px) {
       .lobby-title {
-        font-size: 48px;
-        letter-spacing: 4px;
-      }
-
-      .lobby-subtitle {
-        font-size: 18px;
-        letter-spacing: 3px;
-      }
-
-      .ornament {
-        width: 220px;
+        font-size: 42px;
       }
 
       .door-hall {
         flex-direction: column;
-        gap: 70px;
-        top: 64%;
+        gap: 50px;
       }
 
-      .lobby-door {
-        width: 240px;
-        height: 360px;
+      .door-frame {
+        width: 260px;
+        height: 380px;
       }
 
       .door-label {
-        margin-top: 390px;
         font-size: 16px;
+        letter-spacing: 3px;
+      }
+
+      .back-entrance {
+        font-size: 12px;
       }
     }
   </style>
@@ -203,38 +184,83 @@
 
   <div class="lobby-wrapper">
 
-    <!-- TEXT & DECORATION -->
-    <div class="lobby-text">
+    <!-- HEADER -->
+    <div class="lobby-header">
       <div class="lobby-title">The Royal Lobby</div>
-      <div class="ornament"></div>
-      <div class="lobby-subtitle">Two paths lie before you</div>
+      <div class="lobby-subtitle">Choose your path</div>
     </div>
 
     <!-- DOORS -->
     <div class="door-hall">
 
-      <div class="lobby-door" onclick="openLobbyDoor(this, 'house-owner.html')">
-        <div class="door-panel left"><img src="lobby-door.jpg"></div>
-        <div class="door-panel right"><img src="lobby-door.jpg"></div>
-        <div class="door-label">The House Owner</div>
+      <!-- HOUSE OWNER DOOR -->
+      <div class="door-wrapper" onclick="openLobbyDoor(this, 'house-owner.html', 'ownerDoor')">
+        <div class="door-frame no-transition" id="ownerDoor">
+          <div class="door left"><img src="lobby-door.png"></div>
+          <div class="door right"><img src="lobby-door.png"></div>
+        </div>
+        <div class="door-label">House Owner</div>
       </div>
 
-      <div class="lobby-door" onclick="openLobbyDoor(this, 'members.html')">
-        <div class="door-panel left"><img src="lobby-door.jpg"></div>
-        <div class="door-panel right"><img src="lobby-door.jpg"></div>
-        <div class="door-label">The Members</div>
+      <!-- MEMBERS DOOR -->
+      <div class="door-wrapper" onclick="openLobbyDoor(this, 'members.html', 'membersDoor')">
+        <div class="door-frame no-transition" id="membersDoor">
+          <div class="door left"><img src="lobby-door.png"></div>
+          <div class="door right"><img src="lobby-door.png"></div>
+        </div>
+        <div class="door-label">Members</div>
       </div>
 
+    </div>
+
+    <!-- FOOTER -->
+    <div class="lobby-hint">Click a door to proceed</div>
+
+    <!-- BACK TO ENTRANCE -->
+    <div class="back-entrance" onclick="goToEntrance()">
+      <span>←</span>
+      <div>To the Entrance</div>
     </div>
 
   </div>
 
   <script>
-    function openLobbyDoor(door, target) {
-      door.classList.add("open");
+    // OPEN lobby door
+    function openLobbyDoor(wrapper, target, doorId) {
+      const doorFrame = document.getElementById(doorId);
+      doorFrame.classList.add("open");
+
+      sessionStorage.setItem("lobbyDoorOpen", doorId);
+
       setTimeout(() => {
         window.location.href = target;
-      }, 1800);
+      }, 1600);
+    }
+
+    // CLOSE lobby door when coming back
+    window.addEventListener("pageshow", () => {
+      const openDoorId = sessionStorage.getItem("lobbyDoorOpen");
+
+      if (openDoorId) {
+        const doorFrame = document.getElementById(openDoorId);
+
+        // show open instantly
+        doorFrame.classList.add("open");
+        doorFrame.classList.add("no-transition");
+
+        requestAnimationFrame(() => {
+          doorFrame.classList.remove("no-transition");
+
+          setTimeout(() => {
+            doorFrame.classList.remove("open"); // CLOSE animation
+            sessionStorage.removeItem("lobbyDoorOpen");
+          }, 100);
+        });
+      }
+    });
+
+    function goToEntrance() {
+      window.location.href = "index.html";
     }
   </script>
 
