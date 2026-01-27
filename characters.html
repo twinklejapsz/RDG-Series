@@ -3,11 +3,6 @@
 <head>
   <meta charset="UTF-8">
 
-  <!-- CACHE CONTROL -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-
   <title>The Royal Lobby</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
@@ -21,10 +16,12 @@
         url("lobby-bg.jpg");
       background-size: cover;
       background-position: center;
-      font-family: "Cinzel", serif;
+      background-repeat: no-repeat;
       color: gold;
+      font-family: "Cinzel", serif;
     }
 
+    /* ===== WRAPPER ===== */
     .wrapper {
       min-height: 100vh;
       display: flex;
@@ -32,7 +29,7 @@
       align-items: center;
     }
 
-    /* HEADER */
+    /* ===== HEADER ===== */
     .header {
       margin-top: 24px;
       text-align: center;
@@ -41,22 +38,27 @@
     .title {
       font-size: 56px;
       letter-spacing: 6px;
-      text-shadow: 0 0 18px rgba(255,215,0,0.8);
+      text-shadow:
+        0 0 18px rgba(255,215,0,0.9),
+        0 0 36px rgba(255,215,0,0.6);
     }
 
     .subtitle {
+      margin-top: 6px;
       font-size: 16px;
       letter-spacing: 4px;
       color: #e6c46a;
-      margin-top: 6px;
     }
 
-    /* STORY (COMPACT – DOES NOT PUSH DOORS) */
-    .story {
+    /* ===== STORY ===== */
+    .story-zone {
       max-width: 760px;
       margin-top: 16px;
       padding: 0 20px;
       text-align: center;
+    }
+
+    .story {
       font-size: 14px;
       line-height: 1.5;
       color: #e6c46a;
@@ -68,26 +70,28 @@
       height: 2px;
       margin: 14px auto;
       background: linear-gradient(to right, transparent, #d4af37, transparent);
+      box-shadow: 0 0 10px rgba(212,175,55,0.7);
     }
 
     .warning {
       font-size: 13px;
       letter-spacing: 4px;
       color: #cfae60;
+      opacity: 0.85;
     }
 
-    /* DOORS — PUSHED DOWN */
+    /* ===== DOORS ===== */
     .door-zone {
       margin-top: 90px;
       display: flex;
       justify-content: center;
       gap: 140px;
+      text-align: center;
     }
 
     .door-wrapper {
       perspective: 1600px;
       cursor: pointer;
-      text-align: center;
     }
 
     .door-frame {
@@ -101,8 +105,8 @@
       width: 50%;
       height: 100%;
       top: 0;
-      transition: transform 1.6s ease;
       overflow: hidden;
+      transition: transform 1.6s ease;
     }
 
     .door.left {
@@ -140,7 +144,7 @@
       color: #e6c46a;
     }
 
-    /* NAV */
+    /* ===== NAV ===== */
     .nav {
       margin: 40px 0;
       font-size: 18px;
@@ -150,6 +154,42 @@
       align-items: center;
       gap: 14px;
       color: #e6c46a;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav:hover {
+      opacity: 0.85;
+      transform: translateY(2px);
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 768px) {
+      .title {
+        font-size: 40px;
+      }
+
+      .story {
+        font-size: 13px;
+      }
+
+      .door-zone {
+        margin-top: 60px;
+        flex-direction: column;
+        gap: 50px;
+      }
+
+      .door-frame {
+        width: 260px;
+        height: 380px;
+      }
+
+      .label {
+        font-size: 16px;
+      }
+
+      .nav {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
@@ -158,34 +198,42 @@
 
   <div class="wrapper">
 
+    <!-- HEADER -->
     <div class="header">
       <div class="title">The Royal Lobby</div>
       <div class="subtitle">Choose your path</div>
     </div>
 
-    <div class="story">
-      RDG Series follows the story of a well-known gang bound by loyalty, friendship,
-      and the streets they rule. Behind their tough image, each member hides a story
-      of love — some painful, some pure, and others fueled by hatred.
-      As they face conflicts, rivalries, and secrets from their past,
-      love becomes both their greatest strength and deepest weakness.
+    <!-- STORY -->
+    <div class="story-zone">
+      <div class="story">
+        RDG Series follows the story of a well-known gang bound by loyalty, friendship,
+        and the streets they rule. Behind their tough image, each member hides a story
+        of love — some painful, some pure, and others fueled by hatred.
+        As they face conflicts, rivalries, and secrets from their past,
+        love becomes both their greatest strength and deepest weakness.
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="warning">
+        Once entered, there’s no turning back
+      </div>
     </div>
 
-    <div class="divider"></div>
-    <div class="warning">Once entered, there’s no turning back</div>
-
+    <!-- DOORS -->
     <div class="door-zone">
 
-      <div class="door-wrapper" onclick="openDoor('owner', 'house-owner.html')">
-        <div class="door-frame" id="owner">
+      <div class="door-wrapper" onclick="openDoor('ownerDoor', 'house-owner.html')">
+        <div class="door-frame" id="ownerDoor">
           <div class="door left"><img src="lobby-door.jpg"></div>
           <div class="door right"><img src="lobby-door.jpg"></div>
         </div>
         <div class="label">House Owner</div>
       </div>
 
-      <div class="door-wrapper" onclick="openDoor('members', 'members.html')">
-        <div class="door-frame" id="members">
+      <div class="door-wrapper" onclick="openDoor('membersDoor', 'members.html')">
+        <div class="door-frame" id="membersDoor">
           <div class="door left"><img src="lobby-door.jpg"></div>
           <div class="door right"><img src="lobby-door.jpg"></div>
         </div>
@@ -194,7 +242,8 @@
 
     </div>
 
-    <div class="nav" onclick="goBack()">
+    <!-- NAVIGATION BACK -->
+    <div class="nav" onclick="goToEntrance()">
       <span>←</span>
       <div>To the Entrance</div>
     </div>
@@ -208,10 +257,11 @@
       sessionStorage.setItem("openDoor", id);
 
       setTimeout(() => {
-        window.location.href = target + "?v=" + Date.now();
+        window.location.href = target;
       }, 1600);
     }
 
+    // Close door when coming back from child pages
     window.addEventListener("pageshow", () => {
       const id = sessionStorage.getItem("openDoor");
       if (id) {
@@ -225,8 +275,8 @@
       }
     });
 
-    function goBack() {
-      window.location.href = "index.html?v=" + Date.now();
+    function goToEntrance() {
+      window.location.href = "index.html";
     }
   </script>
 
