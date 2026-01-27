@@ -28,37 +28,37 @@
       text-align: center;
     }
 
-    /* TITLE – UPPER CENTER */
+    /* TITLE – BIGGER */
     .lobby-title {
-      margin-top: 35px;
-      font-size: 52px;               /* BIGGER */
-      letter-spacing: 5px;
-      text-shadow: 0 0 22px rgba(255,215,0,0.9);
+      margin-top: 40px;
+      font-size: 64px;                 /* BIGGER */
+      letter-spacing: 6px;
+      text-shadow: 0 0 26px rgba(255,215,0,1);
     }
 
     .lobby-subtitle {
-      font-size: 18px;
-      letter-spacing: 3px;
+      font-size: 22px;
+      letter-spacing: 4px;
       color: #e6c46a;
-      margin-top: 6px;
+      margin-top: 10px;
     }
 
     /* DOOR AREA */
     .door-hall {
       position: absolute;
-      top: 50%;
+      top: 55%;
       left: 50%;
       transform: translate(-50%, -45%);
       display: flex;
-      gap: 120px;
+      gap: 160px;                      /* MORE SPACE */
     }
 
-    /* DOUBLE DOOR FRAME */
+    /* DOUBLE DOOR FRAME – BIGGER */
     .lobby-door {
       position: relative;
-      width: 240px;
-      height: 360px;
-      perspective: 1200px;
+      width: 320px;                    /* BIGGER */
+      height: 480px;                   /* BIGGER */
+      perspective: 1400px;
       cursor: pointer;
     }
 
@@ -68,7 +68,7 @@
       width: 50%;
       height: 100%;
       overflow: hidden;
-      transition: transform 1.4s ease;
+      transition: transform 1.6s ease;
     }
 
     .door-panel.left {
@@ -91,47 +91,60 @@
       margin-left: -100%;
     }
 
-    /* OPEN ANIMATION */
+    /* OPEN */
     .open .door-panel.left {
-      transform: rotateY(-80deg);
+      transform: rotateY(-82deg);
     }
 
     .open .door-panel.right {
-      transform: rotateY(80deg);
+      transform: rotateY(82deg);
     }
 
+    /* LABEL – BIGGER */
     .door-label {
-      margin-top: 380px;
-      font-size: 16px;
-      letter-spacing: 3px;
+      margin-top: 510px;
+      font-size: 20px;
+      letter-spacing: 4px;
       text-transform: uppercase;
       color: #e6c46a;
     }
 
-    /* MOBILE */
-    @media (max-width: 600px) {
+    /* MOBILE SCALING */
+    @media (max-width: 768px) {
       .lobby-title {
-        font-size: 38px;
+        font-size: 44px;
       }
 
       .lobby-subtitle {
-        font-size: 14px;
+        font-size: 16px;
       }
 
       .door-hall {
-        gap: 40px;
-        top: 55%;
+        gap: 60px;
+        top: 58%;
       }
 
       .lobby-door {
-        width: 180px;
-        height: 270px;
+        width: 220px;
+        height: 330px;
       }
 
       .door-label {
-        margin-top: 290px;
-        font-size: 13px;
+        margin-top: 360px;
+        font-size: 14px;
         letter-spacing: 2px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .lobby-title {
+        font-size: 36px;
+      }
+
+      .door-hall {
+        flex-direction: column;
+        gap: 50px;
+        top: 62%;
       }
     }
   </style>
@@ -148,7 +161,7 @@
     <!-- DOORS -->
     <div class="door-hall">
 
-      <!-- HOUSE OWNER DOOR -->
+      <!-- HOUSE OWNER -->
       <div class="lobby-door" onclick="openLobbyDoor(this, 'house-owner.html')">
         <div class="door-panel left">
           <img src="lobby-door.jpg">
@@ -159,7 +172,7 @@
         <div class="door-label">The House Owner</div>
       </div>
 
-      <!-- MEMBERS DOOR -->
+      <!-- MEMBERS -->
       <div class="lobby-door" onclick="openLobbyDoor(this, 'members.html')">
         <div class="door-panel left">
           <img src="lobby-door.jpg">
@@ -177,10 +190,9 @@
   <script>
     function openLobbyDoor(door, target) {
       door.classList.add("open");
-
       setTimeout(() => {
         window.location.href = target;
-      }, 1400);
+      }, 1600);
     }
   </script>
 
