@@ -20,23 +20,29 @@
       background-position: center;
       background-repeat: no-repeat;
       color: gold;
+      overflow: hidden;
+      font-family: serif;
+    }
+
+    /* CENTER WRAPPER */
+    .center-wrapper {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       align-items: center;
-      overflow-x: hidden;
       text-align: center;
-      font-family: serif;
-      padding-top: 40px;
+      position: relative;
+      z-index: 3;
+      padding: 20px;
     }
 
     /* TEXT */
     .welcome-text {
       font-family: "Lucida Handwriting", "Segoe Script", "Brush Script MT", cursive;
       font-size: 56px;
-      margin-top: 20px;
       margin-bottom: 6px;
       text-shadow: 0 0 12px rgba(255,215,0,0.6);
-      z-index: 3;
     }
 
     .house-text {
@@ -45,7 +51,6 @@
       letter-spacing: 4px;
       margin-bottom: 30px;
       text-shadow: 0 0 18px rgba(255,215,0,0.8);
-      z-index: 3;
     }
 
     /* DOOR FRAME */
@@ -55,8 +60,6 @@
       height: 680px;
       perspective: 1400px;
       cursor: pointer;
-      z-index: 3;
-      margin-top: 20px;
     }
 
     .door {
@@ -101,7 +104,6 @@
       color: #ccc;
       letter-spacing: 1px;
       font-size: 14px;
-      z-index: 3;
     }
 
     /* FOG */
@@ -145,26 +147,30 @@
 
 <body>
 
-  <!-- TEXT -->
-  <div class="welcome-text">Welcome to the</div>
-  <div class="house-text">House of Dragon Royalties</div>
+  <div class="center-wrapper">
 
-  <!-- DOUBLE DOOR -->
-  <div class="door-frame" onclick="openDoor()">
-    <div class="door left">
-      <img src="door.png">
+    <!-- TEXT -->
+    <div class="welcome-text">Welcome to the</div>
+    <div class="house-text">House of Dragon Royalties</div>
+
+    <!-- DOUBLE DOOR -->
+    <div class="door-frame" onclick="openDoor()">
+      <div class="door left">
+        <img src="door.png">
+      </div>
+      <div class="door right">
+        <img src="door.png">
+      </div>
     </div>
-    <div class="door right">
-      <img src="door.png">
-    </div>
+
+    <div class="hint">Click the doors to enter</div>
+
   </div>
-
-  <div class="hint">Click the doors to enter</div>
 
   <!-- FOG -->
   <div class="fog"></div>
 
-  <!-- SOUND (optional) -->
+  <!-- SOUND -->
   <audio id="doorSound" src="door.mp3"></audio>
 
   <script>
