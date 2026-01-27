@@ -25,14 +25,14 @@
     .entrance-wrapper {
       height: 100vh;
       display: grid;
-      grid-template-rows: auto auto 1fr;
+      grid-template-rows: auto auto auto;
       align-items: center;
       text-align: center;
     }
 
     /* ===== HEADER ===== */
     .header {
-      margin-top: 28px;
+      margin-top: 24px;
     }
 
     .welcome-text {
@@ -65,7 +65,7 @@
       box-shadow: 0 0 16px rgba(255,215,0,0.8);
     }
 
-    /* ===== DOOR ===== */
+    /* ===== DOOR (ABOVE LOGO) ===== */
     .door-zone {
       display: flex;
       justify-content: center;
@@ -112,7 +112,7 @@
       margin-left: -100%;
     }
 
-    /* OPEN */
+    /* OPEN STATE */
     .open .door.left {
       transform: rotateY(-80deg);
     }
@@ -121,10 +121,9 @@
       transform: rotateY(80deg);
     }
 
-    /* ===== LOGO + MOTTO ===== */
+    /* ===== LOGO + MOTTO (BELOW DOOR) ===== */
     .crest {
-      margin-top: 18px;
-      margin-bottom: 24px;
+      margin-bottom: 26px;
       transition: opacity 1s ease;
     }
 
@@ -191,7 +190,7 @@
       <div class="ornament"></div>
     </div>
 
-    <!-- DOOR -->
+    <!-- DOOR (ABOVE LOGO) -->
     <div class="door-zone">
       <div class="door-wrapper" onclick="openDoor()">
         <div class="door-frame" id="doorFrame">
@@ -213,14 +212,14 @@
   <script>
     const doorFrame = document.getElementById("doorFrame");
 
-    // CLOSE door when returning
+    // When coming back, CLOSE the door smoothly
     if (sessionStorage.getItem("doorState") === "open") {
       doorFrame.classList.add("open");
 
       setTimeout(() => {
         doorFrame.classList.remove("open");
         sessionStorage.removeItem("doorState");
-      }, 300);
+      }, 400);
     }
 
     function openDoor() {
