@@ -26,7 +26,7 @@ body{
   flex-direction:column;
   align-items:center;
   text-align:center;
-  padding:60px 20px 90px;
+  padding:70px 20px 100px;
 }
 
 /* ================= */
@@ -34,11 +34,11 @@ body{
 /* ================= */
 
 .portrait-wrapper{
-  margin-bottom:50px;
+  margin-bottom:55px;
 }
 
 .portrait-frame{
-  padding:16px;
+  padding:18px;
   background:linear-gradient(
     135deg,
     #7a5c1c,
@@ -51,36 +51,36 @@ body{
 }
 
 .portrait-frame img{
-  width:320px;
+  width:340px;
   display:block;
 }
 
 /* ================= */
-/* HEADERS */
+/* HEADERS (LOBBY SIZE) */
 /* ================= */
 
 h1{
-  font-size:46px;
+  font-size:48px;
   letter-spacing:4px;
   color:#d4af37;
-  margin-bottom:40px;
+  margin-bottom:45px;
   text-shadow:0 0 18px rgba(212,175,55,0.6);
 }
 
 /* ================= */
-/* DESCRIPTIONS */
+/* DESCRIPTIONS (LOBBY SIZE) */
 /* ================= */
 
 .description{
-  max-width:880px;
-  font-size:20px;
-  line-height:1.9;
+  max-width:900px;
+  font-size:22px;
+  line-height:2;
   font-weight:600;
-  margin-bottom:35px;
+  margin-bottom:40px;
 }
 
 .description.secondary{
-  margin-bottom:60px;
+  margin-bottom:70px;
 }
 
 /* ================= */
@@ -89,8 +89,8 @@ h1{
 
 .crown-section{
   display:flex;
-  gap:80px;
-  margin-bottom:70px;
+  gap:90px;
+  margin-bottom:80px;
   flex-wrap:wrap;
   justify-content:center;
 }
@@ -105,13 +105,13 @@ h1{
 }
 
 .crown-box img{
-  width:180px;
-  margin-bottom:14px;
+  width:190px;
+  margin-bottom:16px;
 }
 
 .crown-title{
-  font-size:18px;
-  letter-spacing:2px;
+  font-size:20px;
+  letter-spacing:3px;
   color:#d4af37;
 }
 
@@ -120,16 +120,22 @@ h1{
 /* ================= */
 
 .lore{
-  max-width:700px;
-  font-size:20px;
+  max-width:760px;
+  font-size:22px;
   font-weight:600;
-  line-height:1.8;
-  margin-bottom:60px;
+  line-height:1.9;
+  margin-bottom:70px;
 }
 
 /* ================= */
 /* NAVIGATION */
 /* ================= */
+
+.navigation{
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
 
 .navigation a{
   font-size:22px;
@@ -148,11 +154,11 @@ h1{
 /* ================= */
 
 @media(max-width:768px){
-  h1{font-size:34px;}
-  .description{font-size:18px;}
-  .lore{font-size:18px;}
-  .portrait-frame img{width:240px;}
-  .crown-box img{width:150px;}
+  h1{font-size:36px;}
+  .description{font-size:19px;}
+  .lore{font-size:19px;}
+  .portrait-frame img{width:250px;}
+  .crown-box img{width:155px;}
 }
 </style>
 </head>
@@ -174,14 +180,14 @@ h1{
   <!-- DESCRIPTION 1 -->
   <div class="description">
     RDG is an eleven-member group famously known as the Royalties in Devil’s Suit —
-    rich, influential, and powerful figures who rule both the arena and the red ground.
+    rich, influential, and powerful figures who rule both the streets and the shadows.
     Bound by loyalty and legacy, their presence commands fear and respect.
   </div>
 
   <!-- DESCRIPTION 2 -->
   <div class="description secondary">
     The gang is divided into two orders.  
-    The RDG Kings stand as the founders and pillars of the gang, while the RDG Princes
+    The RDG Kings stand as the founders and pillars of the empire, while the RDG Princes
     serve as their knights — loyal, fierce, and sworn to protect the throne.
   </div>
 
@@ -207,6 +213,7 @@ h1{
   <!-- NAVIGATION -->
   <div class="navigation">
     <a href="characters.html">← BACK TO THE ROYAL LOBBY</a>
+    <a href="index.html">← RETURN TO THE ENTRANCE</a>
   </div>
 
 </div>
