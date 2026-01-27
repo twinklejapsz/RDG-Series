@@ -15,7 +15,10 @@
 body{
   min-height:100vh;
   background:
-    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.88)),
+    linear-gradient(
+      rgba(0,0,0,0.45),
+      rgba(0,0,0,0.75)
+    ),
     url("kings-bg.jpg") center/cover no-repeat;
   font-family:"Georgia", serif;
   color:#ffffff;
@@ -79,7 +82,7 @@ h1{
   padding:26px;
   border:26px solid transparent;
   border-image:url("royal-border.jpg") 80 round;
-  background:rgba(0,0,0,0.45);
+  background:rgba(0,0,0,0.35);
 }
 
 .king-frame img{
@@ -90,7 +93,7 @@ h1{
 
 .king-name{
   margin-top:18px;
-  font-size:20px;
+  font-size:21px;
   letter-spacing:3px;
   color:#d4af37;
 }
@@ -105,8 +108,8 @@ h1{
   font-size:20px;
   line-height:1.9;
   font-weight:600;
-  color:#f0f0f0;
-  text-shadow:0 0 12px rgba(0,0,0,0.7);
+  color:#f5f5f5;
+  text-shadow:0 0 10px rgba(0,0,0,0.6);
 }
 
 /* ================= */
@@ -219,28 +222,28 @@ h1{
       <div class="king-frame">
         <img src="king1.png">
       </div>
-      <div class="king-name">KING NAME</div>
+      <div class="king-name">Zhmer Smith</div>
     </div>
 
     <div class="king" onclick="openModal(2)">
       <div class="king-frame">
         <img src="king2.png">
       </div>
-      <div class="king-name">KING NAME</div>
+      <div class="king-name">Cleint Lee</div>
     </div>
 
     <div class="king" onclick="openModal(3)">
       <div class="king-frame">
         <img src="king3.png">
       </div>
-      <div class="king-name">KING NAME</div>
+      <div class="king-name">Syle Zion Buenavista</div>
     </div>
 
     <div class="king" onclick="openModal(4)">
       <div class="king-frame">
         <img src="king4.png">
       </div>
-      <div class="king-name">KING NAME</div>
+      <div class="king-name">John Tedd Dela Serna</div>
     </div>
 
   </div>
@@ -274,10 +277,10 @@ h1{
 
 <script>
 const profiles={
-  1:{name:"KING NAME",role:"Founder",text:"Write this King’s profile here."},
-  2:{name:"KING NAME",role:"Co-Founder",text:"Write this King’s profile here."},
-  3:{name:"KING NAME",role:"Strategist",text:"Write this King’s profile here."},
-  4:{name:"KING NAME",role:"Enforcer",text:"Write this King’s profile here."}
+  1:{name:"Zhmer Smith",role:"Founder",text:"Write Zhmer Smith’s profile here."},
+  2:{name:"Cleint Lee",role:"Co-Founder",text:"Write Cleint Lee’s profile here."},
+  3:{name:"Syle Zion Buenavista",role:"Strategist",text:"Write Syle Zion Buenavista’s profile here."},
+  4:{name:"John Tedd Dela Serna",role:"Enforcer",text:"Write John Tedd Dela Serna’s profile here."}
 };
 
 function openModal(id){
