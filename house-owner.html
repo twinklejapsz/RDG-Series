@@ -67,6 +67,31 @@ h1{
   padding:0 10px;
 }
 
+/* BUTTONS */
+.buttons{
+  display:flex;
+  gap:28px;
+  margin-top:60px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.btn{
+  padding:15px 34px;
+  font-size:18px;
+  letter-spacing:3px;
+  color:#d4af37;
+  border:2px solid #d4af37;
+  background:transparent;
+  cursor:pointer;
+  transition:.3s ease;
+}
+
+.btn:hover{
+  background:#d4af37;
+  color:#000;
+}
+
 /* SOCIALS */
 .socials a{
   display:block;
@@ -120,12 +145,50 @@ h1{
   font-size:28px;
   text-decoration:none;
   color:#d4af37;
-  transition:transform .3s ease, color .3s ease;
+  transition:.3s ease;
 }
 
 .nav-right a:hover{
   color:#ffffff;
   transform:translateX(6px);
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+
+.modal-content{
+  background:#111;
+  border:6px solid #d4af37;
+  max-width:720px;
+  padding:40px;
+  position:relative;
+}
+
+.modal-content h2{
+  color:#d4af37;
+  margin-bottom:20px;
+}
+
+.modal-content p{
+  font-size:18px;
+  line-height:1.8;
+}
+
+.close{
+  position:absolute;
+  top:10px;
+  right:15px;
+  font-size:28px;
+  cursor:pointer;
+  color:#d4af37;
 }
 
 /* MOBILE */
@@ -170,6 +233,13 @@ h1{
     a space where readers can feel understood, safe, and never alone.
   </div>
 
+  <!-- BUTTONS -->
+  <div class="buttons">
+    <button class="btn" onclick="openModal('vision')">VISION</button>
+    <button class="btn" onclick="openModal('mission')">MISSION</button>
+    <button class="btn" onclick="openModal('goal')">GOAL</button>
+  </div>
+
   <!-- SPACE x3 -->
   <div class="space-lg"></div>
   <div class="space-lg"></div>
@@ -204,6 +274,49 @@ h1{
   </div>
 
 </div>
+
+<!-- MODALS -->
+<div class="modal" id="vision">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+    <h2>Vision</h2>
+    <p>
+      To create a friendly and welcoming environment for everyone through my stories,
+      where readers feel safe, accepted, and understood.
+    </p>
+  </div>
+</div>
+
+<div class="modal" id="mission">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+    <h2>Mission</h2>
+    <p>
+      To give comfort and guidance through stories inspired by real emotions
+      and shared experiences, reminding readers they are not alone.
+    </p>
+  </div>
+</div>
+
+<div class="modal" id="goal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+    <h2>Goal</h2>
+    <p>
+      To one day publish my own books and share these stories with a wider audience,
+      turning imagination into something lasting and real.
+    </p>
+  </div>
+</div>
+
+<script>
+function openModal(id){
+  document.getElementById(id).style.display="flex";
+}
+function closeModal(){
+  document.querySelectorAll(".modal").forEach(m=>m.style.display="none");
+}
+</script>
 
 </body>
 </html>
