@@ -49,44 +49,41 @@
       color: #e6c46a;
     }
 
-    /* ===== DESCRIPTION (MIDDLE) ===== */
+    /* ===== DESCRIPTION ===== */
     .story-zone {
-      max-width: 820px;
-      margin-top: 48px;
-      padding: 0 24px;
+      max-width: 860px;
+      margin-top: 42px;
+      padding: 0 26px;
       text-align: center;
     }
 
     .story {
-      font-size: 16px; /* BIGGER */
-      line-height: 1.7;
-      color: #e6c46a;
-      opacity: 0.95;
+      font-size: 18px;            /* BIGGER */
+      line-height: 1.75;
+      color: #ffffff;             /* WHITE */
+      font-weight: 600;           /* BOLD */
+      text-shadow: 0 0 8px rgba(0,0,0,0.8);
     }
 
     .divider {
-      width: 260px;
+      width: 280px;
       height: 2px;
-      margin: 20px auto;
+      margin: 22px auto;
       background: linear-gradient(to right, transparent, #d4af37, transparent);
-      box-shadow: 0 0 12px rgba(212,175,55,0.8);
+      box-shadow: 0 0 12px rgba(212,175,55,0.9);
     }
 
     .warning {
       font-size: 14px;
       letter-spacing: 4px;
-      color: #d6b760;
-      opacity: 0.9;
+      color: #f0d890;
+      opacity: 0.95;
+      margin-bottom: 40px;
     }
 
-    /* ===== PUSH DOORS DOWN ===== */
-    .spacer {
-      flex: 1;
-    }
-
-    /* ===== DOORS ===== */
+    /* ===== DOORS (MOVED UP) ===== */
     .door-zone {
-      margin-bottom: 10px;
+      margin-top: 10px;        /* closer to description */
       display: flex;
       justify-content: center;
       gap: 140px;
@@ -150,7 +147,7 @@
 
     /* ===== NAV ===== */
     .nav {
-      margin: 22px 0 30px;
+      margin: 30px 0 36px;
       font-size: 18px;
       letter-spacing: 4px;
       cursor: pointer;
@@ -173,7 +170,7 @@
       }
 
       .story {
-        font-size: 15px;
+        font-size: 16px;
       }
 
       .door-zone {
@@ -223,9 +220,6 @@
         Once entered, there’s no turning back
       </div>
     </div>
-
-    <!-- PUSH CONTENT DOWN -->
-    <div class="spacer"></div>
 
     <!-- DOORS -->
     <div class="door-zone">
