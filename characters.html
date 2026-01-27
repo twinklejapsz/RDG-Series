@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
+  <!-- CACHE BUSTER -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
   <title>The Royal Lobby</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
@@ -20,7 +26,7 @@
       font-family: "Cinzel", serif;
     }
 
-    /* ===== MAIN WRAPPER ===== */
+    /* ===== WRAPPER ===== */
     .lobby-wrapper {
       min-height: 100vh;
       display: flex;
@@ -38,8 +44,8 @@
       font-size: 56px;
       letter-spacing: 6px;
       text-shadow:
-        0 0 20px rgba(255,215,0,0.9),
-        0 0 40px rgba(255,215,0,0.6);
+        0 0 18px rgba(255,215,0,0.9),
+        0 0 36px rgba(255,215,0,0.6);
     }
 
     .lobby-subtitle {
@@ -49,17 +55,17 @@
       color: #e6c46a;
     }
 
-    /* ===== STORY ZONE (COMPACT) ===== */
+    /* ===== STORY (COMPACT) ===== */
     .story-zone {
       max-width: 780px;
-      margin-top: 18px;
+      margin-top: 16px;
       padding: 0 20px;
       text-align: center;
     }
 
     .story-block {
       font-size: 14px;
-      line-height: 1.55;
+      line-height: 1.5;
       color: #e6c46a;
       opacity: 0.9;
     }
@@ -68,12 +74,7 @@
       width: 220px;
       height: 2px;
       margin: 14px auto;
-      background: linear-gradient(
-        to right,
-        transparent,
-        #d4af37,
-        transparent
-      );
+      background: linear-gradient(to right, transparent, #d4af37, transparent);
       box-shadow: 0 0 12px rgba(212,175,55,0.8);
     }
 
@@ -84,9 +85,9 @@
       opacity: 0.85;
     }
 
-    /* ===== DOOR ZONE (PUSHED DOWN) ===== */
+    /* ===== DOORS (PUSHED DOWN) ===== */
     .door-zone {
-      margin-top: 80px; /* THIS restores original spacing */
+      margin-top: 90px; /* RESTORES ORIGINAL SPACING */
       text-align: center;
     }
 
@@ -156,7 +157,7 @@
       color: #e6c46a;
     }
 
-    /* ===== NAVIGATION ===== */
+    /* ===== NAV ===== */
     .nav-entrance {
       margin: 30px auto 40px;
       font-size: 18px;
@@ -242,6 +243,7 @@
 
     <!-- DOORS -->
     <div class="door-zone">
+
       <div class="door-hall">
 
         <div class="door-wrapper" onclick="openLobbyDoor('ownerDoor', 'house-owner.html')">
@@ -266,6 +268,7 @@
         <span>←</span>
         <div>To the Entrance</div>
       </div>
+
     </div>
 
   </div>
