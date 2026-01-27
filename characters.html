@@ -26,61 +26,64 @@ body{
   align-items:center;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 .header{
   margin-top:28px;
   text-align:center;
 }
 .title{
-  font-size:64px; /* BIGGER */
+  font-size:64px;
   letter-spacing:7px;
   text-shadow:0 0 24px rgba(255,215,0,.95);
 }
 .subtitle{
-  margin-top:8px;
-  font-size:18px;
-  letter-spacing:5px;
+  margin-top:14px;
+  font-size:26px; /* BIGGER */
+  letter-spacing:6px;
   color:#e6c46a;
 }
 
-/* ===== DESCRIPTION ===== */
+/* SPACING BLOCKS */
+.space-xl{ height:70px; }
+.space-lg{ height:50px; }
+.space-md{ height:30px; }
+
+/* DESCRIPTION */
 .story-zone{
   max-width:960px;
-  margin-top:60px;
   text-align:center;
   padding:0 26px;
 }
 .story{
-  font-size:22px; /* BIGGER */
+  font-size:24px;
   line-height:1.9;
   color:#ffffff;
   font-weight:600;
   text-shadow:0 0 14px rgba(0,0,0,.95);
 }
 
-/* ===== GOLD DIVIDER ===== */
+/* DIVIDER */
 .divider{
-  width:340px;
+  width:360px;
   height:2px;
-  margin:30px auto;
+  margin:0 auto;
   background:linear-gradient(to right,transparent,#d4af37,transparent);
   box-shadow:0 0 18px rgba(212,175,55,1);
 }
 
-/* ===== WARNING ===== */
+/* WARNING */
 .warning{
-  font-size:20px;
+  font-size:22px;
   letter-spacing:6px;
   color:#ffffff;
-  margin-bottom:70px;
+  text-align:center;
 }
 
-/* ===== DOORS ===== */
+/* DOORS */
 .door-zone{
   display:flex;
   gap:140px;
   justify-content:center;
-  margin-top:20px;
   text-align:center;
 }
 .door-wrapper{
@@ -129,9 +132,8 @@ body{
   color:#e6c46a;
 }
 
-/* ===== NAV ===== */
+/* NAVIGATION */
 .nav{
-  margin:34px 0 40px;
   font-size:18px;
   letter-spacing:4px;
   cursor:pointer;
@@ -145,10 +147,11 @@ body{
   transform:translateY(2px);
 }
 
-/* ===== MOBILE ===== */
+/* MOBILE */
 @media(max-width:768px){
   .title{font-size:46px;}
-  .story{font-size:18px;}
+  .subtitle{font-size:20px;}
+  .story{font-size:19px;}
   .door-zone{
     flex-direction:column;
     gap:50px;
@@ -165,11 +168,16 @@ body{
 
 <div class="page">
 
+  <!-- HEADER -->
   <div class="header">
     <div class="title">The Royal Lobby</div>
     <div class="subtitle">Choose your path</div>
   </div>
 
+  <div class="space-xl"></div>
+  <div class="space-lg"></div>
+
+  <!-- DESCRIPTION -->
   <div class="story-zone">
     <div class="story">
       RDG Series follows the story of a well-known gang bound by loyalty, friendship,
@@ -178,14 +186,24 @@ body{
       As they face conflicts, rivalries, and secrets from their past,
       love becomes both their greatest strength and deepest weakness.
     </div>
-
-    <div class="divider"></div>
-
-    <div class="warning">
-      Once entered, there’s no turning back
-    </div>
   </div>
 
+  <div class="space-md"></div>
+
+  <!-- DIVIDER -->
+  <div class="divider"></div>
+
+  <div class="space-lg"></div>
+  <div class="space-lg"></div>
+
+  <!-- WARNING -->
+  <div class="warning">
+    Once entered, there’s no turning back
+  </div>
+
+  <div class="space-lg"></div>
+
+  <!-- DOORS -->
   <div class="door-zone">
 
     <div class="door-wrapper" onclick="openDoor('owner','house-owner.html')">
@@ -206,6 +224,9 @@ body{
 
   </div>
 
+  <div class="space-lg"></div>
+
+  <!-- NAV -->
   <div class="nav" onclick="goBack()">← To the Entrance</div>
 
 </div>
