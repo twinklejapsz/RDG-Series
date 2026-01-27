@@ -40,35 +40,36 @@ body::before{
 
 /* TITLE */
 h1{
-  font-size:64px; /* BIGGER */
+  font-size:64px;
   letter-spacing:5px;
   color:#d4af37;
-  margin-bottom:50px;
+  margin-bottom:60px;
   text-shadow:0 0 25px rgba(212,175,55,0.6);
 }
 
-/* IMAGE */
+/* IMAGE — BIGGER */
 .author-img{
-  width:280px;
+  width:360px; /* increased */
   border:10px solid #d4af37;
-  box-shadow:0 0 45px rgba(212,175,55,0.55);
-  margin-bottom:45px;
+  box-shadow:0 0 55px rgba(212,175,55,0.6);
+  margin-bottom:70px; /* more space below image */
 }
 
-/* INTRO TEXT */
+/* INTRO TEXT — MORE SPACE */
 .intro{
-  max-width:780px;
+  max-width:820px;
   font-size:22px;
-  line-height:1.9;
+  line-height:2.2; /* more breathing room */
   font-weight:600;
-  margin-bottom:60px;
+  margin-bottom:90px; /* more space before buttons */
+  padding:0 10px;
 }
 
 /* BUTTONS */
 .buttons{
   display:flex;
   gap:28px;
-  margin-bottom:60px;
+  margin-bottom:70px;
   flex-wrap:wrap;
   justify-content:center;
 }
@@ -91,7 +92,7 @@ h1{
 
 /* SOCIALS */
 .socials{
-  margin-bottom:70px;
+  margin-bottom:80px;
 }
 
 .socials a{
@@ -182,8 +183,8 @@ h1{
 /* MOBILE */
 @media(max-width:768px){
   h1{font-size:44px;}
-  .author-img{width:220px;}
-  .intro{font-size:19px;}
+  .author-img{width:260px;}
+  .intro{font-size:19px; line-height:2;}
   .library-arrow{display:none;}
 }
 </style>
