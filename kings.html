@@ -15,7 +15,7 @@
 body{
   min-height:100vh;
   background:
-    linear-gradient(rgba(0,0,0,0.82),rgba(0,0,0,0.95)),
+    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.88)),
     url("kings-bg.jpg") center/cover no-repeat;
   font-family:"Georgia", serif;
   color:#ffffff;
@@ -26,7 +26,7 @@ body{
 /* ================= */
 
 .page{
-  padding:90px 20px 140px;
+  padding:90px 20px 160px;
   text-align:center;
 }
 
@@ -74,27 +74,65 @@ h1{
   transform:translateY(-14px);
 }
 
-/* ROYAL FRAME PER KING */
+/* ROYAL FRAME */
 .king-frame{
   padding:26px;
   border:26px solid transparent;
   border-image:url("royal-border.jpg") 80 round;
-  background:rgba(0,0,0,0.55);
+  background:rgba(0,0,0,0.45);
 }
 
-/* KING IMAGE */
 .king-frame img{
   height:480px;
   display:block;
   filter:drop-shadow(0 30px 55px rgba(0,0,0,0.9));
 }
 
-/* NAME */
 .king-name{
   margin-top:18px;
   font-size:20px;
   letter-spacing:3px;
   color:#d4af37;
+}
+
+/* ================= */
+/* LORE SECTION */
+/* ================= */
+
+.lore{
+  max-width:900px;
+  margin:100px auto 0;
+  font-size:20px;
+  line-height:1.9;
+  font-weight:600;
+  color:#f0f0f0;
+  text-shadow:0 0 12px rgba(0,0,0,0.7);
+}
+
+/* ================= */
+/* NAVIGATION */
+/* ================= */
+
+.navigation{
+  margin-top:120px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.navigation a{
+  font-size:22px;
+  letter-spacing:3px;
+  color:#d4af37;
+  text-decoration:none;
+}
+
+.navigation a:hover{
+  color:#ffffff;
+}
+
+.navigation .spacer{
+  height:30px;
 }
 
 /* ================= */
@@ -153,28 +191,6 @@ h1{
 }
 
 /* ================= */
-/* NAV */
-/* ================= */
-
-.navigation{
-  margin-top:120px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-
-.navigation a{
-  font-size:22px;
-  letter-spacing:3px;
-  color:#d4af37;
-  text-decoration:none;
-}
-
-.navigation a:hover{color:#ffffff;}
-
-.navigation .spacer{height:30px;}
-
-/* ================= */
 /* MOBILE */
 /* ================= */
 
@@ -185,6 +201,7 @@ h1{
   .king-frame{padding:18px;border-width:18px;}
   .modal-box h2{font-size:28px;}
   .modal-text{font-size:16px;}
+  .lore{font-size:18px;}
 }
 </style>
 </head>
@@ -228,10 +245,19 @@ h1{
 
   </div>
 
+  <!-- LORE -->
+  <div class="lore">
+    The Kings stand as the founders and pillars of the Royal Dragon Gang.  
+    Bound by loyalty, forged by power, and crowned by influence, they rule from
+    the shadows where wealth, strategy, and authority decide the fate of all who
+    walk beneath their reign.
+  </div>
+
+  <!-- NAVIGATION -->
   <div class="navigation">
     <a href="members.html">← BACK TO THE ROYAL MEMBERS</a>
     <div class="spacer"></div>
-    <a href="characters.html">← BACK TO THE ROYAL LOBBY</a>
+    <a href="index.html">← BACK TO THE ENTRANCE</a>
   </div>
 
 </div>
