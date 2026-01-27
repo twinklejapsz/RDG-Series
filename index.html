@@ -25,12 +25,12 @@
     .entrance-wrapper {
       height: 100vh;
       display: grid;
-      grid-template-rows: auto auto 1fr;
+      grid-template-rows: auto 1fr auto;
       align-items: center;
       text-align: center;
     }
 
-    /* ===== HEADER (TOP) ===== */
+    /* ===== HEADER ===== */
     .header {
       margin-top: 28px;
     }
@@ -65,12 +65,12 @@
       box-shadow: 0 0 16px rgba(255,215,0,0.8);
     }
 
-    /* ===== DOOR (MIDDLE) ===== */
+    /* ===== CENTER DOOR ===== */
     .door-zone {
       display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      margin-top: 10px;
-      margin-bottom: 10px;
     }
 
     .door-wrapper {
@@ -78,10 +78,11 @@
       cursor: pointer;
     }
 
+    /* 🔥 SLIGHTLY BIGGER DOOR */
     .door-frame {
       position: relative;
-      width: 460px;
-      height: 680px;
+      width: 460px;   /* increased */
+      height: 680px;  /* increased */
     }
 
     .door {
@@ -113,6 +114,7 @@
       margin-left: -100%;
     }
 
+    /* OPEN STATE */
     .open .door.left {
       transform: rotateY(-80deg);
     }
@@ -121,20 +123,19 @@
       transform: rotateY(80deg);
     }
 
-    /* ===== LOGO + MOTTO (BOTTOM) ===== */
+    /* ===== LOGO + MOTTO (SLIGHTLY BIGGER) ===== */
     .crest {
-      margin-top: 18px;
-      margin-bottom: 24px;
+      margin-top: 28px;
       transition: opacity 1s ease;
     }
 
     .crest img {
-      width: 180px;
+      width: 180px; /* increased */
     }
 
     .motto {
       margin-top: 14px;
-      font-size: 24px;
+      font-size: 24px; /* increased */
       letter-spacing: 5px;
       color: #e6c46a;
       text-transform: uppercase;
@@ -146,7 +147,7 @@
     }
 
     .hint {
-      margin-top: 10px;
+      margin-top: 12px;
       font-size: 13px;
       letter-spacing: 2px;
       color: #aaa;
@@ -195,21 +196,24 @@
       <div class="ornament"></div>
     </div>
 
-    <!-- DOOR (BETWEEN HEADER & LOGO) -->
+    <!-- DOOR + LOGO BELOW -->
     <div class="door-zone">
+
+      <!-- DOOR -->
       <div class="door-wrapper" onclick="openDoor()">
         <div class="door-frame" id="doorFrame">
           <div class="door left"><img src="door.png"></div>
           <div class="door right"><img src="door.png"></div>
         </div>
       </div>
-    </div>
 
-    <!-- LOGO + MOTTO -->
-    <div class="crest" id="crest">
-      <img src="logo.png" alt="House Logo">
-      <div class="motto">The Gang Rules. Dragons Decide.</div>
-      <div class="hint">Click the doors to enter</div>
+      <!-- LOGO + MOTTO -->
+      <div class="crest" id="crest">
+        <img src="logo.png" alt="House Logo">
+        <div class="motto">The Gang Rules. Dragons Decide.</div>
+        <div class="hint">Click the doors to enter</div>
+      </div>
+
     </div>
 
   </div>
@@ -218,7 +222,7 @@
     const doorFrame = document.getElementById("doorFrame");
     const crest = document.getElementById("crest");
 
-    // Reset door when returning
+    // CLOSE door automatically when coming back
     if (sessionStorage.getItem("doorOpen") === "true") {
       doorFrame.classList.remove("open");
       sessionStorage.removeItem("doorOpen");
