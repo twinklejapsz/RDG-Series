@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>The Royal Lobby</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
 
   <style>
     body {
@@ -21,97 +21,116 @@
       overflow: hidden;
     }
 
+    /* LAYOUT */
     .lobby-wrapper {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
       position: relative;
-      padding: 20px;
+      text-align: center;
     }
 
     /* TITLE – UPPER CENTER */
     .lobby-title {
-      margin-top: 40px;              /* pushes it to upper center */
-      font-size: 44px;
-      letter-spacing: 4px;
-      text-shadow: 0 0 20px rgba(255,215,0,0.9);
+      margin-top: 35px;
+      font-size: 52px;               /* BIGGER */
+      letter-spacing: 5px;
+      text-shadow: 0 0 22px rgba(255,215,0,0.9);
     }
 
     .lobby-subtitle {
-      font-size: 16px;
+      font-size: 18px;
       letter-spacing: 3px;
       color: #e6c46a;
       margin-top: 6px;
-      margin-bottom: 60px;           /* creates space for doors */
     }
 
-    /* DOORS AREA */
+    /* DOOR AREA */
     .door-hall {
-      flex-grow: 1;                  /* THIS is the key */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -45%);
       display: flex;
-      gap: 90px;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
+      gap: 120px;
     }
 
+    /* DOUBLE DOOR FRAME */
     .lobby-door {
+      position: relative;
       width: 240px;
+      height: 360px;
+      perspective: 1200px;
       cursor: pointer;
-      transition: transform 0.4s ease;
     }
 
-    .lobby-door img {
-      width: 100%;
-      display: block;
-      filter: drop-shadow(0 0 28px rgba(255,215,0,0.45));
+    .door-panel {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+      transition: transform 1.4s ease;
     }
 
-    .lobby-door:hover {
-      transform: translateY(-8px);
+    .door-panel.left {
+      left: 0;
+      transform-origin: left center;
+    }
+
+    .door-panel.right {
+      right: 0;
+      transform-origin: right center;
+    }
+
+    .door-panel img {
+      width: 200%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .door-panel.right img {
+      margin-left: -100%;
+    }
+
+    /* OPEN ANIMATION */
+    .open .door-panel.left {
+      transform: rotateY(-80deg);
+    }
+
+    .open .door-panel.right {
+      transform: rotateY(80deg);
     }
 
     .door-label {
-      margin-top: 14px;
+      margin-top: 380px;
       font-size: 16px;
       letter-spacing: 3px;
       text-transform: uppercase;
       color: #e6c46a;
     }
 
-    .footer-text {
-      position: absolute;
-      bottom: 20px;
-      font-size: 12px;
-      letter-spacing: 2px;
-      color: #aaa;
-    }
-
     /* MOBILE */
     @media (max-width: 600px) {
       .lobby-title {
-        font-size: 32px;
-        margin-top: 30px;
+        font-size: 38px;
       }
 
       .lobby-subtitle {
-        font-size: 13px;
-        letter-spacing: 2px;
-        margin-bottom: 40px;
+        font-size: 14px;
       }
 
       .door-hall {
         gap: 40px;
+        top: 55%;
       }
 
       .lobby-door {
         width: 180px;
+        height: 270px;
       }
 
       .door-label {
-        font-size: 14px;
+        margin-top: 290px;
+        font-size: 13px;
         letter-spacing: 2px;
       }
     }
@@ -129,25 +148,41 @@
     <!-- DOORS -->
     <div class="door-hall">
 
-      <!-- HOUSE OWNER -->
-      <div class="lobby-door" onclick="location.href='house-owner.html'">
-        <img src="lobby-door.jpg" alt="House Owner Door">
+      <!-- HOUSE OWNER DOOR -->
+      <div class="lobby-door" onclick="openLobbyDoor(this, 'house-owner.html')">
+        <div class="door-panel left">
+          <img src="lobby-door.jpg">
+        </div>
+        <div class="door-panel right">
+          <img src="lobby-door.jpg">
+        </div>
         <div class="door-label">The House Owner</div>
       </div>
 
-      <!-- MEMBERS -->
-      <div class="lobby-door" onclick="location.href='members.html'">
-        <img src="lobby-door.jpg" alt="Members Door">
+      <!-- MEMBERS DOOR -->
+      <div class="lobby-door" onclick="openLobbyDoor(this, 'members.html')">
+        <div class="door-panel left">
+          <img src="lobby-door.jpg">
+        </div>
+        <div class="door-panel right">
+          <img src="lobby-door.jpg">
+        </div>
         <div class="door-label">The Members</div>
       </div>
 
     </div>
 
-    <div class="footer-text">
-      House of Dragon Royalties
-    </div>
-
   </div>
+
+  <script>
+    function openLobbyDoor(door, target) {
+      door.classList.add("open");
+
+      setTimeout(() => {
+        window.location.href = target;
+      }, 1400);
+    }
+  </script>
 
 </body>
 </html>
