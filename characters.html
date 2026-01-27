@@ -20,7 +20,6 @@
       color: gold;
     }
 
-    /* ===== PAGE ===== */
     .page {
       min-height: 100vh;
       display: flex;
@@ -49,41 +48,40 @@
       color: #e6c46a;
     }
 
-    /* ===== DESCRIPTION ===== */
+    /* ===== DESCRIPTION (SLIGHTLY BIGGER) ===== */
     .story-zone {
-      max-width: 860px;
+      max-width: 900px;
       margin-top: 42px;
       padding: 0 26px;
       text-align: center;
     }
 
     .story {
-      font-size: 18px;            /* BIGGER */
-      line-height: 1.75;
-      color: #ffffff;             /* WHITE */
-      font-weight: 600;           /* BOLD */
-      text-shadow: 0 0 8px rgba(0,0,0,0.8);
+      font-size: 19px; /* increased slightly */
+      line-height: 1.8;
+      color: #ffffff;
+      font-weight: 600;
+      text-shadow: 0 0 10px rgba(0,0,0,0.9);
     }
 
     .divider {
-      width: 280px;
+      width: 300px;
       height: 2px;
       margin: 22px auto;
       background: linear-gradient(to right, transparent, #d4af37, transparent);
-      box-shadow: 0 0 12px rgba(212,175,55,0.9);
+      box-shadow: 0 0 14px rgba(212,175,55,1);
     }
 
     .warning {
       font-size: 14px;
       letter-spacing: 4px;
       color: #f0d890;
-      opacity: 0.95;
-      margin-bottom: 40px;
+      margin-bottom: 36px;
     }
 
-    /* ===== DOORS (MOVED UP) ===== */
+    /* ===== DOORS (LOWERED SLIGHTLY) ===== */
     .door-zone {
-      margin-top: 10px;        /* closer to description */
+      margin-top: 32px; /* moved down a bit */
       display: flex;
       justify-content: center;
       gap: 140px;
@@ -170,7 +168,7 @@
       }
 
       .story {
-        font-size: 16px;
+        font-size: 17px;
       }
 
       .door-zone {
@@ -198,13 +196,11 @@
 
   <div class="page">
 
-    <!-- HEADER -->
     <div class="header">
       <div class="title">The Royal Lobby</div>
       <div class="subtitle">Choose your path</div>
     </div>
 
-    <!-- DESCRIPTION -->
     <div class="story-zone">
       <div class="story">
         RDG Series follows the story of a well-known gang bound by loyalty, friendship,
@@ -221,7 +217,6 @@
       </div>
     </div>
 
-    <!-- DOORS -->
     <div class="door-zone">
 
       <div class="door-wrapper" onclick="openDoor('ownerDoor', 'house-owner.html')">
@@ -242,7 +237,6 @@
 
     </div>
 
-    <!-- NAV -->
     <div class="nav" onclick="goToEntrance()">
       <span>←</span>
       <div>To the Entrance</div>
