@@ -15,15 +15,23 @@
 body{
   min-height:100vh;
   background:
-    linear-gradient(rgba(0,0,0,0.78),rgba(0,0,0,0.9)),
-    url("members-bg.jpg") center/cover no-repeat;
+    linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.92)),
+    url("kings-bg.jpg") center/cover no-repeat;
   font-family:"Georgia", serif;
   color:#ffffff;
 }
 
-.page{
-  padding:90px 20px 120px;
-  text-align:center;
+/* ================= */
+/* ROYAL FRAME */
+/* ================= */
+
+.royal-frame{
+  max-width:1200px;
+  margin:60px auto;
+  padding:90px 60px;
+  border:40px solid transparent;
+  border-image: url("royal-border.jpg") 80 round;
+  background:rgba(0,0,0,0.65);
 }
 
 /* ================= */
@@ -31,14 +39,16 @@ body{
 /* ================= */
 
 h1{
-  font-size:52px;
-  letter-spacing:5px;
+  font-size:54px;
+  letter-spacing:6px;
   color:#d4af37;
-  margin-bottom:16px;
-  text-shadow:0 0 22px rgba(212,175,55,0.6);
+  text-align:center;
+  margin-bottom:14px;
+  text-shadow:0 0 25px rgba(212,175,55,0.6);
 }
 
 .subtitle{
+  text-align:center;
   font-size:20px;
   letter-spacing:4px;
   color:#e6c46a;
@@ -53,25 +63,24 @@ h1{
   display:flex;
   justify-content:center;
   align-items:flex-end;
-  gap:70px;
+  gap:80px;
   flex-wrap:wrap;
 }
 
-/* KING */
 .king{
   cursor:pointer;
   transition:transform 0.4s ease;
 }
 
 .king:hover{
-  transform:translateY(-12px);
+  transform:translateY(-14px);
 }
 
 .king img{
-  height:460px;
+  height:480px;
   max-width:100%;
   display:block;
-  filter:drop-shadow(0 25px 45px rgba(0,0,0,0.9));
+  filter:drop-shadow(0 30px 55px rgba(0,0,0,0.9));
 }
 
 .king-name{
@@ -79,6 +88,7 @@ h1{
   font-size:20px;
   letter-spacing:3px;
   color:#d4af37;
+  text-align:center;
 }
 
 /* ================= */
@@ -100,28 +110,27 @@ h1{
 }
 
 .modal-box{
-  max-width:820px;
+  max-width:850px;
   width:90%;
-  background:
-    linear-gradient(145deg,#2a1c0c,#000);
-  padding:44px;
-  border:2px solid #d4af37;
-  box-shadow:0 0 45px rgba(212,175,55,0.45);
+  padding:48px;
+  border:28px solid transparent;
+  border-image: url("royal-border.jpg") 80 round;
+  background:linear-gradient(145deg,#1a1208,#000);
   text-align:center;
   position:relative;
 }
 
 .modal-box h2{
-  font-size:36px;
+  font-size:38px;
   color:#d4af37;
-  margin-bottom:14px;
+  margin-bottom:12px;
 }
 
 .modal-role{
   font-size:16px;
   letter-spacing:3px;
   color:#e6c46a;
-  margin-bottom:30px;
+  margin-bottom:26px;
 }
 
 .modal-text{
@@ -130,22 +139,21 @@ h1{
   font-weight:600;
 }
 
-/* CLOSE */
 .close{
   position:absolute;
-  top:16px;
-  right:20px;
-  font-size:28px;
+  top:18px;
+  right:22px;
+  font-size:30px;
   cursor:pointer;
   color:#d4af37;
 }
 
 /* ================= */
-/* NAV */
+/* NAVIGATION */
 /* ================= */
 
 .navigation{
-  margin-top:110px;
+  margin-top:120px;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -163,7 +171,7 @@ h1{
 }
 
 .navigation .spacer{
-  height:28px;
+  height:30px;
 }
 
 /* ================= */
@@ -171,9 +179,21 @@ h1{
 /* ================= */
 
 @media(max-width:768px){
-  h1{font-size:38px;}
+  .royal-frame{
+    padding:60px 30px;
+    border-width:26px;
+  }
+
+  h1{font-size:40px;}
   .subtitle{font-size:17px;}
-  .king img{height:320px;}
+
+  .king img{height:330px;}
+
+  .modal-box{
+    padding:30px;
+    border-width:20px;
+  }
+
   .modal-box h2{font-size:28px;}
   .modal-text{font-size:16px;}
 }
@@ -182,32 +202,32 @@ h1{
 
 <body>
 
-<div class="page">
+<div class="royal-frame">
 
   <!-- HEADER -->
   <h1>THE KINGS</h1>
   <div class="subtitle">Founders • Pillars • Sovereigns</div>
 
-  <!-- KINGS LINEUP -->
+  <!-- KINGS -->
   <div class="kings-lineup">
 
     <div class="king" onclick="openModal(1)">
-      <img src="king1.png" alt="King One">
+      <img src="king1.png">
       <div class="king-name">KING NAME</div>
     </div>
 
     <div class="king" onclick="openModal(2)">
-      <img src="king2.png" alt="King Two">
+      <img src="king2.png">
       <div class="king-name">KING NAME</div>
     </div>
 
     <div class="king" onclick="openModal(3)">
-      <img src="king3.png" alt="King Three">
+      <img src="king3.png">
       <div class="king-name">KING NAME</div>
     </div>
 
     <div class="king" onclick="openModal(4)">
-      <img src="king4.png" alt="King Four">
+      <img src="king4.png">
       <div class="king-name">KING NAME</div>
     </div>
 
@@ -233,38 +253,22 @@ h1{
 </div>
 
 <script>
-const profiles = {
-  1:{
-    name:"KING NAME",
-    role:"Founder",
-    text:"Write this King’s profile here."
-  },
-  2:{
-    name:"KING NAME",
-    role:"Co-Founder",
-    text:"Write this King’s profile here."
-  },
-  3:{
-    name:"KING NAME",
-    role:"Strategist",
-    text:"Write this King’s profile here."
-  },
-  4:{
-    name:"KING NAME",
-    role:"Enforcer",
-    text:"Write this King’s profile here."
-  }
+const profiles={
+  1:{name:"KING NAME",role:"Founder",text:"Write this King’s profile here."},
+  2:{name:"KING NAME",role:"Co-Founder",text:"Write this King’s profile here."},
+  3:{name:"KING NAME",role:"Strategist",text:"Write this King’s profile here."},
+  4:{name:"KING NAME",role:"Enforcer",text:"Write this King’s profile here."}
 };
 
 function openModal(id){
-  document.getElementById("modalName").innerText = profiles[id].name;
-  document.getElementById("modalRole").innerText = profiles[id].role;
-  document.getElementById("modalText").innerText = profiles[id].text;
-  document.getElementById("modal").classList.add("active");
+  modal.classList.add("active");
+  modalName.innerText=profiles[id].name;
+  modalRole.innerText=profiles[id].role;
+  modalText.innerText=profiles[id].text;
 }
 
 function closeModal(){
-  document.getElementById("modal").classList.remove("active");
+  modal.classList.remove("active");
 }
 </script>
 
