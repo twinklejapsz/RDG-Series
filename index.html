@@ -12,7 +12,7 @@
       margin: 0;
       height: 100vh;
       background:
-        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.9)),
+        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.65)),
         url("background.jpg");
       background-size: cover;
       background-position: center;
@@ -92,7 +92,6 @@
       transition: transform 1.8s ease;
     }
 
-    /* disable animation temporarily */
     .no-transition .door {
       transition: none !important;
     }
@@ -117,7 +116,6 @@
       margin-left: -100%;
     }
 
-    /* OPEN STATE */
     .open .door.left {
       transform: rotateY(-80deg);
     }
@@ -216,20 +214,17 @@
   <script>
     const doorFrame = document.getElementById("doorFrame");
 
-    // 🔥 Handle BACK button properly
-    window.addEventListener("pageshow", (event) => {
+    // Handle BACK button correctly (door closes)
+    window.addEventListener("pageshow", () => {
       if (sessionStorage.getItem("doorState") === "open") {
-
-        // Show door OPEN instantly (no animation)
         doorFrame.classList.add("open");
         doorFrame.classList.add("no-transition");
 
-        // Next frame: allow animation, then CLOSE
         requestAnimationFrame(() => {
           doorFrame.classList.remove("no-transition");
 
           setTimeout(() => {
-            doorFrame.classList.remove("open"); // CLOSE animation
+            doorFrame.classList.remove("open");
             sessionStorage.removeItem("doorState");
           }, 100);
         });
@@ -238,7 +233,6 @@
       }
     });
 
-    // Open door and go to lobby
     function openDoor() {
       doorFrame.classList.add("open");
       sessionStorage.setItem("doorState", "open");
