@@ -30,20 +30,20 @@
       text-align: center;
     }
 
-    /* ===== HEADER (BIGGER, TOP) ===== */
+    /* ===== HEADER ===== */
     .header {
       margin-top: 28px;
     }
 
     .welcome-text {
       font-family: "Lucida Handwriting", "Segoe Script", cursive;
-      font-size: 64px; /* BIGGER */
+      font-size: 64px;
       text-shadow: 0 0 18px rgba(255,215,0,0.8);
     }
 
     .house-text {
       margin-top: 6px;
-      font-size: 70px; /* BIGGER BUT BALANCED */
+      font-size: 70px;
       letter-spacing: 6px;
       text-shadow:
         0 0 24px rgba(255,215,0,0.9),
@@ -74,14 +74,15 @@
     }
 
     .door-wrapper {
-      perspective: 1400px;
+      perspective: 1600px;
       cursor: pointer;
     }
 
+    /* 🔥 BIGGER DOOR */
     .door-frame {
       position: relative;
-      width: 340px;
-      height: 500px;
+      width: 420px;   /* INCREASED */
+      height: 620px;  /* INCREASED */
     }
 
     .door {
@@ -90,7 +91,7 @@
       width: 50%;
       height: 100%;
       overflow: hidden;
-      transition: transform 1.6s ease;
+      transition: transform 1.8s ease;
     }
 
     .door.left {
@@ -114,30 +115,30 @@
     }
 
     .open .door.left {
-      transform: rotateY(-75deg);
+      transform: rotateY(-80deg);
     }
 
     .open .door.right {
-      transform: rotateY(75deg);
+      transform: rotateY(80deg);
     }
 
-    /* ===== LOGO + MOTTO (UNDER DOOR) ===== */
+    /* ===== LOGO + MOTTO (BIGGER) ===== */
     .crest {
-      margin-top: 22px;
+      margin-top: 26px;
       transition: opacity 1s ease;
     }
 
     .crest img {
-      width: 120px;
+      width: 160px;   /* BIGGER LOGO */
     }
 
     .motto {
-      margin-top: 10px;
-      font-size: 18px;
-      letter-spacing: 4px;
+      margin-top: 12px;
+      font-size: 22px; /* BIGGER MOTTO */
+      letter-spacing: 5px;
       color: #e6c46a;
       text-transform: uppercase;
-      text-shadow: 0 0 10px rgba(255,215,0,0.6);
+      text-shadow: 0 0 12px rgba(255,215,0,0.7);
     }
 
     .crest.hide {
@@ -145,8 +146,8 @@
     }
 
     .hint {
-      margin-top: 10px;
-      font-size: 12px;
+      margin-top: 12px;
+      font-size: 13px;
       letter-spacing: 2px;
       color: #aaa;
     }
@@ -167,17 +168,17 @@
       }
 
       .door-frame {
-        width: 240px;
-        height: 360px;
+        width: 280px;
+        height: 420px;
       }
 
       .crest img {
-        width: 90px;
+        width: 120px;
       }
 
       .motto {
-        font-size: 14px;
-        letter-spacing: 2px;
+        font-size: 16px;
+        letter-spacing: 3px;
       }
     }
   </style>
