@@ -5,96 +5,113 @@
   <meta charset="UTF-8">
   <title>House of Dragon Royalties</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
 
   <style>
     body {
       margin: 0;
       min-height: 100vh;
       background:
-        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)),
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.9)),
         url("background.jpg");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       color: gold;
+      font-family: "Cinzel", serif;
       overflow: hidden;
-      font-family: serif;
     }
 
-    .center-wrapper {
+    .entrance-wrapper {
       min-height: 100vh;
       position: relative;
-      z-index: 3;
       text-align: center;
     }
 
-    /* TOP TEXT */
-    .text-wrapper {
-      position: relative;
+    /* ===== TEXT BLOCK ===== */
+    .entrance-text {
+      position: absolute;
+      top: 14vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
       z-index: 5;
-      margin-top: 40px;
     }
 
     .welcome-text {
-      font-family: "Lucida Handwriting", "Segoe Script", "Brush Script MT", cursive;
-      font-size: 64px;
-      margin-bottom: 6px;
-      text-shadow: 0 0 14px rgba(255,215,0,0.7);
+      font-family: "Lucida Handwriting", "Segoe Script", cursive;
+      font-size: 68px; /* BIGGER */
+      margin-bottom: 10px;
+      text-shadow: 0 0 20px rgba(255,215,0,0.8);
     }
 
     .house-text {
-      font-family: "Charlesworth", "Cinzel", serif;
-      font-size: 42px;
-      letter-spacing: 4px;
-      text-shadow: 0 0 18px rgba(255,215,0,0.8);
+      font-size: 72px; /* BIGGER */
+      letter-spacing: 7px;
+      text-shadow:
+        0 0 22px rgba(255,215,0,0.9),
+        0 0 40px rgba(255,215,0,0.6);
     }
 
-    /* LOGO + MOTTO — ARCHITECTURAL POSITION */
+    /* ORNAMENT */
+    .ornament {
+      width: 480px;
+      height: 2px;
+      margin: 26px auto;
+      background: linear-gradient(
+        to right,
+        transparent,
+        gold,
+        #fff2b0,
+        gold,
+        transparent
+      );
+      box-shadow: 0 0 18px rgba(255,215,0,0.8);
+    }
+
+    /* ===== LOGO & MOTTO ===== */
     .crest {
       position: absolute;
-      top: 34vh;              /* 🔑 KEY VALUE */
+      top: 36vh;
       left: 50%;
       transform: translateX(-50%);
+      text-align: center;
       z-index: 6;
+      transition: opacity 1s ease;
     }
 
     .crest img {
-      width: 120px;
+      width: 160px; /* BIGGER */
       opacity: 0.95;
-      transition: opacity 0.8s ease;
     }
 
-    .crest .motto {
-      margin-top: 6px;
-      font-family: "Cinzel", serif;
-      font-size: 16px;
-      letter-spacing: 3px;
+    .motto {
+      margin-top: 10px;
+      font-size: 22px; /* BIGGER */
+      letter-spacing: 4px;
+      color: #e6c46a;
       text-transform: uppercase;
-      color: #d8b85a;
-      text-shadow: 0 0 8px rgba(255,215,0,0.4);
-      transition: opacity 0.8s ease;
+      text-shadow: 0 0 10px rgba(255,215,0,0.6);
     }
 
-    .crest.hide img,
-    .crest.hide .motto {
+    .crest.hide {
       opacity: 0;
     }
 
-    /* DOOR */
+    /* ===== DOOR ===== */
     .door-wrapper {
       position: absolute;
-      top: 52vh;              /* 🔑 KEY VALUE */
+      top: 58%;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translate(-50%, -45%);
       z-index: 4;
     }
 
     .door-frame {
       position: relative;
-      width: 480px;
-      height: 680px;
-      perspective: 1400px;
+      width: 520px;   /* BIGGER */
+      height: 760px;  /* BIGGER */
+      perspective: 1600px;
       cursor: pointer;
     }
 
@@ -104,7 +121,7 @@
       width: 50%;
       height: 100%;
       overflow: hidden;
-      transition: transform 1.6s ease;
+      transition: transform 1.8s ease;
     }
 
     .door.left {
@@ -141,56 +158,45 @@
       width: 100%;
       text-align: center;
       color: #aaa;
-      font-size: 13px;
-      letter-spacing: 1px;
-      z-index: 5;
+      font-size: 14px;
+      letter-spacing: 2px;
     }
 
-    /* FOG */
-    .fog {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 200%;
-      height: 200%;
-      background: url("https://i.imgur.com/cZ6F9Jb.png");
-      background-size: cover;
-      opacity: 0.18;
-      animation: fogMove 80s linear infinite;
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    @keyframes fogMove {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
-    /* MOBILE */
+    /* ===== MOBILE ===== */
     @media (max-width: 600px) {
-      .welcome-text { font-size: 46px; }
-      .house-text { font-size: 30px; letter-spacing: 2px; }
+      .welcome-text {
+        font-size: 42px;
+      }
+
+      .house-text {
+        font-size: 40px;
+        letter-spacing: 3px;
+      }
+
+      .ornament {
+        width: 260px;
+      }
 
       .crest {
-        top: 32vh;
+        top: 34vh;
       }
 
       .crest img {
-        width: 90px;
+        width: 110px;
       }
 
-      .crest .motto {
-        font-size: 13px;
+      .motto {
+        font-size: 16px;
         letter-spacing: 2px;
       }
 
       .door-frame {
-        width: 320px;
-        height: 480px;
+        width: 300px;
+        height: 460px;
       }
 
       .door-wrapper {
-        top: 50vh;
+        top: 60%;
       }
     }
   </style>
@@ -198,15 +204,16 @@
 
 <body>
 
-  <div class="center-wrapper">
+  <div class="entrance-wrapper">
 
-    <!-- TOP TEXT -->
-    <div class="text-wrapper">
+    <!-- TEXT -->
+    <div class="entrance-text">
       <div class="welcome-text">Welcome to the</div>
       <div class="house-text">House of Dragon Royalties</div>
+      <div class="ornament"></div>
     </div>
 
-    <!-- LOGO + MOTTO (FIXED POSITION) -->
+    <!-- LOGO + MOTTO -->
     <div class="crest" id="crest">
       <img src="logo.png" alt="House Logo">
       <div class="motto">The Gang Rules. Dragons Decide.</div>
@@ -221,25 +228,13 @@
     </div>
 
     <div class="hint">Click the doors to enter</div>
-  </div>
 
-  <div class="fog"></div>
-  <audio id="doorSound" src="door.mp3"></audio>
+  </div>
 
   <script>
     function openDoor() {
-      const frame = document.querySelector(".door-frame");
-      const crest = document.getElementById("crest");
-      const sound = document.getElementById("doorSound");
-
-      crest.classList.add("hide");
-
-      if (sound) {
-        sound.volume = 0.7;
-        sound.play();
-      }
-
-      frame.classList.add("open");
+      document.querySelector(".door-frame").classList.add("open");
+      document.getElementById("crest").classList.add("hide");
 
       setTimeout(() => {
         window.location.href = "characters.html";
