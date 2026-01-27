@@ -6,7 +6,7 @@
   <title>House of Dragon Royalties</title>
 
   <!-- Fallback font for Charlesworth -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
 
   <style>
     /* PAGE BASE */
@@ -24,36 +24,46 @@
       font-family: serif;
     }
 
-    /* CENTER WRAPPER */
+    /* MAIN LAYOUT */
     .center-wrapper {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
       text-align: center;
       position: relative;
       z-index: 3;
-      padding: 20px;
     }
 
-    /* TEXT */
+    /* TEXT POSITIONING */
+    .text-wrapper {
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+
     .welcome-text {
       font-family: "Lucida Handwriting", "Segoe Script", "Brush Script MT", cursive;
-      font-size: 56px;
+      font-size: 64px; /* BIGGER */
       margin-bottom: 6px;
-      text-shadow: 0 0 12px rgba(255,215,0,0.6);
+      text-shadow: 0 0 14px rgba(255,215,0,0.7);
     }
 
     .house-text {
       font-family: "Charlesworth", "Cinzel", serif;
-      font-size: 38px;
+      font-size: 42px; /* BIGGER */
       letter-spacing: 4px;
-      margin-bottom: 30px;
-      text-shadow: 0 0 18px rgba(255,215,0,0.8);
+      text-shadow: 0 0 20px rgba(255,215,0,0.85);
     }
 
-    /* DOOR FRAME */
+    /* DOOR POSITIONING */
+    .door-wrapper {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: -20px; /* lifts door slightly */
+    }
+
     .door-frame {
       position: relative;
       width: 480px;
@@ -100,7 +110,7 @@
     }
 
     .hint {
-      margin-top: 20px;
+      margin-top: 10px;
       color: #ccc;
       letter-spacing: 1px;
       font-size: 14px;
@@ -126,20 +136,28 @@
       to { transform: translateX(-50%); }
     }
 
-    /* MOBILE */
+    /* MOBILE OPTIMIZATION */
     @media (max-width: 600px) {
       .welcome-text {
-        font-size: 42px;
+        font-size: 46px;
       }
 
       .house-text {
-        font-size: 28px;
+        font-size: 30px;
         letter-spacing: 2px;
       }
 
       .door-frame {
         width: 320px;
         height: 480px;
+      }
+
+      .text-wrapper {
+        margin-top: 30px;
+      }
+
+      .door-wrapper {
+        margin-top: -10px;
       }
     }
   </style>
@@ -150,16 +168,20 @@
   <div class="center-wrapper">
 
     <!-- TEXT -->
-    <div class="welcome-text">Welcome to the</div>
-    <div class="house-text">House of Dragon Royalties</div>
+    <div class="text-wrapper">
+      <div class="welcome-text">Welcome to the</div>
+      <div class="house-text">House of Dragon Royalties</div>
+    </div>
 
-    <!-- DOUBLE DOOR -->
-    <div class="door-frame" onclick="openDoor()">
-      <div class="door left">
-        <img src="door.png">
-      </div>
-      <div class="door right">
-        <img src="door.png">
+    <!-- DOOR CENTER -->
+    <div class="door-wrapper">
+      <div class="door-frame" onclick="openDoor()">
+        <div class="door left">
+          <img src="door.png">
+        </div>
+        <div class="door right">
+          <img src="door.png">
+        </div>
       </div>
     </div>
 
