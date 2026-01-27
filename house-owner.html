@@ -34,7 +34,7 @@ body::before{
   flex-direction:column;
   align-items:center;
   text-align:center;
-  padding:90px 20px 140px;
+  padding:90px 20px 160px;
   position:relative;
 }
 
@@ -43,56 +43,31 @@ h1{
   font-size:64px;
   letter-spacing:5px;
   color:#d4af37;
-  margin-bottom:60px;
+  margin-bottom:40px;
   text-shadow:0 0 25px rgba(212,175,55,0.6);
 }
 
-/* IMAGE — BIGGER */
+/* IMAGE */
 .author-img{
-  width:360px; /* increased */
+  width:360px;
   border:10px solid #d4af37;
   box-shadow:0 0 55px rgba(212,175,55,0.6);
-  margin-bottom:70px; /* more space below image */
+  margin-bottom:70px;
 }
 
-/* INTRO TEXT — MORE SPACE */
+/* INTRO */
 .intro{
   max-width:820px;
   font-size:22px;
-  line-height:2.2; /* more breathing room */
+  line-height:2.2;
   font-weight:600;
-  margin-bottom:90px; /* more space before buttons */
+  margin-bottom:120px; /* triple space */
   padding:0 10px;
-}
-
-/* BUTTONS */
-.buttons{
-  display:flex;
-  gap:28px;
-  margin-bottom:70px;
-  flex-wrap:wrap;
-  justify-content:center;
-}
-
-.btn{
-  padding:15px 34px;
-  font-size:18px;
-  letter-spacing:3px;
-  color:#d4af37;
-  border:2px solid #d4af37;
-  background:transparent;
-  cursor:pointer;
-  transition:all .3s ease;
-}
-
-.btn:hover{
-  background:#d4af37;
-  color:#000;
 }
 
 /* SOCIALS */
 .socials{
-  margin-bottom:80px;
+  margin-bottom:100px;
 }
 
 .socials a{
@@ -107,12 +82,18 @@ h1{
   color:#d4af37;
 }
 
-/* NAVIGATION */
-.nav{
-  margin-bottom:60px;
+/* NAVIGATION WRAPPER */
+.nav-wrapper{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  max-width:1200px;
+  margin-top:40px;
 }
 
-.nav a{
+/* LEFT NAV */
+.nav-left a{
   display:block;
   margin:14px 0;
   font-size:20px;
@@ -121,63 +102,33 @@ h1{
   text-decoration:none;
 }
 
-.nav a:hover{
+.nav-left a:hover{
   color:#ffffff;
 }
 
-/* LIBRARY ARROW */
-.library-arrow{
-  position:fixed;
-  right:25px;
-  top:50%;
-  transform:translateY(-50%);
-  font-size:34px;
-  color:#d4af37;
+/* RIGHT NAV (LIBRARY) */
+.nav-right{
+  text-align:right;
+}
+
+.nav-right span{
+  display:block;
+  margin-bottom:12px;
+  font-size:16px;
+  letter-spacing:2px;
+  color:#dddddd;
+}
+
+.nav-right a{
+  font-size:28px;
   text-decoration:none;
+  color:#d4af37;
   transition:transform .3s ease, color .3s ease;
 }
 
-.library-arrow:hover{
+.nav-right a:hover{
   color:#ffffff;
-  transform:translateY(-50%) translateX(6px);
-}
-
-/* MODAL */
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.85);
-  align-items:center;
-  justify-content:center;
-  z-index:999;
-}
-
-.modal-content{
-  background:#111;
-  border:6px solid #d4af37;
-  max-width:720px;
-  padding:40px;
-  position:relative;
-}
-
-.modal-content h2{
-  color:#d4af37;
-  margin-bottom:20px;
-}
-
-.modal-content p{
-  font-size:18px;
-  line-height:1.8;
-}
-
-.close{
-  position:absolute;
-  top:10px;
-  right:15px;
-  font-size:28px;
-  cursor:pointer;
-  color:#d4af37;
+  transform:translateX(6px);
 }
 
 /* MOBILE */
@@ -185,7 +136,14 @@ h1{
   h1{font-size:44px;}
   .author-img{width:260px;}
   .intro{font-size:19px; line-height:2;}
-  .library-arrow{display:none;}
+  .nav-wrapper{
+    flex-direction:column;
+    align-items:center;
+    gap:50px;
+  }
+  .nav-right{
+    display:none; /* hide library arrow on mobile */
+  }
 }
 </style>
 </head>
@@ -200,18 +158,11 @@ h1{
   <!-- IMAGE -->
   <img src="author.png" alt="Author" class="author-img">
 
-  <!-- INTRO / PROFILE -->
+  <!-- INTRO -->
   <div class="intro">
     A storyteller behind the world of the Royal Dragon Gang.
     Writing stories meant to comfort, guide, and connect —
     a space where readers can feel understood, safe, and never alone.
-  </div>
-
-  <!-- BUTTONS -->
-  <div class="buttons">
-    <button class="btn" onclick="openModal('vision')">VISION</button>
-    <button class="btn" onclick="openModal('mission')">MISSION</button>
-    <button class="btn" onclick="openModal('goal')">GOAL</button>
   </div>
 
   <!-- SOCIALS -->
@@ -222,60 +173,23 @@ h1{
   </div>
 
   <!-- NAVIGATION -->
-  <div class="nav">
-    <a href="lobby.html">← Back to the Royal Lobby</a>
-    <a href="index.html">← Back to the Entrance</a>
+  <div class="nav-wrapper">
+
+    <!-- LEFT -->
+    <div class="nav-left">
+      <a href="lobby.html">← Back to the Royal Lobby</a>
+      <a href="index.html">← Back to the Entrance</a>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="nav-right">
+      <span>This way to Library</span>
+      <a href="library.html">→</a>
+    </div>
+
   </div>
 
 </div>
-
-<!-- LIBRARY ARROW -->
-<a href="library.html" class="library-arrow">→</a>
-
-<!-- MODALS -->
-<div class="modal" id="vision">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">×</span>
-    <h2>Vision</h2>
-    <p>
-      To create a friendly and welcoming environment for everyone through my stories,
-      where readers feel safe, accepted, and understood.
-    </p>
-  </div>
-</div>
-
-<div class="modal" id="mission">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">×</span>
-    <h2>Mission</h2>
-    <p>
-      To give comfort and guidance through stories inspired by real emotions
-      and shared experiences, reminding readers they are not alone.
-    </p>
-  </div>
-</div>
-
-<div class="modal" id="goal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">×</span>
-    <h2>Goal</h2>
-    <p>
-      To one day publish my own books and share these stories with a wider audience,
-      turning imagination into something lasting and real.
-    </p>
-  </div>
-</div>
-
-<script>
-function openModal(id){
-  document.getElementById(id).style.display="flex";
-}
-function closeModal(){
-  document.querySelectorAll(".modal").forEach(m=>{
-    m.style.display="none";
-  });
-}
-</script>
 
 </body>
 </html>
