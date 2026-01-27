@@ -1,269 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>The Royal Lobby</title>
+<meta charset="UTF-8">
+<title>The Royal Lobby</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background:
-        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.8)),
-        url("lobby-bg.jpg");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      font-family: "Cinzel", serif;
-      color: gold;
-    }
+<style>
+body{
+  margin:0;
+  min-height:100vh;
+  background:
+    linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.85)),
+    url("lobby-bg.jpg");
+  background-size:cover;
+  background-position:center;
+  font-family:"Cinzel",serif;
+  color:gold;
+}
 
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+.page{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
 
-    /* ===== HEADER ===== */
-    .header {
-      margin-top: 26px;
-      text-align: center;
-    }
+/* ===== HEADER ===== */
+.header{
+  margin-top:28px;
+  text-align:center;
+}
+.title{
+  font-size:52px;
+  letter-spacing:6px;
+  text-shadow:0 0 20px rgba(255,215,0,.9);
+}
+.subtitle{
+  margin-top:6px;
+  font-size:16px;
+  letter-spacing:4px;
+  color:#e6c46a;
+}
 
-    .title {
-      font-size: 52px;
-      letter-spacing: 6px;
-      text-shadow:
-        0 0 18px rgba(255,215,0,0.9),
-        0 0 36px rgba(255,215,0,0.6);
-    }
+/* ===== DESCRIPTION ===== */
+.story-zone{
+  max-width:900px;
+  margin-top:60px; /* space after header */
+  text-align:center;
+  padding:0 26px;
+}
+.story{
+  font-size:19px;
+  line-height:1.85;
+  color:#ffffff;
+  font-weight:600;
+  text-shadow:0 0 12px rgba(0,0,0,.9);
+}
 
-    .subtitle {
-      margin-top: 6px;
-      font-size: 16px;
-      letter-spacing: 4px;
-      color: #e6c46a;
-    }
+/* ===== GOLD DIVIDER ===== */
+.divider{
+  width:320px;
+  height:2px;
+  margin:28px auto;
+  background:linear-gradient(to right,transparent,#d4af37,transparent);
+  box-shadow:0 0 16px rgba(212,175,55,1);
+}
 
-    /* ===== DESCRIPTION (SLIGHTLY BIGGER) ===== */
-    .story-zone {
-      max-width: 900px;
-      margin-top: 42px;
-      padding: 0 26px;
-      text-align: center;
-    }
+/* ===== WARNING TEXT ===== */
+.warning{
+  font-size:18px;      /* bigger */
+  letter-spacing:5px;
+  color:#ffffff;       /* white */
+  margin-bottom:70px;  /* space before doors */
+}
 
-    .story {
-      font-size: 19px; /* increased slightly */
-      line-height: 1.8;
-      color: #ffffff;
-      font-weight: 600;
-      text-shadow: 0 0 10px rgba(0,0,0,0.9);
-    }
+/* ===== DOORS ===== */
+.door-zone{
+  display:flex;
+  gap:140px;
+  justify-content:center;
+  margin-top:20px;     /* doors moved down */
+  text-align:center;
+}
+.door-wrapper{
+  perspective:1600px;
+  cursor:pointer;
+}
+.door-frame{
+  width:320px;
+  height:480px;
+  position:relative;
+}
+.door{
+  position:absolute;
+  width:50%;
+  height:100%;
+  top:0;
+  overflow:hidden;
+  transition:transform 1.6s ease;
+}
+.door.left{
+  left:0;
+  transform-origin:left center;
+}
+.door.right{
+  right:0;
+  transform-origin:right center;
+}
+.door img{
+  width:200%;
+  height:100%;
+  object-fit:cover;
+}
+.door.right img{
+  margin-left:-100%;
+}
+.open .door.left{
+  transform:rotateY(-80deg);
+}
+.open .door.right{
+  transform:rotateY(80deg);
+}
+.label{
+  margin-top:14px;
+  font-size:18px;
+  letter-spacing:4px;
+  color:#e6c46a;
+}
 
-    .divider {
-      width: 300px;
-      height: 2px;
-      margin: 22px auto;
-      background: linear-gradient(to right, transparent, #d4af37, transparent);
-      box-shadow: 0 0 14px rgba(212,175,55,1);
-    }
+/* ===== NAV ===== */
+.nav{
+  margin:34px 0 40px;
+  font-size:18px;
+  letter-spacing:4px;
+  cursor:pointer;
+  color:#e6c46a;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.nav:hover{
+  opacity:.85;
+  transform:translateY(2px);
+}
 
-    .warning {
-      font-size: 14px;
-      letter-spacing: 4px;
-      color: #f0d890;
-      margin-bottom: 36px;
-    }
-
-    /* ===== DOORS (LOWERED SLIGHTLY) ===== */
-    .door-zone {
-      margin-top: 32px; /* moved down a bit */
-      display: flex;
-      justify-content: center;
-      gap: 140px;
-      text-align: center;
-    }
-
-    .door-wrapper {
-      perspective: 1600px;
-      cursor: pointer;
-    }
-
-    .door-frame {
-      position: relative;
-      width: 320px;
-      height: 480px;
-    }
-
-    .door {
-      position: absolute;
-      width: 50%;
-      height: 100%;
-      top: 0;
-      overflow: hidden;
-      transition: transform 1.6s ease;
-    }
-
-    .door.left {
-      left: 0;
-      transform-origin: left center;
-    }
-
-    .door.right {
-      right: 0;
-      transform-origin: right center;
-    }
-
-    .door img {
-      width: 200%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .door.right img {
-      margin-left: -100%;
-    }
-
-    .open .door.left {
-      transform: rotateY(-80deg);
-    }
-
-    .open .door.right {
-      transform: rotateY(80deg);
-    }
-
-    .label {
-      margin-top: 14px;
-      font-size: 18px;
-      letter-spacing: 4px;
-      color: #e6c46a;
-    }
-
-    /* ===== NAV ===== */
-    .nav {
-      margin: 30px 0 36px;
-      font-size: 18px;
-      letter-spacing: 4px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      color: #e6c46a;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .nav:hover {
-      opacity: 0.85;
-      transform: translateY(2px);
-    }
-
-    /* ===== MOBILE ===== */
-    @media (max-width: 768px) {
-      .title {
-        font-size: 40px;
-      }
-
-      .story {
-        font-size: 17px;
-      }
-
-      .door-zone {
-        flex-direction: column;
-        gap: 50px;
-      }
-
-      .door-frame {
-        width: 260px;
-        height: 380px;
-      }
-
-      .label {
-        font-size: 16px;
-      }
-
-      .nav {
-        font-size: 16px;
-      }
-    }
-  </style>
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+  .title{font-size:40px;}
+  .story{font-size:17px;}
+  .door-zone{
+    flex-direction:column;
+    gap:50px;
+  }
+  .door-frame{
+    width:260px;
+    height:380px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="page">
+<div class="page">
 
-    <div class="header">
-      <div class="title">The Royal Lobby</div>
-      <div class="subtitle">Choose your path</div>
+  <div class="header">
+    <div class="title">The Royal Lobby</div>
+    <div class="subtitle">Choose your path</div>
+  </div>
+
+  <div class="story-zone">
+    <div class="story">
+      RDG Series follows the story of a well-known gang bound by loyalty, friendship,
+      and the streets they rule. Behind their tough image, each member hides a story
+      of love — some painful, some pure, and others fueled by hatred.
+      As they face conflicts, rivalries, and secrets from their past,
+      love becomes both their greatest strength and deepest weakness.
     </div>
 
-    <div class="story-zone">
-      <div class="story">
-        RDG Series follows the story of a well-known gang bound by loyalty, friendship,
-        and the streets they rule. Behind their tough image, each member hides a story
-        of love — some painful, some pure, and others fueled by hatred.
-        As they face conflicts, rivalries, and secrets from their past,
-        love becomes both their greatest strength and deepest weakness.
-      </div>
+    <div class="divider"></div>
 
-      <div class="divider"></div>
+    <div class="warning">
+      Once entered, there’s no turning back
+    </div>
+  </div>
 
-      <div class="warning">
-        Once entered, there’s no turning back
+  <div class="door-zone">
+
+    <div class="door-wrapper" onclick="openDoor('owner','house-owner.html')">
+      <div class="door-frame" id="owner">
+        <div class="door left"><img src="lobby-door.jpg"></div>
+        <div class="door right"><img src="lobby-door.jpg"></div>
       </div>
+      <div class="label">House Owner</div>
     </div>
 
-    <div class="door-zone">
-
-      <div class="door-wrapper" onclick="openDoor('ownerDoor', 'house-owner.html')">
-        <div class="door-frame" id="ownerDoor">
-          <div class="door left"><img src="lobby-door.jpg"></div>
-          <div class="door right"><img src="lobby-door.jpg"></div>
-        </div>
-        <div class="label">House Owner</div>
+    <div class="door-wrapper" onclick="openDoor('members','members.html')">
+      <div class="door-frame" id="members">
+        <div class="door left"><img src="lobby-door.jpg"></div>
+        <div class="door right"><img src="lobby-door.jpg"></div>
       </div>
-
-      <div class="door-wrapper" onclick="openDoor('membersDoor', 'members.html')">
-        <div class="door-frame" id="membersDoor">
-          <div class="door left"><img src="lobby-door.jpg"></div>
-          <div class="door right"><img src="lobby-door.jpg"></div>
-        </div>
-        <div class="label">Members</div>
-      </div>
-
-    </div>
-
-    <div class="nav" onclick="goToEntrance()">
-      <span>←</span>
-      <div>To the Entrance</div>
+      <div class="label">Members</div>
     </div>
 
   </div>
 
-  <script>
-    function openDoor(id, target) {
-      const door = document.getElementById(id);
-      door.classList.add("open");
+  <div class="nav" onclick="goBack()">← To the Entrance</div>
 
-      setTimeout(() => {
-        window.location.href = target;
-      }, 1600);
-    }
+</div>
 
-    function goToEntrance() {
-      window.location.href = "index.html";
-    }
-
-    window.addEventListener("pageshow", () => {
-      document.querySelectorAll(".door-frame").forEach(d => {
-        d.classList.remove("open");
-      });
-    });
-  </script>
+<script>
+function openDoor(id,target){
+  const d=document.getElementById(id);
+  d.classList.add("open");
+  setTimeout(()=>location.href=target,1600);
+}
+function goBack(){
+  location.href="index.html";
+}
+window.addEventListener("pageshow",()=>{
+  document.querySelectorAll(".door-frame").forEach(d=>d.classList.remove("open"));
+});
+</script>
 
 </body>
 </html>
