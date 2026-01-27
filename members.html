@@ -26,37 +26,59 @@ body{
   flex-direction:column;
   align-items:center;
   text-align:center;
-  padding:80px 20px 120px;
+  padding:90px 20px 130px;
 }
 
 /* ================= */
-/* PORTRAIT */
+/* ROYAL PORTRAIT */
 /* ================= */
 
 .portrait-wrapper{
-  margin-bottom:65px;
+  margin-bottom:80px;
 }
 
 .portrait-frame{
-  padding:22px;
+  position:relative;
+  padding:30px; /* thicker frame */
   background:linear-gradient(
     135deg,
-    #7a5c1c,
+    #6b4f1d,
     #d4af37,
-    #7a5c1c
+    #f5e08a,
+    #d4af37,
+    #6b4f1d
   );
   box-shadow:
-    0 0 35px rgba(212,175,55,0.45),
-    0 45px 90px rgba(0,0,0,0.95);
+    0 0 50px rgba(212,175,55,0.55),
+    0 60px 120px rgba(0,0,0,0.95);
+}
+
+/* inner royal trim */
+.portrait-frame::before{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border:3px solid rgba(0,0,0,0.7);
+  pointer-events:none;
+}
+
+/* inner velvet mat */
+.portrait-frame::after{
+  content:"";
+  position:absolute;
+  inset:24px;
+  border:2px solid rgba(212,175,55,0.35);
+  pointer-events:none;
 }
 
 .portrait-frame img{
-  width:420px; /* BIGGER */
+  width:620px; /* MUCH BIGGER */
   display:block;
+  filter:contrast(1.1) brightness(0.95);
 }
 
 /* ================= */
-/* HEADERS */
+/* HEADER */
 /* ================= */
 
 h1{
@@ -80,7 +102,7 @@ h1{
 }
 
 .description.secondary{
-  margin-bottom:80px;
+  margin-bottom:90px;
 }
 
 /* ================= */
@@ -89,8 +111,8 @@ h1{
 
 .crown-section{
   display:flex;
-  gap:120px;
-  margin-bottom:90px;
+  gap:130px;
+  margin-bottom:100px;
   flex-wrap:wrap;
   justify-content:center;
 }
@@ -105,7 +127,6 @@ h1{
   transform:scale(1.06);
 }
 
-/* SAME SIZE – BIGGER */
 .crown-box img{
   width:240px;
   margin-bottom:18px;
@@ -134,7 +155,7 @@ h1{
   font-size:22px;
   font-weight:600;
   line-height:1.9;
-  margin-bottom:80px;
+  margin-bottom:90px;
 }
 
 /* ================= */
@@ -159,9 +180,8 @@ h1{
   color:#ffffff;
 }
 
-/* SPACE BETWEEN NAV LINKS */
 .navigation .spacer{
-  height:26px;
+  height:30px;
 }
 
 /* ================= */
@@ -172,7 +192,7 @@ h1{
   h1{font-size:36px;}
   .description{font-size:19px;}
   .lore{font-size:19px;}
-  .portrait-frame img{width:300px;}
+  .portrait-frame img{width:360px;}
   .crown-box img{width:190px;}
 }
 </style>
@@ -182,7 +202,7 @@ h1{
 
 <div class="page">
 
-  <!-- PORTRAIT -->
+  <!-- ROYAL PORTRAIT -->
   <div class="portrait-wrapper">
     <div class="portrait-frame">
       <img src="group-photo.png" alt="Royal Dragon Gang">
