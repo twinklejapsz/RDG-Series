@@ -2,113 +2,199 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Royal Members</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
-
 <style>
-body{
+/* RESET */
+*{
   margin:0;
-  min-height:100vh;
-  background:
-    linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.85)),
-    url("members-bg.jpg");
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
-  font-family:"Cinzel", serif;
-  color:gold;
+  padding:0;
+  box-sizing:border-box;
 }
 
-.page{
+body{
   min-height:100vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)),
+    url("members-bg.jpg") center/cover no-repeat;
+  font-family:"Georgia", serif;
+  color:#fff;
+}
+
+/* PAGE WRAPPER */
+.page{
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:center;
+  padding:60px 20px 80px;
+  text-align:center;
 }
 
-/* HEADER */
-.header{
-  text-align:center;
+/* ===================== */
+/* ROYAL GROUP PORTRAIT */
+/* ===================== */
+
+.royal-portrait-wrapper{
   margin-bottom:60px;
 }
-.title{
-  font-size:64px;
-  letter-spacing:8px;
-  text-shadow:0 0 24px rgba(255,215,0,.95);
-}
-.subtitle{
-  margin-top:14px;
-  font-size:22px;
-  letter-spacing:6px;
-  color:#e6c46a;
+
+.royal-portrait-frame{
+  position:relative;
+  padding:18px;
+  background:linear-gradient(
+    135deg,
+    #7a5c1c,
+    #d4af37,
+    #7a5c1c
+  );
+  box-shadow:
+    0 0 35px rgba(212,175,55,0.35),
+    0 40px 90px rgba(0,0,0,0.95);
 }
 
-/* GATE */
-.gate{
+.royal-portrait-frame::before{
+  content:"";
+  position:absolute;
+  inset:8px;
+  border:2px solid rgba(0,0,0,0.6);
+}
+
+.royal-portrait-frame img{
+  width:320px;
+  display:block;
+  filter:contrast(1.1) brightness(0.95);
+}
+
+/* ===================== */
+/* HEADERS */
+/* ===================== */
+
+h1{
+  font-size:48px;
+  letter-spacing:4px;
+  color:#d4af37;
+  margin-bottom:10px;
+  text-shadow:0 0 20px rgba(212,175,55,0.6);
+}
+
+.subtitle{
+  font-size:18px;
+  letter-spacing:3px;
+  color:#f1e6b6;
+  margin-bottom:40px;
+}
+
+/* ===================== */
+/* DESCRIPTION */
+/* ===================== */
+
+.description{
+  max-width:900px;
+  font-size:20px;
+  font-weight:600;
+  line-height:1.9;
+  margin-bottom:20px;
+}
+
+.divider{
+  width:120px;
+  height:2px;
+  background:linear-gradient(to right, transparent, gold, transparent);
+  margin:25px auto;
+}
+
+.warning{
+  font-size:20px;
+  font-weight:700;
+  color:#ffffff;
+  margin-bottom:70px;
+  text-shadow:0 0 12px rgba(255,255,255,0.4);
+}
+
+/* ===================== */
+/* MEMBERS DOORS */
+/* ===================== */
+
+.members-doors{
   display:flex;
-  gap:180px;
-  align-items:center;
+  gap:80px;
+  margin-bottom:50px;
+  flex-wrap:wrap;
   justify-content:center;
 }
 
-/* SYMBOL */
-.symbol{
+.door-box{
   cursor:pointer;
-  text-align:center;
-  transition:transform .4s ease, opacity .4s ease;
-}
-.symbol:hover{
-  transform:scale(1.08);
-  opacity:.9;
+  transition:transform 0.4s ease;
 }
 
-.symbol img{
+.door-box:hover{
+  transform:scale(1.05);
+}
+
+.door-box img{
   width:180px;
-  filter:drop-shadow(0 0 18px rgba(255,215,0,.5));
+  display:block;
+  margin-bottom:15px;
 }
 
-.symbol-title{
-  margin-top:20px;
-  font-size:22px;
-  letter-spacing:6px;
+.door-title{
+  font-size:18px;
+  letter-spacing:2px;
+  color:#d4af37;
+}
+
+/* ===================== */
+/* LOGO + LORE */
+/* ===================== */
+
+.lore-section{
+  margin:60px 0 40px;
+}
+
+.lore-section img{
+  width:140px;
+  margin-bottom:20px;
+}
+
+.lore-text{
+  font-size:20px;
+  font-weight:600;
+  max-width:700px;
+  line-height:1.8;
+}
+
+/* ===================== */
+/* NAVIGATION */
+/* ===================== */
+
+.navigation{
+  margin-top:30px;
+}
+
+.navigation a{
+  font-size:20px;
+  letter-spacing:3px;
+  color:#d4af37;
+  text-decoration:none;
+  transition:color 0.3s ease;
+}
+
+.navigation a:hover{
   color:#ffffff;
 }
 
-/* NAV */
-.nav{
-  margin-top:80px;
-  font-size:24px;
-  letter-spacing:6px;
-  cursor:pointer;
-  color:#e6c46a;
-  display:flex;
-  align-items:center;
-  gap:16px;
-}
-.nav:hover{
-  opacity:.85;
-  transform:translateY(2px);
-}
-
+/* ===================== */
 /* MOBILE */
+/* ===================== */
+
 @media(max-width:768px){
-  .title{font-size:44px;}
-  .subtitle{font-size:18px;}
-  .gate{
-    flex-direction:column;
-    gap:80px;
-  }
-  .symbol img{
-    width:140px;
-  }
-  .symbol-title{
-    font-size:18px;
-  }
-  .nav{
-    font-size:20px;
-  }
+  h1{font-size:36px;}
+  .description{font-size:18px;}
+  .warning{font-size:18px;}
+  .royal-portrait-frame img{width:240px;}
+  .door-box img{width:150px;}
 }
 </style>
 </head>
@@ -117,44 +203,60 @@ body{
 
 <div class="page">
 
+  <!-- GROUP PORTRAIT -->
+  <div class="royal-portrait-wrapper">
+    <div class="royal-portrait-frame">
+      <img src="group-photo.png" alt="Royal Dragon Gang">
+    </div>
+  </div>
+
   <!-- HEADER -->
-  <div class="header">
-    <div class="title">The Royal Members</div>
-    <div class="subtitle">Choose your allegiance</div>
+  <h1>THE ROYAL MEMBERS</h1>
+  <div class="subtitle">CHOOSE YOUR ALLEGIANCE</div>
+
+  <!-- DESCRIPTION -->
+  <div class="description">
+    RDG SERIES follows the story of a well-known gang bound by loyalty, friendship,
+    and the streets they rule. Behind their tough image, each member hides a story
+    of love — some painful, some pure, and others fueled by hatred. As they face
+    conflicts, rivalries, and secrets from their past, love becomes both their
+    greatest strength and deepest weakness.
   </div>
 
-  <!-- GATE -->
-  <div class="gate">
+  <div class="divider"></div>
 
-    <!-- KINGS -->
-    <div class="symbol" onclick="goTo('kings.html')">
+  <div class="warning">
+    Once entered, there is no turning back.
+  </div>
+
+  <!-- DOORS -->
+  <div class="members-doors">
+    <div class="door-box" onclick="location.href='kings.html'">
       <img src="crown.png" alt="The Kings">
-      <div class="symbol-title">THE KINGS</div>
+      <div class="door-title">THE KINGS</div>
     </div>
 
-    <!-- PRINCES -->
-    <div class="symbol" onclick="goTo('princes.html')">
+    <div class="door-box" onclick="location.href='princes.html'">
       <img src="prince.png" alt="The Princes">
-      <div class="symbol-title">THE PRINCES</div>
+      <div class="door-title">THE PRINCES</div>
     </div>
-
   </div>
 
-  <!-- NAV -->
-  <div class="nav" onclick="goBack()">
-    ← Back to the Royal Lobby
+  <!-- LORE -->
+  <div class="lore-section">
+    <img src="logo.png" alt="Royal Dragon Gang">
+    <div class="lore-text">
+      The dragon watches all who enter.  
+      Only those bound by loyalty may proceed.
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <div class="navigation">
+    <a href="characters.html">← BACK TO THE ROYAL LOBBY</a>
   </div>
 
 </div>
-
-<script>
-function goTo(page){
-  window.location.href = page;
-}
-function goBack(){
-  window.location.href = "characters.html";
-}
-</script>
 
 </body>
 </html>
