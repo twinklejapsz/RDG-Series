@@ -132,8 +132,25 @@ body{
   color:#e6c46a;
 }
 
+/* LOGO */
+.logo{
+  width:110px; /* BIGGER */
+  opacity:.9;
+}
+
+/* LORE TEXT */
+.lore{
+  font-size:18px; /* BIGGER */
+  letter-spacing:4px;
+  color:#ffffff;
+  text-align:center;
+  max-width:460px;
+  line-height:1.7;
+}
+
 /* NAV */
 .nav{
+  margin-top:20px;
   font-size:18px;
   letter-spacing:4px;
   cursor:pointer;
@@ -147,30 +164,13 @@ body{
   transform:translateY(2px);
 }
 
-/* SEAL AREA */
-.seal{
-  margin-top:40px;
-  text-align:center;
-  opacity:0.75;
-}
-.seal img{
-  width:70px;
-  margin-bottom:14px;
-}
-.seal-text{
-  font-size:14px;
-  letter-spacing:3px;
-  color:#ffffff;
-  max-width:420px;
-  line-height:1.6;
-  margin:0 auto;
-}
-
 /* MOBILE */
 @media(max-width:768px){
   .title{font-size:46px;}
   .subtitle{font-size:20px;}
   .story{font-size:19px;}
+  .logo{width:90px;}
+  .lore{font-size:16px;}
   .door-zone{
     flex-direction:column;
     gap:50px;
@@ -241,19 +241,25 @@ body{
 
   </div>
 
+  <!-- SPACE AFTER DOORS -->
   <div class="space-lg"></div>
+  <div class="space-lg"></div>
+
+  <!-- LOGO -->
+  <img src="logo.png" class="logo" alt="Dragon Seal">
+
+  <div class="space-md"></div>
+
+  <!-- LORE -->
+  <div class="lore">
+    The dragon watches all who enter.<br>
+    Only those bound by loyalty may proceed.
+  </div>
+
+  <div class="space-md"></div>
 
   <!-- NAV -->
   <div class="nav" onclick="goBack()">← To the Entrance</div>
-
-  <!-- SEAL -->
-  <div class="seal">
-    <img src="logo.png" alt="Dragon Seal">
-    <div class="seal-text">
-      The dragon watches all who enter.<br>
-      Only those bound by loyalty may proceed.
-    </div>
-  </div>
 
 </div>
 
