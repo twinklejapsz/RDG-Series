@@ -21,44 +21,44 @@
       overflow: hidden;
     }
 
-    /* LAYOUT */
+    /* MAIN LAYOUT */
     .lobby-wrapper {
       min-height: 100vh;
       position: relative;
       text-align: center;
     }
 
-    /* TITLE – BIGGER */
+    /* TITLE – VERY BIG */
     .lobby-title {
       margin-top: 40px;
-      font-size: 64px;                 /* BIGGER */
-      letter-spacing: 6px;
-      text-shadow: 0 0 26px rgba(255,215,0,1);
+      font-size: 82px;                /* MUCH BIGGER */
+      letter-spacing: 7px;
+      text-shadow: 0 0 32px rgba(255,215,0,1);
     }
 
     .lobby-subtitle {
-      font-size: 22px;
-      letter-spacing: 4px;
+      font-size: 26px;                /* BIGGER */
+      letter-spacing: 5px;
       color: #e6c46a;
-      margin-top: 10px;
+      margin-top: 14px;
     }
 
     /* DOOR AREA */
     .door-hall {
       position: absolute;
-      top: 55%;
+      top: 58%;
       left: 50%;
       transform: translate(-50%, -45%);
       display: flex;
-      gap: 160px;                      /* MORE SPACE */
+      gap: 220px;                     /* MORE SPACE */
     }
 
-    /* DOUBLE DOOR FRAME – BIGGER */
+    /* DOUBLE DOOR – VERY BIG */
     .lobby-door {
       position: relative;
-      width: 320px;                    /* BIGGER */
-      height: 480px;                   /* BIGGER */
-      perspective: 1400px;
+      width: 420px;                   /* HUGE */
+      height: 620px;                  /* HUGE */
+      perspective: 1600px;
       cursor: pointer;
     }
 
@@ -68,7 +68,7 @@
       width: 50%;
       height: 100%;
       overflow: hidden;
-      transition: transform 1.6s ease;
+      transition: transform 1.8s ease;
     }
 
     .door-panel.left {
@@ -91,60 +91,75 @@
       margin-left: -100%;
     }
 
-    /* OPEN */
+    /* OPEN ANIMATION */
     .open .door-panel.left {
-      transform: rotateY(-82deg);
+      transform: rotateY(-85deg);
     }
 
     .open .door-panel.right {
-      transform: rotateY(82deg);
+      transform: rotateY(85deg);
     }
 
     /* LABEL – BIGGER */
     .door-label {
-      margin-top: 510px;
-      font-size: 20px;
-      letter-spacing: 4px;
+      margin-top: 660px;
+      font-size: 26px;
+      letter-spacing: 5px;
       text-transform: uppercase;
       color: #e6c46a;
     }
 
-    /* MOBILE SCALING */
-    @media (max-width: 768px) {
+    /* TABLET */
+    @media (max-width: 1024px) {
+      .lobby-title {
+        font-size: 60px;
+      }
+
+      .lobby-subtitle {
+        font-size: 20px;
+      }
+
+      .door-hall {
+        gap: 100px;
+      }
+
+      .lobby-door {
+        width: 300px;
+        height: 450px;
+      }
+
+      .door-label {
+        margin-top: 480px;
+        font-size: 18px;
+      }
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
       .lobby-title {
         font-size: 44px;
       }
 
       .lobby-subtitle {
         font-size: 16px;
-      }
-
-      .door-hall {
-        gap: 60px;
-        top: 58%;
-      }
-
-      .lobby-door {
-        width: 220px;
-        height: 330px;
-      }
-
-      .door-label {
-        margin-top: 360px;
-        font-size: 14px;
-        letter-spacing: 2px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .lobby-title {
-        font-size: 36px;
+        letter-spacing: 3px;
       }
 
       .door-hall {
         flex-direction: column;
-        gap: 50px;
-        top: 62%;
+        gap: 70px;
+        top: 64%;
+      }
+
+      .lobby-door {
+        width: 240px;
+        height: 360px;
+      }
+
+      .door-label {
+        margin-top: 390px;
+        font-size: 16px;
+        letter-spacing: 3px;
       }
     }
   </style>
@@ -192,7 +207,7 @@
       door.classList.add("open");
       setTimeout(() => {
         window.location.href = target;
-      }, 1600);
+      }, 1800);
     }
   </script>
 
