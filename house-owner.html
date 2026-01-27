@@ -34,7 +34,7 @@ body::before{
   flex-direction:column;
   align-items:center;
   text-align:center;
-  padding:90px 20px 160px;
+  padding:90px 20px 180px;
   position:relative;
 }
 
@@ -43,16 +43,19 @@ h1{
   font-size:64px;
   letter-spacing:5px;
   color:#d4af37;
-  margin-bottom:40px;
   text-shadow:0 0 25px rgba(212,175,55,0.6);
 }
+
+/* SPACERS */
+.space-sm{height:30px;}
+.space-md{height:60px;}
+.space-lg{height:90px;}
 
 /* IMAGE */
 .author-img{
   width:360px;
   border:10px solid #d4af37;
   box-shadow:0 0 55px rgba(212,175,55,0.6);
-  margin-bottom:70px;
 }
 
 /* INTRO */
@@ -61,15 +64,10 @@ h1{
   font-size:22px;
   line-height:2.2;
   font-weight:600;
-  margin-bottom:120px; /* triple space */
   padding:0 10px;
 }
 
 /* SOCIALS */
-.socials{
-  margin-bottom:100px;
-}
-
 .socials a{
   display:block;
   margin:10px 0;
@@ -82,14 +80,13 @@ h1{
   color:#d4af37;
 }
 
-/* NAVIGATION WRAPPER */
+/* NAV WRAPPER */
 .nav-wrapper{
   width:100%;
+  max-width:1200px;
   display:flex;
   justify-content:space-between;
   align-items:flex-end;
-  max-width:1200px;
-  margin-top:40px;
 }
 
 /* LEFT NAV */
@@ -106,7 +103,7 @@ h1{
   color:#ffffff;
 }
 
-/* RIGHT NAV (LIBRARY) */
+/* RIGHT NAV */
 .nav-right{
   text-align:right;
 }
@@ -139,10 +136,10 @@ h1{
   .nav-wrapper{
     flex-direction:column;
     align-items:center;
-    gap:50px;
+    gap:60px;
   }
   .nav-right{
-    display:none; /* hide library arrow on mobile */
+    display:none;
   }
 }
 </style>
@@ -155,8 +152,16 @@ h1{
   <!-- TITLE -->
   <h1>THE AUTHOR</h1>
 
+  <!-- SPACE x3 -->
+  <div class="space-lg"></div>
+  <div class="space-lg"></div>
+  <div class="space-lg"></div>
+
   <!-- IMAGE -->
   <img src="author.png" alt="Author" class="author-img">
+
+  <!-- SPACE -->
+  <div class="space-md"></div>
 
   <!-- INTRO -->
   <div class="intro">
@@ -165,12 +170,21 @@ h1{
     a space where readers can feel understood, safe, and never alone.
   </div>
 
+  <!-- SPACE x3 -->
+  <div class="space-lg"></div>
+  <div class="space-lg"></div>
+  <div class="space-lg"></div>
+
   <!-- SOCIALS -->
   <div class="socials">
     <a href="#" target="_blank">Facebook</a>
     <a href="#" target="_blank">Instagram</a>
     <a href="#" target="_blank">Wattpad</a>
   </div>
+
+  <!-- SPACE x2 -->
+  <div class="space-md"></div>
+  <div class="space-md"></div>
 
   <!-- NAVIGATION -->
   <div class="nav-wrapper">
