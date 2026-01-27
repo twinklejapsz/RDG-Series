@@ -24,18 +24,16 @@
 
     .center-wrapper {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
       position: relative;
       z-index: 3;
+      text-align: center;
     }
 
     /* TOP TEXT */
     .text-wrapper {
+      position: relative;
+      z-index: 5;
       margin-top: 40px;
-      margin-bottom: 0;
     }
 
     .welcome-text {
@@ -52,20 +50,22 @@
       text-shadow: 0 0 18px rgba(255,215,0,0.8);
     }
 
-    /* LOGO – SUBTLE, LOWER */
-    .logo {
-      margin-top: 70px;      /* PUSHES IT UNDER THE ROOF LINE */
-      width: 140px;          /* LESS EMPHASIS */
+    /* LOGO + MOTTO — ARCHITECTURAL POSITION */
+    .crest {
+      position: absolute;
+      top: 34vh;              /* 🔑 KEY VALUE */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 6;
+    }
+
+    .crest img {
+      width: 120px;
       opacity: 0.95;
       transition: opacity 0.8s ease;
     }
 
-    .logo.hide {
-      opacity: 0;
-    }
-
-    /* MOTTO */
-    .motto {
+    .crest .motto {
       margin-top: 6px;
       font-family: "Cinzel", serif;
       font-size: 16px;
@@ -76,17 +76,18 @@
       transition: opacity 0.8s ease;
     }
 
-    .motto.hide {
+    .crest.hide img,
+    .crest.hide .motto {
       opacity: 0;
     }
 
     /* DOOR */
     .door-wrapper {
-      flex-grow: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: -10px;
+      position: absolute;
+      top: 52vh;              /* 🔑 KEY VALUE */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
     }
 
     .door-frame {
@@ -135,10 +136,14 @@
     }
 
     .hint {
-      margin-top: 10px;
+      position: absolute;
+      bottom: 30px;
+      width: 100%;
+      text-align: center;
       color: #aaa;
       font-size: 13px;
       letter-spacing: 1px;
+      z-index: 5;
     }
 
     /* FOG */
@@ -163,21 +168,18 @@
 
     /* MOBILE */
     @media (max-width: 600px) {
-      .welcome-text {
-        font-size: 46px;
+      .welcome-text { font-size: 46px; }
+      .house-text { font-size: 30px; letter-spacing: 2px; }
+
+      .crest {
+        top: 32vh;
       }
 
-      .house-text {
-        font-size: 30px;
-        letter-spacing: 2px;
+      .crest img {
+        width: 90px;
       }
 
-      .logo {
-        margin-top: 50px;
-        width: 110px;
-      }
-
-      .motto {
+      .crest .motto {
         font-size: 13px;
         letter-spacing: 2px;
       }
@@ -185,6 +187,10 @@
       .door-frame {
         width: 320px;
         height: 480px;
+      }
+
+      .door-wrapper {
+        top: 50vh;
       }
     }
   </style>
@@ -200,39 +206,33 @@
       <div class="house-text">House of Dragon Royalties</div>
     </div>
 
-    <!-- LOGO + MOTTO (POSITIONED UNDER ROOF LINE) -->
-    <img src="logo.png" class="logo" id="logo" alt="House Logo">
-    <div class="motto" id="motto">The Gang Rules. Dragons Decide.</div>
+    <!-- LOGO + MOTTO (FIXED POSITION) -->
+    <div class="crest" id="crest">
+      <img src="logo.png" alt="House Logo">
+      <div class="motto">The Gang Rules. Dragons Decide.</div>
+    </div>
 
     <!-- DOOR -->
     <div class="door-wrapper">
       <div class="door-frame" onclick="openDoor()">
-        <div class="door left">
-          <img src="door.png">
-        </div>
-        <div class="door right">
-          <img src="door.png">
-        </div>
+        <div class="door left"><img src="door.png"></div>
+        <div class="door right"><img src="door.png"></div>
       </div>
     </div>
 
     <div class="hint">Click the doors to enter</div>
-
   </div>
 
   <div class="fog"></div>
-
   <audio id="doorSound" src="door.mp3"></audio>
 
   <script>
     function openDoor() {
       const frame = document.querySelector(".door-frame");
-      const logo = document.getElementById("logo");
-      const motto = document.getElementById("motto");
+      const crest = document.getElementById("crest");
       const sound = document.getElementById("doorSound");
 
-      if (logo) logo.classList.add("hide");
-      if (motto) motto.classList.add("hide");
+      crest.classList.add("hide");
 
       if (sound) {
         sound.volume = 0.7;
