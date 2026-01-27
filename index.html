@@ -5,9 +5,11 @@
   <meta charset="UTF-8">
   <title>House of Dragon Royalties</title>
 
+  <!-- Fallback font -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* PAGE BASE */
     body {
       margin: 0;
       min-height: 100vh;
@@ -22,6 +24,7 @@
       font-family: serif;
     }
 
+    /* MAIN WRAPPER */
     .center-wrapper {
       min-height: 100vh;
       display: flex;
@@ -32,18 +35,25 @@
       z-index: 3;
     }
 
-    /* LOGO */
+    /* LOGO – FORCED VISIBLE */
     .logo {
-      margin-top: 20px;
-      width: 120px;
-      filter: drop-shadow(0 0 12px rgba(255,215,0,0.6));
-      transition: opacity 0.8s ease;
+      margin-top: 24px;
+      width: 150px;
+      position: relative;
+      z-index: 20;
+      padding: 10px;
+      background: rgba(0,0,0,0.35);   /* ensures visibility */
+      border-radius: 14px;
+      backdrop-filter: blur(4px);
+      filter: drop-shadow(0 0 22px rgba(255,215,0,0.9));
+      transition: opacity 0.9s ease;
     }
 
     .logo.hide {
       opacity: 0;
     }
 
+    /* TEXT */
     .text-wrapper {
       margin-top: 20px;
       margin-bottom: 20px;
@@ -53,16 +63,17 @@
       font-family: "Lucida Handwriting", "Segoe Script", "Brush Script MT", cursive;
       font-size: 64px;
       margin-bottom: 6px;
-      text-shadow: 0 0 14px rgba(255,215,0,0.7);
+      text-shadow: 0 0 14px rgba(255,215,0,0.8);
     }
 
     .house-text {
       font-family: "Charlesworth", "Cinzel", serif;
       font-size: 42px;
       letter-spacing: 4px;
-      text-shadow: 0 0 20px rgba(255,215,0,0.85);
+      text-shadow: 0 0 22px rgba(255,215,0,0.9);
     }
 
+    /* DOOR */
     .door-wrapper {
       flex-grow: 1;
       display: flex;
@@ -119,8 +130,8 @@
     .hint {
       margin-top: 10px;
       color: #ccc;
-      letter-spacing: 1px;
       font-size: 14px;
+      letter-spacing: 1px;
     }
 
     /* FOG */
@@ -143,9 +154,11 @@
       to { transform: translateX(-50%); }
     }
 
+    /* MOBILE */
     @media (max-width: 600px) {
       .logo {
-        width: 90px;
+        width: 110px;
+        padding: 8px;
       }
 
       .welcome-text {
@@ -178,7 +191,7 @@
       <div class="house-text">House of Dragon Royalties</div>
     </div>
 
-    <!-- DOOR -->
+    <!-- DOORS -->
     <div class="door-wrapper">
       <div class="door-frame" onclick="openDoor()">
         <div class="door left">
@@ -194,15 +207,17 @@
 
   </div>
 
+  <!-- FOG -->
   <div class="fog"></div>
 
+  <!-- SOUND -->
   <audio id="doorSound" src="door.mp3"></audio>
 
   <script>
     function openDoor() {
       const frame = document.querySelector(".door-frame");
-      const sound = document.getElementById("doorSound");
       const logo = document.getElementById("logo");
+      const sound = document.getElementById("doorSound");
 
       if (logo) {
         logo.classList.add("hide");
