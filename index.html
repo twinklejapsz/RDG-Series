@@ -28,38 +28,37 @@
       text-align: center;
     }
 
-    /* ===== HUGE TITLE ===== */
+    /* ===== TITLE (TOP ZONE) ===== */
     .entrance-text {
       position: absolute;
-      top: 8vh;
+      top: 6vh;
       left: 50%;
       transform: translateX(-50%);
       width: 100%;
-      z-index: 5;
+      z-index: 6;
     }
 
     .welcome-text {
       font-family: "Lucida Handwriting", "Segoe Script", cursive;
-      font-size: 88px; /* HUGE */
-      margin-bottom: 12px;
+      font-size: 86px;
+      margin-bottom: 10px;
       text-shadow:
         0 0 20px rgba(255,215,0,0.8),
         0 0 40px rgba(255,215,0,0.6);
     }
 
     .house-text {
-      font-size: 96px; /* EVEN BIGGER */
+      font-size: 92px;
       letter-spacing: 8px;
       text-shadow:
         0 0 26px rgba(255,215,0,0.9),
         0 0 50px rgba(255,215,0,0.7);
     }
 
-    /* ORNAMENT */
     .ornament {
       width: 560px;
       height: 2px;
-      margin: 34px auto;
+      margin: 32px auto;
       background: linear-gradient(
         to right,
         transparent,
@@ -71,7 +70,7 @@
       box-shadow: 0 0 20px rgba(255,215,0,0.9);
     }
 
-    /* ===== LOGO + MOTTO (UPPER) ===== */
+    /* ===== LOGO + MOTTO (MIDDLE ZONE) ===== */
     .crest {
       position: absolute;
       top: 34vh;
@@ -83,13 +82,13 @@
     }
 
     .crest img {
-      width: 190px; /* BIGGER LOGO */
+      width: 180px;
       opacity: 0.95;
     }
 
     .motto {
       margin-top: 14px;
-      font-size: 26px; /* BIG MOTTO */
+      font-size: 26px;
       letter-spacing: 5px;
       color: #e6c46a;
       text-transform: uppercase;
@@ -100,19 +99,19 @@
       opacity: 0;
     }
 
-    /* ===== DOOR – TRUE CENTER ===== */
+    /* ===== DOOR (TRUE CENTER) ===== */
     .door-wrapper {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%); /* TRUE CENTER */
+      transform: translate(-50%, -50%);
       z-index: 4;
     }
 
     .door-frame {
       position: relative;
-      width: 560px;   /* BIGGER */
-      height: 820px;  /* BIGGER */
+      width: 560px;
+      height: 820px;
       perspective: 1600px;
       cursor: pointer;
     }
@@ -167,16 +166,16 @@
     /* ===== MOBILE ===== */
     @media (max-width: 600px) {
       .welcome-text {
-        font-size: 48px;
+        font-size: 46px;
       }
 
       .house-text {
-        font-size: 46px;
+        font-size: 44px;
         letter-spacing: 3px;
       }
 
       .ornament {
-        width: 280px;
+        width: 260px;
       }
 
       .crest {
@@ -204,7 +203,7 @@
 
   <div class="entrance-wrapper">
 
-    <!-- HUGE TITLE -->
+    <!-- TITLE -->
     <div class="entrance-text">
       <div class="welcome-text">Welcome to the</div>
       <div class="house-text">House of Dragon Royalties</div>
