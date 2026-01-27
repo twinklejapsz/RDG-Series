@@ -26,7 +26,7 @@ body{
   flex-direction:column;
   align-items:center;
   text-align:center;
-  padding:70px 20px 100px;
+  padding:80px 20px 120px;
 }
 
 /* ================= */
@@ -34,11 +34,11 @@ body{
 /* ================= */
 
 .portrait-wrapper{
-  margin-bottom:55px;
+  margin-bottom:65px;
 }
 
 .portrait-frame{
-  padding:18px;
+  padding:22px;
   background:linear-gradient(
     135deg,
     #7a5c1c,
@@ -46,12 +46,12 @@ body{
     #7a5c1c
   );
   box-shadow:
-    0 0 30px rgba(212,175,55,0.4),
-    0 40px 80px rgba(0,0,0,0.9);
+    0 0 35px rgba(212,175,55,0.45),
+    0 45px 90px rgba(0,0,0,0.95);
 }
 
 .portrait-frame img{
-  width:340px;
+  width:420px; /* BIGGER */
   display:block;
 }
 
@@ -63,7 +63,7 @@ h1{
   font-size:48px;
   letter-spacing:4px;
   color:#d4af37;
-  margin-bottom:45px;
+  margin-bottom:50px;
   text-shadow:0 0 18px rgba(212,175,55,0.6);
 }
 
@@ -80,7 +80,7 @@ h1{
 }
 
 .description.secondary{
-  margin-bottom:70px;
+  margin-bottom:80px;
 }
 
 /* ================= */
@@ -89,51 +89,40 @@ h1{
 
 .crown-section{
   display:flex;
-  gap:110px;
-  margin-bottom:80px;
+  gap:120px;
+  margin-bottom:90px;
   flex-wrap:wrap;
   justify-content:center;
 }
 
-/* COMMON */
 .crown-box{
   cursor:pointer;
   transition:transform 0.4s ease;
-  max-width:240px;
+  max-width:260px;
 }
 
 .crown-box:hover{
   transform:scale(1.06);
 }
 
-/* KINGS */
-.crown-box.kings img{
-  width:180px;
-}
-
-/* PRINCES – BIGGER */
-.crown-box.princes img{
-  width:220px;
-}
-
-/* TEXT */
+/* SAME SIZE – BIGGER */
 .crown-box img{
+  width:240px;
   margin-bottom:18px;
 }
 
 .crown-title{
-  font-size:20px;
+  font-size:22px;
   letter-spacing:3px;
   color:#d4af37;
-  margin-bottom:12px;
+  margin-bottom:14px;
 }
 
-/* ENCOURAGING TEXT */
 .crown-hint{
-  font-size:16px;
-  line-height:1.6;
+  font-size:17px;
+  line-height:1.7;
   color:#dddddd;
-  opacity:0.9;
+  opacity:0.95;
 }
 
 /* ================= */
@@ -145,7 +134,7 @@ h1{
   font-size:22px;
   font-weight:600;
   line-height:1.9;
-  margin-bottom:70px;
+  margin-bottom:80px;
 }
 
 /* ================= */
@@ -155,7 +144,7 @@ h1{
 .navigation{
   display:flex;
   flex-direction:column;
-  gap:22px;
+  align-items:center;
 }
 
 .navigation a{
@@ -170,6 +159,11 @@ h1{
   color:#ffffff;
 }
 
+/* SPACE BETWEEN NAV LINKS */
+.navigation .spacer{
+  height:26px;
+}
+
 /* ================= */
 /* MOBILE */
 /* ================= */
@@ -178,9 +172,8 @@ h1{
   h1{font-size:36px;}
   .description{font-size:19px;}
   .lore{font-size:19px;}
-  .portrait-frame img{width:250px;}
-  .crown-box.kings img{width:150px;}
-  .crown-box.princes img{width:185px;}
+  .portrait-frame img{width:300px;}
+  .crown-box img{width:190px;}
 }
 </style>
 </head>
@@ -213,8 +206,7 @@ h1{
   <!-- CROWNS -->
   <div class="crown-section">
 
-    <!-- KINGS -->
-    <div class="crown-box kings" onclick="location.href='kings.html'">
+    <div class="crown-box" onclick="location.href='kings.html'">
       <img src="crown.png" alt="The Kings">
       <div class="crown-title">THE KINGS</div>
       <div class="crown-hint">
@@ -223,8 +215,7 @@ h1{
       </div>
     </div>
 
-    <!-- PRINCES -->
-    <div class="crown-box princes" onclick="location.href='princes.html'">
+    <div class="crown-box" onclick="location.href='princes.html'">
       <img src="prince.png" alt="The Princes">
       <div class="crown-title">THE PRINCES</div>
       <div class="crown-hint">
@@ -244,6 +235,7 @@ h1{
   <!-- NAVIGATION -->
   <div class="navigation">
     <a href="characters.html">← BACK TO THE ROYAL LOBBY</a>
+    <div class="spacer"></div>
     <a href="index.html">← RETURN TO THE ENTRANCE</a>
   </div>
 
