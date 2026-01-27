@@ -2,59 +2,75 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
-  <!-- CACHE CONTROL -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-
   <title>House of Dragon Royalties</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Parisienne&display=swap" rel="stylesheet">
 
   <style>
     body {
       margin: 0;
-      height: 100vh;
+      min-height: 100vh;
       background:
         linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.75)),
         url("background.jpg");
       background-size: cover;
       background-position: center;
-      font-family: "Cinzel", serif;
+      background-repeat: no-repeat;
       color: gold;
+    }
+
+    /* ===== MAIN LAYOUT ===== */
+    .page {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
+    /* ===== HEADER ===== */
     .header {
-      margin-top: 30px;
+      margin-top: 28px;
       text-align: center;
+      z-index: 2;
     }
 
     .welcome {
-      font-size: 36px;
-      letter-spacing: 3px;
-      margin-bottom: 8px;
+      font-family: "Parisienne", cursive;
+      font-size: 30px;
+      color: #f6d77a;
+      text-shadow: 0 0 12px rgba(255,215,0,0.7);
     }
 
     .title {
-      font-size: 54px;
+      margin-top: 6px;
+      font-family: "Cinzel", serif;
+      font-size: 42px;
       letter-spacing: 6px;
-      text-shadow: 0 0 18px rgba(255,215,0,0.8);
+      text-shadow:
+        0 0 18px rgba(255,215,0,0.9),
+        0 0 36px rgba(255,215,0,0.5);
     }
 
-    .door-zone {
-      margin-top: 40px;
+    /* ===== CENTER ZONE ===== */
+    .center {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    /* ===== DOOR ===== */
+    .door-wrapper {
       perspective: 1600px;
       cursor: pointer;
     }
 
     .door-frame {
       position: relative;
-      width: 340px;
-      height: 500px;
+      width: 320px;
+      height: 460px;
     }
 
     .door {
@@ -93,32 +109,93 @@
     .open .door.right {
       transform: rotateY(80deg);
     }
+
+    /* ===== LOGO & MOTTO ===== */
+    .logo {
+      margin-top: 22px;
+      width: 90px;
+      opacity: 0.95;
+    }
+
+    .motto {
+      margin-top: 10px;
+      font-family: "Cinzel", serif;
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: #d6b760;
+      text-align: center;
+    }
+
+    .hint {
+      margin-top: 8px;
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: #c8aa55;
+      opacity: 0.85;
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 768px) {
+      .title {
+        font-size: 34px;
+      }
+
+      .door-frame {
+        width: 260px;
+        height: 380px;
+      }
+
+      .logo {
+        width: 80px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <div class="header">
-    <div class="welcome">Welcome to the</div>
-    <div class="title">House of Dragon Royalties</div>
-  </div>
+  <div class="page">
 
-  <div class="door-zone" onclick="enterLobby()">
-    <div class="door-frame" id="mainDoor">
-      <div class="door left"><img src="door.png"></div>
-      <div class="door right"><img src="door.png"></div>
+    <!-- HEADER -->
+    <div class="header">
+      <div class="welcome">Welcome to the</div>
+      <div class="title">House of Dragon Royalties</div>
     </div>
+
+    <!-- CENTER -->
+    <div class="center">
+
+      <div class="door-wrapper" onclick="openDoor()">
+        <div class="door-frame" id="entranceDoor">
+          <div class="door left"><img src="door.png"></div>
+          <div class="door right"><img src="door.png"></div>
+        </div>
+      </div>
+
+      <img src="logo.png" class="logo" alt="Royal Dragon Gang">
+
+      <div class="motto">The Gang Rules, Dragons Decide.</div>
+      <div class="hint">Click the doors to enter</div>
+
+    </div>
+
   </div>
 
   <script>
-    function enterLobby() {
-      const door = document.getElementById("mainDoor");
+    function openDoor() {
+      const door = document.getElementById("entranceDoor");
       door.classList.add("open");
 
       setTimeout(() => {
-        window.location.href = "characters.html?v=" + Date.now();
+        window.location.href = "characters.html";
       }, 1600);
     }
+
+    // Close door when returning from lobby
+    window.addEventListener("pageshow", () => {
+      const door = document.getElementById("entranceDoor");
+      door.classList.remove("open");
+    });
   </script>
 
 </body>
