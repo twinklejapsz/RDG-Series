@@ -38,12 +38,12 @@ body{
 }
 .subtitle{
   margin-top:14px;
-  font-size:26px; /* BIGGER */
+  font-size:26px;
   letter-spacing:6px;
   color:#e6c46a;
 }
 
-/* SPACING BLOCKS */
+/* SPACING */
 .space-xl{ height:70px; }
 .space-lg{ height:50px; }
 .space-md{ height:30px; }
@@ -132,7 +132,7 @@ body{
   color:#e6c46a;
 }
 
-/* NAVIGATION */
+/* NAV */
 .nav{
   font-size:18px;
   letter-spacing:4px;
@@ -145,6 +145,25 @@ body{
 .nav:hover{
   opacity:.85;
   transform:translateY(2px);
+}
+
+/* SEAL AREA */
+.seal{
+  margin-top:40px;
+  text-align:center;
+  opacity:0.75;
+}
+.seal img{
+  width:70px;
+  margin-bottom:14px;
+}
+.seal-text{
+  font-size:14px;
+  letter-spacing:3px;
+  color:#ffffff;
+  max-width:420px;
+  line-height:1.6;
+  margin:0 auto;
 }
 
 /* MOBILE */
@@ -190,13 +209,11 @@ body{
 
   <div class="space-md"></div>
 
-  <!-- DIVIDER -->
   <div class="divider"></div>
 
   <div class="space-lg"></div>
   <div class="space-lg"></div>
 
-  <!-- WARNING -->
   <div class="warning">
     Once entered, there’s no turning back
   </div>
@@ -228,6 +245,15 @@ body{
 
   <!-- NAV -->
   <div class="nav" onclick="goBack()">← To the Entrance</div>
+
+  <!-- SEAL -->
+  <div class="seal">
+    <img src="logo.png" alt="Dragon Seal">
+    <div class="seal-text">
+      The dragon watches all who enter.<br>
+      Only those bound by loyalty may proceed.
+    </div>
+  </div>
 
 </div>
 
