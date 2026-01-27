@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>House of Dragon Royalties</title>
 
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Parisienne&display=swap" rel="stylesheet">
 
   <style>
@@ -11,7 +12,7 @@
       margin: 0;
       min-height: 100vh;
       background:
-        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.75)),
+        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.8)),
         url("background.jpg");
       background-size: cover;
       background-position: center;
@@ -19,7 +20,7 @@
       color: gold;
     }
 
-    /* ===== MAIN LAYOUT ===== */
+    /* ===== PAGE STRUCTURE ===== */
     .page {
       min-height: 100vh;
       display: flex;
@@ -38,20 +39,20 @@
       font-family: "Parisienne", cursive;
       font-size: 30px;
       color: #f6d77a;
-      text-shadow: 0 0 12px rgba(255,215,0,0.7);
+      text-shadow: 0 0 14px rgba(255,215,0,0.7);
     }
 
     .title {
       margin-top: 6px;
       font-family: "Cinzel", serif;
-      font-size: 42px;
+      font-size: 44px;
       letter-spacing: 6px;
       text-shadow:
         0 0 18px rgba(255,215,0,0.9),
         0 0 36px rgba(255,215,0,0.5);
     }
 
-    /* ===== CENTER ZONE ===== */
+    /* ===== CENTER ===== */
     .center {
       flex: 1;
       display: flex;
@@ -110,9 +111,9 @@
       transform: rotateY(80deg);
     }
 
-    /* ===== LOGO & MOTTO ===== */
+    /* ===== LOGO + MOTTO ===== */
     .logo {
-      margin-top: 22px;
+      margin-top: 24px;
       width: 90px;
       opacity: 0.95;
     }
@@ -191,10 +192,9 @@
       }, 1600);
     }
 
-    // Close door when returning from lobby
+    // Ensure door is closed when coming back
     window.addEventListener("pageshow", () => {
-      const door = document.getElementById("entranceDoor");
-      door.classList.remove("open");
+      document.getElementById("entranceDoor").classList.remove("open");
     });
   </script>
 
