@@ -56,7 +56,7 @@ body{
 }
 
 /* ================= */
-/* HEADERS (LOBBY SIZE) */
+/* HEADERS */
 /* ================= */
 
 h1{
@@ -68,7 +68,7 @@ h1{
 }
 
 /* ================= */
-/* DESCRIPTIONS (LOBBY SIZE) */
+/* DESCRIPTIONS */
 /* ================= */
 
 .description{
@@ -89,30 +89,51 @@ h1{
 
 .crown-section{
   display:flex;
-  gap:90px;
+  gap:110px;
   margin-bottom:80px;
   flex-wrap:wrap;
   justify-content:center;
 }
 
+/* COMMON */
 .crown-box{
   cursor:pointer;
   transition:transform 0.4s ease;
+  max-width:240px;
 }
 
 .crown-box:hover{
   transform:scale(1.06);
 }
 
+/* KINGS */
+.crown-box.kings img{
+  width:180px;
+}
+
+/* PRINCES – BIGGER */
+.crown-box.princes img{
+  width:220px;
+}
+
+/* TEXT */
 .crown-box img{
-  width:190px;
-  margin-bottom:16px;
+  margin-bottom:18px;
 }
 
 .crown-title{
   font-size:20px;
   letter-spacing:3px;
   color:#d4af37;
+  margin-bottom:12px;
+}
+
+/* ENCOURAGING TEXT */
+.crown-hint{
+  font-size:16px;
+  line-height:1.6;
+  color:#dddddd;
+  opacity:0.9;
 }
 
 /* ================= */
@@ -158,7 +179,8 @@ h1{
   .description{font-size:19px;}
   .lore{font-size:19px;}
   .portrait-frame img{width:250px;}
-  .crown-box img{width:155px;}
+  .crown-box.kings img{width:150px;}
+  .crown-box.princes img{width:185px;}
 }
 </style>
 </head>
@@ -177,36 +199,45 @@ h1{
   <!-- TITLE -->
   <h1>THE ROYAL MEMBERS</h1>
 
-  <!-- DESCRIPTION 1 -->
+  <!-- DESCRIPTION -->
   <div class="description">
     RDG is an eleven-member group famously known as the Royalties in Devil’s Suit —
     rich, influential, and powerful figures who rule both the streets and the shadows.
-    Bound by loyalty and legacy, their presence commands fear and respect.
   </div>
 
-  <!-- DESCRIPTION 2 -->
   <div class="description secondary">
-    The gang is divided into two orders.  
     The RDG Kings stand as the founders and pillars of the empire, while the RDG Princes
     serve as their knights — loyal, fierce, and sworn to protect the throne.
   </div>
 
   <!-- CROWNS -->
   <div class="crown-section">
-    <div class="crown-box" onclick="location.href='kings.html'">
+
+    <!-- KINGS -->
+    <div class="crown-box kings" onclick="location.href='kings.html'">
       <img src="crown.png" alt="The Kings">
       <div class="crown-title">THE KINGS</div>
+      <div class="crown-hint">
+        Enter the chambers of the founders.<br>
+        Power begins here.
+      </div>
     </div>
 
-    <div class="crown-box" onclick="location.href='princes.html'">
+    <!-- PRINCES -->
+    <div class="crown-box princes" onclick="location.href='princes.html'">
       <img src="prince.png" alt="The Princes">
       <div class="crown-title">THE PRINCES</div>
+      <div class="crown-hint">
+        Discover the knights of the throne.<br>
+        Click to reveal their profiles.
+      </div>
     </div>
+
   </div>
 
   <!-- LORE -->
   <div class="lore">
-    The dragon watches all who enter.  
+    The dragon watches all who enter.<br>
     Only those bound by loyalty may proceed.
   </div>
 
