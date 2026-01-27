@@ -27,7 +27,6 @@
       grid-template-rows: auto 1fr auto;
       align-items: center;
       text-align: center;
-      position: relative;
     }
 
     /* ===== HEADER ===== */
@@ -36,7 +35,7 @@
     }
 
     .lobby-title {
-      font-size: 60px;
+      font-size: 58px;
       letter-spacing: 6px;
       text-shadow:
         0 0 20px rgba(255,215,0,0.9),
@@ -78,7 +77,6 @@
       transition: transform 1.6s ease;
     }
 
-    /* disable animation temporarily */
     .no-transition .door {
       transition: none !important;
     }
@@ -118,38 +116,26 @@
       color: #e6c46a;
     }
 
-    /* ===== FOOTER ===== */
-    .lobby-hint {
-      margin-bottom: 20px;
-      font-size: 14px;
-      letter-spacing: 2px;
-      color: #aaa;
-    }
-
-    /* ===== BACK TO ENTRANCE ===== */
-    .back-entrance {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      letter-spacing: 2px;
+    /* ===== NAVIGATION (CENTERED BELOW DOORS) ===== */
+    .nav-entrance {
+      margin-top: 40px;
+      font-size: 18px;
+      letter-spacing: 4px;
       color: #e6c46a;
       cursor: pointer;
-      user-select: none;
-      z-index: 999;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
-    .back-entrance span {
-      font-size: 22px;
+    .nav-entrance span {
+      font-size: 26px;
     }
 
-    .back-entrance:hover {
+    .nav-entrance:hover {
       opacity: 0.85;
-      transform: translateX(-4px);
+      transform: translateY(2px);
     }
 
     /* ===== MOBILE ===== */
@@ -173,8 +159,8 @@
         letter-spacing: 3px;
       }
 
-      .back-entrance {
-        font-size: 12px;
+      .nav-entrance {
+        font-size: 16px;
       }
     }
   </style>
@@ -191,42 +177,42 @@
     </div>
 
     <!-- DOORS -->
-    <div class="door-hall">
+    <div>
 
-      <!-- HOUSE OWNER DOOR -->
-      <div class="door-wrapper" onclick="openLobbyDoor(this, 'house-owner.html', 'ownerDoor')">
-        <div class="door-frame no-transition" id="ownerDoor">
-          <div class="door left"><img src="lobby-door.png"></div>
-          <div class="door right"><img src="lobby-door.png"></div>
+      <div class="door-hall">
+
+        <!-- HOUSE OWNER -->
+        <div class="door-wrapper" onclick="openLobbyDoor('ownerDoor', 'house-owner.html')">
+          <div class="door-frame no-transition" id="ownerDoor">
+            <div class="door left"><img src="lobby-door.jpg"></div>
+            <div class="door right"><img src="lobby-door.jpg"></div>
+          </div>
+          <div class="door-label">House Owner</div>
         </div>
-        <div class="door-label">House Owner</div>
+
+        <!-- MEMBERS -->
+        <div class="door-wrapper" onclick="openLobbyDoor('membersDoor', 'members.html')">
+          <div class="door-frame no-transition" id="membersDoor">
+            <div class="door left"><img src="lobby-door.jpg"></div>
+            <div class="door right"><img src="lobby-door.jpg"></div>
+          </div>
+          <div class="door-label">Members</div>
+        </div>
+
       </div>
 
-      <!-- MEMBERS DOOR -->
-      <div class="door-wrapper" onclick="openLobbyDoor(this, 'members.html', 'membersDoor')">
-        <div class="door-frame no-transition" id="membersDoor">
-          <div class="door left"><img src="lobby-door.png"></div>
-          <div class="door right"><img src="lobby-door.png"></div>
-        </div>
-        <div class="door-label">Members</div>
+      <!-- NAVIGATION BELOW DOORS -->
+      <div class="nav-entrance" onclick="goToEntrance()">
+        <span>←</span>
+        <div>To the Entrance</div>
       </div>
 
-    </div>
-
-    <!-- FOOTER -->
-    <div class="lobby-hint">Click a door to proceed</div>
-
-    <!-- BACK TO ENTRANCE -->
-    <div class="back-entrance" onclick="goToEntrance()">
-      <span>←</span>
-      <div>To the Entrance</div>
     </div>
 
   </div>
 
   <script>
-    // OPEN lobby door
-    function openLobbyDoor(wrapper, target, doorId) {
+    function openLobbyDoor(doorId, target) {
       const doorFrame = document.getElementById(doorId);
       doorFrame.classList.add("open");
 
@@ -237,14 +223,12 @@
       }, 1600);
     }
 
-    // CLOSE lobby door when coming back
+    // Close door when coming back
     window.addEventListener("pageshow", () => {
       const openDoorId = sessionStorage.getItem("lobbyDoorOpen");
-
       if (openDoorId) {
         const doorFrame = document.getElementById(openDoorId);
 
-        // show open instantly
         doorFrame.classList.add("open");
         doorFrame.classList.add("no-transition");
 
@@ -252,7 +236,7 @@
           doorFrame.classList.remove("no-transition");
 
           setTimeout(() => {
-            doorFrame.classList.remove("open"); // CLOSE animation
+            doorFrame.classList.remove("open");
             sessionStorage.removeItem("lobbyDoorOpen");
           }, 100);
         });
