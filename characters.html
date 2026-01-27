@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <title>The Royal Lobby</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
 
   <style>
     body {
       margin: 0;
-      height: 100vh;
+      min-height: 100vh;
       background:
         linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.75)),
         url("lobby-bg.jpg");
@@ -20,12 +20,11 @@
       font-family: "Cinzel", serif;
     }
 
-    /* ===== LAYOUT ===== */
+    /* ===== MAIN WRAPPER ===== */
     .lobby-wrapper {
-      height: 100vh;
+      min-height: 100vh;
       display: grid;
-      grid-template-rows: auto 1fr auto;
-      align-items: center;
+      grid-template-rows: auto auto 1fr auto;
       text-align: center;
     }
 
@@ -35,7 +34,7 @@
     }
 
     .lobby-title {
-      font-size: 58px;
+      font-size: 56px;
       letter-spacing: 6px;
       text-shadow:
         0 0 20px rgba(255,215,0,0.9),
@@ -43,10 +42,44 @@
     }
 
     .lobby-subtitle {
-      margin-top: 8px;
-      font-size: 18px;
+      margin-top: 6px;
+      font-size: 16px;
       letter-spacing: 4px;
       color: #e6c46a;
+    }
+
+    /* ===== STORY SECTION ===== */
+    .story-block {
+      max-width: 820px;
+      margin: 30px auto 10px;
+      padding: 0 20px;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #e6c46a;
+      opacity: 0.9;
+    }
+
+    /* ===== DIVIDER ===== */
+    .royal-divider {
+      width: 220px;
+      height: 2px;
+      margin: 22px auto;
+      background: linear-gradient(
+        to right,
+        transparent,
+        #d4af37,
+        transparent
+      );
+      box-shadow: 0 0 12px rgba(212,175,55,0.8);
+    }
+
+    /* ===== WARNING LINE ===== */
+    .warning-line {
+      margin-top: 14px;
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: #cfae60;
+      opacity: 0.85;
     }
 
     /* ===== DOORS ===== */
@@ -55,6 +88,7 @@
       justify-content: center;
       gap: 140px;
       align-items: center;
+      margin-top: 40px;
     }
 
     .door-wrapper {
@@ -111,14 +145,14 @@
 
     .door-label {
       margin-top: 16px;
-      font-size: 20px;
+      font-size: 18px;
       letter-spacing: 4px;
       color: #e6c46a;
     }
 
-    /* ===== NAVIGATION (CENTERED BELOW DOORS) ===== */
+    /* ===== NAVIGATION ===== */
     .nav-entrance {
-      margin-top: 40px;
+      margin: 40px auto 30px;
       font-size: 18px;
       letter-spacing: 4px;
       color: #e6c46a;
@@ -141,7 +175,11 @@
     /* ===== MOBILE ===== */
     @media (max-width: 768px) {
       .lobby-title {
-        font-size: 42px;
+        font-size: 40px;
+      }
+
+      .story-block {
+        font-size: 14px;
       }
 
       .door-hall {
@@ -156,7 +194,6 @@
 
       .door-label {
         font-size: 16px;
-        letter-spacing: 3px;
       }
 
       .nav-entrance {
@@ -176,9 +213,25 @@
       <div class="lobby-subtitle">Choose your path</div>
     </div>
 
+    <!-- STORY -->
+    <div>
+      <div class="story-block">
+        RDG Series follows the story of a well-known gang bound by loyalty, friendship,
+        and the streets they rule. Behind their tough image, each member hides a story
+        of love — some painful, some pure, and others fueled by hatred.
+        As they face conflicts, rivalries, and secrets from their past,
+        love becomes both their greatest strength and deepest weakness.
+      </div>
+
+      <div class="royal-divider"></div>
+
+      <div class="warning-line">
+        Once entered, there’s no turning back
+      </div>
+    </div>
+
     <!-- DOORS -->
     <div>
-
       <div class="door-hall">
 
         <!-- HOUSE OWNER -->
@@ -201,12 +254,11 @@
 
       </div>
 
-      <!-- NAVIGATION BELOW DOORS -->
+      <!-- NAV -->
       <div class="nav-entrance" onclick="goToEntrance()">
         <span>←</span>
         <div>To the Entrance</div>
       </div>
-
     </div>
 
   </div>
@@ -215,7 +267,6 @@
     function openLobbyDoor(doorId, target) {
       const doorFrame = document.getElementById(doorId);
       doorFrame.classList.add("open");
-
       sessionStorage.setItem("lobbyDoorOpen", doorId);
 
       setTimeout(() => {
@@ -223,7 +274,6 @@
       }, 1600);
     }
 
-    // Close door when coming back
     window.addEventListener("pageshow", () => {
       const openDoorId = sessionStorage.getItem("lobbyDoorOpen");
       if (openDoorId) {
@@ -234,7 +284,6 @@
 
         requestAnimationFrame(() => {
           doorFrame.classList.remove("no-transition");
-
           setTimeout(() => {
             doorFrame.classList.remove("open");
             sessionStorage.removeItem("lobbyDoorOpen");
