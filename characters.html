@@ -134,13 +134,13 @@ body{
 
 /* LOGO */
 .logo{
-  width:110px; /* BIGGER */
+  width:110px;
   opacity:.9;
 }
 
-/* LORE TEXT */
+/* LORE */
 .lore{
-  font-size:18px; /* BIGGER */
+  font-size:18px;
   letter-spacing:4px;
   color:#ffffff;
   text-align:center;
@@ -148,16 +148,16 @@ body{
   line-height:1.7;
 }
 
-/* NAV */
+/* NAV (BIGGER) */
 .nav{
-  margin-top:20px;
-  font-size:18px;
-  letter-spacing:4px;
+  margin-top:26px;
+  font-size:24px;          /* BIGGER */
+  letter-spacing:6px;      /* STRONGER */
   cursor:pointer;
   color:#e6c46a;
   display:flex;
   align-items:center;
-  gap:14px;
+  gap:18px;
 }
 .nav:hover{
   opacity:.85;
@@ -171,6 +171,7 @@ body{
   .story{font-size:19px;}
   .logo{width:90px;}
   .lore{font-size:16px;}
+  .nav{font-size:20px;}
   .door-zone{
     flex-direction:column;
     gap:50px;
@@ -187,7 +188,6 @@ body{
 
 <div class="page">
 
-  <!-- HEADER -->
   <div class="header">
     <div class="title">The Royal Lobby</div>
     <div class="subtitle">Choose your path</div>
@@ -196,7 +196,6 @@ body{
   <div class="space-xl"></div>
   <div class="space-lg"></div>
 
-  <!-- DESCRIPTION -->
   <div class="story-zone">
     <div class="story">
       RDG Series follows the story of a well-known gang bound by loyalty, friendship,
@@ -220,7 +219,6 @@ body{
 
   <div class="space-lg"></div>
 
-  <!-- DOORS -->
   <div class="door-zone">
 
     <div class="door-wrapper" onclick="openDoor('owner','house-owner.html')">
@@ -241,16 +239,13 @@ body{
 
   </div>
 
-  <!-- SPACE AFTER DOORS -->
   <div class="space-lg"></div>
   <div class="space-lg"></div>
 
-  <!-- LOGO -->
   <img src="logo.png" class="logo" alt="Dragon Seal">
 
   <div class="space-md"></div>
 
-  <!-- LORE -->
   <div class="lore">
     The dragon watches all who enter.<br>
     Only those bound by loyalty may proceed.
@@ -258,7 +253,6 @@ body{
 
   <div class="space-md"></div>
 
-  <!-- NAV -->
   <div class="nav" onclick="goBack()">← To the Entrance</div>
 
 </div>
