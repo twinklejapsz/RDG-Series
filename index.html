@@ -54,10 +54,10 @@
       text-shadow: 0 0 22px rgba(255,215,0,0.9);
     }
 
-    /* LOGO – CENTERED ABOVE DOOR */
+    /* LOGO */
     .logo {
-      margin: 24px 0 12px 0;
-      width: 180px;               /* BIGGER */
+      margin: 24px 0 6px 0;
+      width: 180px;
       position: relative;
       z-index: 10;
       padding: 10px;
@@ -69,6 +69,22 @@
     }
 
     .logo.hide {
+      opacity: 0;
+    }
+
+    /* MOTTO */
+    .motto {
+      font-family: "Cinzel", serif;
+      font-size: 18px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      color: #e6c46a;
+      text-shadow: 0 0 10px rgba(255,215,0,0.5);
+      transition: opacity 0.9s ease;
+    }
+
+    .motto.hide {
       opacity: 0;
     }
 
@@ -169,6 +185,11 @@
         padding: 8px;
       }
 
+      .motto {
+        font-size: 14px;
+        letter-spacing: 2px;
+      }
+
       .door-frame {
         width: 320px;
         height: 480px;
@@ -187,8 +208,11 @@
       <div class="house-text">House of Dragon Royalties</div>
     </div>
 
-    <!-- LOGO (CENTERED ABOVE DOOR) -->
+    <!-- LOGO -->
     <img src="logo.png" class="logo" id="logo" alt="House Logo">
+
+    <!-- MOTTO -->
+    <div class="motto" id="motto">The Gang Rules. Dragons Decide.</div>
 
     <!-- DOOR -->
     <div class="door-wrapper">
@@ -216,11 +240,11 @@
     function openDoor() {
       const frame = document.querySelector(".door-frame");
       const logo = document.getElementById("logo");
+      const motto = document.getElementById("motto");
       const sound = document.getElementById("doorSound");
 
-      if (logo) {
-        logo.classList.add("hide");
-      }
+      if (logo) logo.classList.add("hide");
+      if (motto) motto.classList.add("hide");
 
       if (sound) {
         sound.volume = 0.7;
