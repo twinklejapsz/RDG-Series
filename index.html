@@ -29,29 +29,29 @@
       align-items: center;
     }
 
-    /* ===== HEADER ===== */
+    /* ===== HEADER (TOP) ===== */
     .header {
-      margin-top: 20px;
+      margin-top: 12px;
       text-align: center;
     }
 
     .welcome-text {
       font-family: "Lucida Handwriting", "Segoe Script", cursive;
-      font-size: 52px;
-      text-shadow: 0 0 18px rgba(255,215,0,0.7);
+      font-size: 40px;
+      text-shadow: 0 0 14px rgba(255,215,0,0.7);
     }
 
     .house-text {
-      margin-top: 6px;
-      font-size: 48px; /* SUB-HEADER SIZE */
-      letter-spacing: 5px;
-      text-shadow: 0 0 22px rgba(255,215,0,0.8);
+      margin-top: 4px;
+      font-size: 36px;
+      letter-spacing: 4px;
+      text-shadow: 0 0 18px rgba(255,215,0,0.7);
     }
 
     .ornament {
-      width: 360px;
+      width: 300px;
       height: 2px;
-      margin: 20px auto;
+      margin: 14px auto;
       background: linear-gradient(
         to right,
         transparent,
@@ -60,12 +60,12 @@
         gold,
         transparent
       );
-      box-shadow: 0 0 14px rgba(255,215,0,0.8);
+      box-shadow: 0 0 12px rgba(255,215,0,0.7);
     }
 
     /* ===== LOGO + MOTTO ===== */
     .crest {
-      margin-top: 20px;
+      margin-top: 22px;
       text-align: center;
       transition: opacity 1s ease;
     }
@@ -89,15 +89,15 @@
 
     /* ===== DOOR ===== */
     .door-wrapper {
-      margin-top: 30px;
+      margin-top: 26px;
       perspective: 1400px;
       cursor: pointer;
     }
 
     .door-frame {
       position: relative;
-      width: 360px;   /* SMALLER */
-      height: 520px;  /* SMALLER */
+      width: 300px;
+      height: 440px;
     }
 
     .door {
@@ -130,11 +130,11 @@
     }
 
     .open .door.left {
-      transform: rotateY(-80deg);
+      transform: rotateY(-75deg);
     }
 
     .open .door.right {
-      transform: rotateY(80deg);
+      transform: rotateY(75deg);
     }
 
     .hint {
@@ -147,12 +147,16 @@
     /* ===== MOBILE ===== */
     @media (max-width: 600px) {
       .welcome-text {
-        font-size: 36px;
+        font-size: 30px;
       }
 
       .house-text {
-        font-size: 32px;
-        letter-spacing: 3px;
+        font-size: 26px;
+        letter-spacing: 2px;
+      }
+
+      .ornament {
+        width: 220px;
       }
 
       .crest img {
@@ -165,8 +169,8 @@
       }
 
       .door-frame {
-        width: 260px;
-        height: 380px;
+        width: 220px;
+        height: 320px;
       }
     }
   </style>
