@@ -19,11 +19,7 @@ body{
   color:gold;
 }
 
-/* Disable interaction until dialogue ends */
-.page.locked{
-  pointer-events:none;
-}
-
+/* PAGE */
 .page{
   min-height:100vh;
   display:flex;
@@ -31,10 +27,41 @@ body{
   align-items:center;
 }
 
-/* HEADER */
-.header{margin-top:28px;text-align:center;}
-.title{font-size:64px;letter-spacing:7px;text-shadow:0 0 24px rgba(255,215,0,.95);}
-.subtitle{margin-top:14px;font-size:26px;letter-spacing:6px;color:#e6c46a;}
+/* LOCK INTERACTION */
+.page.locked{
+  pointer-events:none;
+}
+
+/* HEADER (ALWAYS VISIBLE) */
+.header{
+  margin-top:28px;
+  text-align:center;
+}
+.title{
+  font-size:64px;
+  letter-spacing:7px;
+  text-shadow:0 0 24px rgba(255,215,0,.95);
+}
+.subtitle{
+  margin-top:14px;
+  font-size:26px;
+  letter-spacing:6px;
+  color:#e6c46a;
+}
+
+/* =========================
+   LOBBY CONTENT (HIDDEN FIRST)
+   ========================= */
+.lobby-content{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity 1.2s ease, transform 1.2s ease;
+}
+
+.lobby-content.show{
+  opacity:1;
+  transform:translateY(0);
+}
 
 /* SPACING */
 .space-xl{height:70px;}
@@ -42,44 +69,98 @@ body{
 .space-md{height:30px;}
 
 /* STORY */
-.story-zone{max-width:960px;text-align:center;padding:0 26px;}
-.story{font-size:24px;line-height:1.9;color:#fff;font-weight:600;text-shadow:0 0 14px rgba(0,0,0,.95);}
+.story-zone{
+  max-width:960px;
+  text-align:center;
+  padding:0 26px;
+}
+.story{
+  font-size:24px;
+  line-height:1.9;
+  color:#fff;
+  font-weight:600;
+  text-shadow:0 0 14px rgba(0,0,0,.95);
+}
 
 /* DIVIDER */
 .divider{
-  width:360px;height:2px;margin:0 auto;
+  width:360px;
+  height:2px;
+  margin:0 auto;
   background:linear-gradient(to right,transparent,#d4af37,transparent);
   box-shadow:0 0 18px rgba(212,175,55,1);
 }
 
 /* WARNING */
-.warning{font-size:22px;letter-spacing:6px;color:#fff;text-align:center;}
+.warning{
+  font-size:22px;
+  letter-spacing:6px;
+  color:#fff;
+  text-align:center;
+}
 
 /* DOORS */
-.door-zone{display:flex;gap:140px;justify-content:center;text-align:center;}
-.door-wrapper{perspective:1600px;cursor:pointer;}
-.door-frame{width:320px;height:480px;position:relative;}
-.door{position:absolute;width:50%;height:100%;top:0;overflow:hidden;transition:transform 1.6s ease;}
+.door-zone{
+  display:flex;
+  gap:140px;
+  justify-content:center;
+  text-align:center;
+}
+.door-wrapper{
+  perspective:1600px;
+  cursor:pointer;
+}
+.door-frame{
+  width:320px;
+  height:480px;
+  position:relative;
+}
+.door{
+  position:absolute;
+  width:50%;
+  height:100%;
+  top:0;
+  overflow:hidden;
+  transition:transform 1.6s ease;
+}
 .door.left{left:0;transform-origin:left center;}
 .door.right{right:0;transform-origin:right center;}
 .door img{width:200%;height:100%;object-fit:cover;}
 .door.right img{margin-left:-100%;}
 .open .door.left{transform:rotateY(-80deg);}
 .open .door.right{transform:rotateY(80deg);}
-.label{margin-top:14px;font-size:18px;letter-spacing:4px;color:#e6c46a;}
+.label{
+  margin-top:14px;
+  font-size:18px;
+  letter-spacing:4px;
+  color:#e6c46a;
+}
 
 /* LOGO */
 .logo{width:110px;opacity:.9;}
 
 /* LORE */
-.lore{font-size:18px;letter-spacing:4px;color:#fff;text-align:center;max-width:460px;line-height:1.7;}
+.lore{
+  font-size:18px;
+  letter-spacing:4px;
+  color:#fff;
+  text-align:center;
+  max-width:460px;
+  line-height:1.7;
+}
 
 /* NAV */
-.nav{margin-top:26px;font-size:24px;letter-spacing:6px;cursor:pointer;color:#e6c46a;}
+.nav{
+  margin-top:26px;
+  font-size:24px;
+  letter-spacing:6px;
+  cursor:pointer;
+  color:#e6c46a;
+}
 .nav:hover{opacity:.85;transform:translateY(2px);}
 
 /* =========================
-   ZHMER NPC (BIGGER)
+   ZHMER NPC
    ========================= */
 .zhmer-stand{
   position:fixed;
@@ -97,7 +178,7 @@ body{
 }
 
 .zhmer-stand img{
-  height:820px; /* MUCH BIGGER */
+  height:820px;
   filter:drop-shadow(0 0 45px rgba(255,215,0,.6));
 }
 
@@ -164,7 +245,7 @@ body{
 
 <body>
 
-<!-- ZHMER NPC -->
+<!-- ZHMER -->
 <div class="zhmer-stand" id="zhmerStand">
   <img src="king1.png" alt="Zhmer Smith">
   <div class="speech">
@@ -176,64 +257,70 @@ body{
 
 <div class="page locked" id="page">
 
+  <!-- HEADER ALWAYS VISIBLE -->
   <div class="header">
     <div class="title">The Royal Lobby</div>
     <div class="subtitle">Choose your path</div>
   </div>
 
-  <div class="space-xl"></div>
-  <div class="space-lg"></div>
+  <!-- LOBBY CONTENT -->
+  <div class="lobby-content" id="lobbyContent">
 
-  <div class="story-zone">
-    <div class="story">
-      RDG Series follows the story of a well-known gang bound by loyalty, friendship,
-      and the streets they rule.
-    </div>
-  </div>
+    <div class="space-xl"></div>
+    <div class="space-lg"></div>
 
-  <div class="space-md"></div>
-  <div class="divider"></div>
-
-  <div class="space-lg"></div>
-  <div class="space-lg"></div>
-
-  <div class="warning">Once entered, there’s no turning back</div>
-
-  <div class="space-lg"></div>
-
-  <div class="door-zone">
-    <div class="door-wrapper" onclick="openDoor('owner','house-owner.html')">
-      <div class="door-frame" id="owner">
-        <div class="door left"><img src="lobby-door.jpg"></div>
-        <div class="door right"><img src="lobby-door.jpg"></div>
+    <div class="story-zone">
+      <div class="story">
+        RDG Series follows the story of a well-known gang bound by loyalty,
+        friendship, and the streets they rule.
       </div>
-      <div class="label">House Owner</div>
     </div>
 
-    <div class="door-wrapper" onclick="openDoor('members','members.html')">
-      <div class="door-frame" id="members">
-        <div class="door left"><img src="lobby-door.jpg"></div>
-        <div class="door right"><img src="lobby-door.jpg"></div>
+    <div class="space-md"></div>
+    <div class="divider"></div>
+
+    <div class="space-lg"></div>
+    <div class="space-lg"></div>
+
+    <div class="warning">Once entered, there’s no turning back</div>
+
+    <div class="space-lg"></div>
+
+    <div class="door-zone">
+      <div class="door-wrapper" onclick="openDoor('owner','house-owner.html')">
+        <div class="door-frame" id="owner">
+          <div class="door left"><img src="lobby-door.jpg"></div>
+          <div class="door right"><img src="lobby-door.jpg"></div>
+        </div>
+        <div class="label">House Owner</div>
       </div>
-      <div class="label">Members</div>
+
+      <div class="door-wrapper" onclick="openDoor('members','members.html')">
+        <div class="door-frame" id="members">
+          <div class="door left"><img src="lobby-door.jpg"></div>
+          <div class="door right"><img src="lobby-door.jpg"></div>
+        </div>
+        <div class="label">Members</div>
+      </div>
     </div>
+
+    <div class="space-lg"></div>
+    <div class="space-lg"></div>
+
+    <img src="logo.png" class="logo" alt="Dragon Seal">
+
+    <div class="space-md"></div>
+
+    <div class="lore">
+      The dragon watches all who enter.<br>
+      Only those bound by loyalty may proceed.
+    </div>
+
+    <div class="space-md"></div>
+
+    <div class="nav" onclick="goBack()">← To the Entrance</div>
+
   </div>
-
-  <div class="space-lg"></div>
-  <div class="space-lg"></div>
-
-  <img src="logo.png" class="logo" alt="Dragon Seal">
-
-  <div class="space-md"></div>
-
-  <div class="lore">
-    The dragon watches all who enter.<br>
-    Only those bound by loyalty may proceed.
-  </div>
-
-  <div class="space-md"></div>
-
-  <div class="nav" onclick="goBack()">← To the Entrance</div>
 </div>
 
 <script>
@@ -270,6 +357,7 @@ function nextDialogue(){
   }else{
     document.getElementById("zhmerStand").classList.remove("show");
     document.getElementById("page").classList.remove("locked");
+    document.getElementById("lobbyContent").classList.add("show");
   }
 }
 </script>
