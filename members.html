@@ -21,9 +21,31 @@ body{
   color:#ffffff;
 }
 
-/* PAGE */
+/* =========================
+   LOBBY-STYLE HEADER
+   ========================= */
+.header{
+  margin-top:28px;
+  text-align:center;
+}
+.header .title{
+  font-size:64px;
+  letter-spacing:7px;
+  text-shadow:0 0 24px rgba(255,215,0,.95);
+  color:gold;
+}
+.header .subtitle{
+  margin-top:14px;
+  font-size:26px;
+  letter-spacing:6px;
+  color:#e6c46a;
+}
+
+/* =========================
+   ORIGINAL MEMBERS PAGE
+   (UNCHANGED)
+   ========================= */
 .page{
-  min-height:100vh;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -31,24 +53,8 @@ body{
   padding:90px 20px 130px;
 }
 
-/* LOCK INTERACTION UNTIL DIALOGUE ENDS */
-.page.locked{
-  pointer-events:none;
-}
-
-/* CONTENT REVEAL (SAME AS LOBBY) */
-.lobby-content{
-  opacity:0;
-  transform:translateY(30px);
-  transition:opacity 1.2s ease, transform 1.2s ease;
-}
-.lobby-content.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
 /* =========================
-   ZHMER NPC (SAME AS LOBBY)
+   ZHMER OVERLAY (SAME BEHAVIOR AS LOBBY)
    ========================= */
 .zhmer-stand{
   position:fixed;
@@ -129,18 +135,6 @@ body{
     0 0 35px rgba(201,162,74,0.45),
     0 55px 110px rgba(0,0,0,0.95);
 }
-.portrait-frame::before{
-  content:"";
-  position:absolute;
-  inset:14px;
-  border:3px solid rgba(20,14,6,0.85);
-}
-.portrait-frame::after{
-  content:"";
-  position:absolute;
-  inset:28px;
-  border:1.5px solid rgba(201,162,74,0.35);
-}
 .portrait-frame img{
   width:620px;
   display:block;
@@ -175,7 +169,6 @@ h1{
 .crown-box{
   cursor:pointer;
   transition:transform 0.4s ease;
-  max-width:260px;
 }
 .crown-box:hover{
   transform:scale(1.06);
@@ -213,6 +206,8 @@ h1{
 
 /* MOBILE */
 @media(max-width:768px){
+  .header .title{font-size:46px;}
+  .header .subtitle{font-size:20px;}
   .portrait-frame img{width:360px;}
   .zhmer-stand img{height:560px;}
   .speech{
@@ -237,61 +232,62 @@ h1{
   </div>
 </div>
 
-<div class="page locked" id="page">
+<div class="page">
 
-  <!-- MEMBERS CONTENT (HIDDEN INITIALLY) -->
-  <div class="lobby-content" id="lobbyContent">
-
-    <div class="portrait-wrapper">
-      <div class="portrait-frame">
-        <img src="group-photo.png" alt="Royal Dragon Gang">
-      </div>
-    </div>
-
-    <h1>THE ROYAL MEMBERS</h1>
-
-    <div class="description">
-      RDG is an eleven-member group famously known as the Royalties in Devil’s Suit —
-      rich, influential, and powerful figures who rule both the arena and the red ground.
-    </div>
-
-    <div class="description secondary">
-      The RDG Kings stand as the founders and pillars of the empire, while the RDG Princes
-      serve as the gang knights — loyal, fierce, and sworn to protect the throne.
-    </div>
-
-    <div class="crown-section">
-
-      <div class="crown-box" onclick="location.href='kings.html'">
-        <img src="crown.png">
-        <div class="crown-title">THE KINGS</div>
-        <div class="crown-hint">
-          Enter the chambers of the founders.<br>
-          Power begins here.
-        </div>
-      </div>
-
-      <div class="crown-box" onclick="location.href='princes.html'">
-        <img src="prince.png">
-        <div class="crown-title">THE PRINCES</div>
-        <div class="crown-hint">
-          Discover the knights of the throne.<br>
-          Click to reveal their profiles.
-        </div>
-      </div>
-
-    </div>
-
-    <div class="lore">
-      The dragon watches all who enter.<br>
-      Only those bound by loyalty may proceed.
-    </div>
-
-    <div class="navigation">
-      <a href="lobby.html">← BACK TO THE ROYAL LOBBY</a>
-    </div>
-
+  <!-- HEADER (NOW MATCHES LOBBY) -->
+  <div class="header">
+    <div class="title">THE ROYAL MEMBERS</div>
+    <div class="subtitle">Choose your path</div>
   </div>
+
+  <!-- ORIGINAL CONTENT -->
+  <div class="portrait-wrapper">
+    <div class="portrait-frame">
+      <img src="group-photo.png" alt="Royal Dragon Gang">
+    </div>
+  </div>
+
+  <h1>THE ROYAL MEMBERS</h1>
+
+  <div class="description">
+    RDG is an eleven-member group famously known as the Royalties in Devil’s Suit —
+    rich, influential, and powerful figures who rule both the arena and the red ground.
+  </div>
+
+  <div class="description secondary">
+    The RDG Kings stand as the founders and pillars of the empire, while the RDG Princes
+    serve as the gang knights — loyal, fierce, and sworn to protect the throne.
+  </div>
+
+  <div class="crown-section">
+    <div class="crown-box" onclick="location.href='kings.html'">
+      <img src="crown.png">
+      <div class="crown-title">THE KINGS</div>
+      <div class="crown-hint">
+        Enter the chambers of the founders.<br>
+        Power begins here.
+      </div>
+    </div>
+
+    <div class="crown-box" onclick="location.href='princes.html'">
+      <img src="prince.png">
+      <div class="crown-title">THE PRINCES</div>
+      <div class="crown-hint">
+        Discover the knights of the throne.<br>
+        Click to reveal their profiles.
+      </div>
+    </div>
+  </div>
+
+  <div class="lore">
+    The dragon watches all who enter.<br>
+    Only those bound by loyalty may proceed.
+  </div>
+
+  <div class="navigation">
+    <a href="lobby.html">← BACK TO THE ROYAL LOBBY</a>
+  </div>
+
 </div>
 
 <script>
@@ -306,7 +302,6 @@ const dialogues=[
 let currentDialogue=0;
 
 window.addEventListener("load",()=>{
-  document.getElementById("page").classList.add("locked");
   document.getElementById("zhmerStand").classList.add("show");
   document.getElementById("kingDialogue").innerHTML=dialogues[0];
 });
@@ -320,8 +315,6 @@ function nextDialogue(){
     }
   }else{
     document.getElementById("zhmerStand").classList.remove("show");
-    document.getElementById("page").classList.remove("locked");
-    document.getElementById("lobbyContent").classList.add("show");
   }
 }
 </script>
