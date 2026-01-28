@@ -149,7 +149,7 @@ body{
   color:#e6c46a;
 }
 
-/* CENTERED LOGO + LORE (RESTORED) */
+/* CENTERED LOGO + LORE */
 .lore-zone{
   display:flex;
   flex-direction:column;
@@ -179,6 +179,27 @@ body{
 .nav:hover{
   opacity:.85;
   transform:translateY(2px);
+}
+
+/* NAV ZONE */
+.nav-zone{
+  width:100%;
+  max-width:1100px;
+  display:flex;
+  justify-content:space-between;
+  padding:0 40px;
+}
+.nav.left{
+  text-align:left;
+}
+.nav.right{
+  text-align:right;
+}
+.nav.left:hover{
+  transform:translateX(-6px);
+}
+.nav.right:hover{
+  transform:translateX(6px);
 }
 
 /* =========================
@@ -291,13 +312,11 @@ body{
 
 <div class="page locked" id="page">
 
-  <!-- HEADER (UNCHANGED) -->
   <div class="header">
     <div class="title">The Royal Lobby</div>
     <div class="subtitle">Choose your path</div>
   </div>
 
-  <!-- LOBBY CONTENT -->
   <div class="lobby-content" id="lobbyContent">
 
     <div class="space-xl"></div>
@@ -345,7 +364,6 @@ body{
     <div class="space-lg"></div>
     <div class="space-lg"></div>
 
-    <!-- RESTORED CENTER -->
     <div class="lore-zone">
       <img src="logo.png" class="logo" alt="Dragon Seal">
       <div class="space-md"></div>
@@ -357,7 +375,11 @@ body{
 
     <div class="space-md"></div>
 
-    <div class="nav" onclick="goBack()">← To the Entrance</div>
+    <!-- NAVIGATION -->
+    <div class="nav-zone">
+      <div class="nav left" onclick="goBack()">← To the Entrance</div>
+      <div class="nav right" onclick="goGarden()">To the Garden →</div>
+    </div>
 
   </div>
 </div>
@@ -370,6 +392,9 @@ function openDoor(id,target){
 }
 function goBack(){
   location.href="index.html";
+}
+function goGarden(){
+  location.href="garden.html";
 }
 
 const dialogues=[
