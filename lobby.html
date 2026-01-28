@@ -148,11 +148,11 @@ body{
   line-height:1.7;
 }
 
-/* NAV (BIGGER) */
+/* NAV */
 .nav{
   margin-top:26px;
-  font-size:24px;          /* BIGGER */
-  letter-spacing:6px;      /* STRONGER */
+  font-size:24px;
+  letter-spacing:6px;
   cursor:pointer;
   color:#e6c46a;
   display:flex;
@@ -162,6 +162,55 @@ body{
 .nav:hover{
   opacity:.85;
   transform:translateY(2px);
+}
+
+/* KING1 MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+.king-modal{
+  background:#0b0b0b;
+  border:3px solid gold;
+  padding:40px;
+  max-width:640px;
+  width:90%;
+  text-align:center;
+  box-shadow:0 0 40px rgba(255,215,0,.35);
+}
+
+.king-title{
+  font-size:32px;
+  letter-spacing:6px;
+  margin-bottom:22px;
+}
+
+.king-text{
+  font-size:20px;
+  line-height:1.8;
+  color:#ffffff;
+  min-height:120px;
+}
+
+.enter-btn{
+  margin-top:26px;
+  padding:14px 34px;
+  font-size:18px;
+  letter-spacing:4px;
+  font-family:"Cinzel",serif;
+  background:gold;
+  border:none;
+  cursor:pointer;
+}
+
+.enter-btn:hover{
+  background:#d4af37;
 }
 
 /* MOBILE */
@@ -207,9 +256,7 @@ body{
   </div>
 
   <div class="space-md"></div>
-
   <div class="divider"></div>
-
   <div class="space-lg"></div>
   <div class="space-lg"></div>
 
@@ -257,6 +304,15 @@ body{
 
 </div>
 
+<!-- KING1 MODAL -->
+<div class="modal" id="kingWelcome">
+  <div class="modal-content king-modal">
+    <h2 class="king-title">👑 King1</h2>
+    <p id="kingDialogue" class="king-text"></p>
+    <button class="enter-btn" id="dialogueBtn" onclick="nextDialogue()">Continue</button>
+  </div>
+</div>
+
 <script>
 function openDoor(id,target){
   const d=document.getElementById(id);
@@ -269,6 +325,33 @@ function goBack(){
 window.addEventListener("pageshow",()=>{
   document.querySelectorAll(".door-frame").forEach(d=>d.classList.remove("open"));
 });
+
+/* KING1 DIALOGUE */
+const dialogues = [
+  "Welcome to the <strong>House of Dragon Royalty</strong>.<br>You are now stepping into the lobby.",
+  "I am <strong>King1</strong>, sovereign of this house.<br>Keeper of its halls and guardian of its name.",
+  "This lobby is where all paths converge.<br>Every door beyond these walls carries its own story.",
+  "To your <strong>right</strong>, you will find the members of this house.<br>To your <strong>left</strong>, the homeowners’ quarters—and the Library."
+];
+
+let currentDialogue = 0;
+
+window.addEventListener("load",()=>{
+  document.getElementById("kingWelcome").style.display="flex";
+  document.getElementById("kingDialogue").innerHTML = dialogues[0];
+});
+
+function nextDialogue(){
+  currentDialogue++;
+  if(currentDialogue < dialogues.length){
+    document.getElementById("kingDialogue").innerHTML = dialogues[currentDialogue];
+    if(currentDialogue === dialogues.length - 1){
+      document.getElementById("dialogueBtn").innerText = "Enter the Lobby";
+    }
+  }else{
+    document.getElementById("kingWelcome").style.display="none";
+  }
+}
 </script>
 
 </body>
