@@ -6,13 +6,8 @@
 <title>The Royal Members</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
 body{
+  margin:0;
   min-height:100vh;
   background:
     linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
@@ -21,7 +16,9 @@ body{
   color:#ffffff;
 }
 
+/* PAGE */
 .page{
+  min-height:100vh;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -29,9 +26,81 @@ body{
   padding:90px 20px 130px;
 }
 
-/* ================= */
-/* ROYAL MAFIA PORTRAIT FRAME */
-/* ================= */
+/* LOCK INTERACTION UNTIL DIALOGUE ENDS */
+.page.locked{
+  pointer-events:none;
+}
+
+/* =========================
+   ZHMER NPC (SAME AS LOBBY)
+   ========================= */
+.zhmer-stand{
+  position:fixed;
+  bottom:0;
+  left:20px;
+  z-index:9999;
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity 1s ease, transform 1s ease;
+}
+.zhmer-stand.show{
+  opacity:1;
+  transform:translateY(0);
+}
+.zhmer-stand img{
+  height:1000px;
+  filter:drop-shadow(0 0 45px rgba(255,215,0,.6));
+}
+
+/* SPEECH BUBBLE */
+.speech{
+  position:absolute;
+  left:420px;
+  bottom:460px;
+  background:#0b0b0b;
+  border:3px solid gold;
+  padding:28px 32px;
+  width:460px;
+  color:#ffffff;
+  box-shadow:0 0 40px rgba(255,215,0,.35);
+}
+.speech:after{
+  content:"";
+  position:absolute;
+  left:-22px;
+  top:80px;
+  border-width:12px 22px 12px 0;
+  border-style:solid;
+  border-color:transparent gold transparent transparent;
+}
+.speech h2{
+  margin:0 0 14px;
+  font-size:30px;
+  letter-spacing:5px;
+  color:gold;
+}
+.speech p{
+  font-size:18px;
+  line-height:1.7;
+  min-height:100px;
+}
+.speech button{
+  margin-top:20px;
+  padding:12px 28px;
+  font-family:"Cinzel",serif;
+  font-size:16px;
+  letter-spacing:4px;
+  background:gold;
+  border:none;
+  cursor:pointer;
+}
+.speech button:hover{
+  background:#d4af37;
+}
+
+/* =========================
+   ORIGINAL MEMBERS DESIGN
+   ========================= */
 
 .portrait-wrapper{
   margin-bottom:80px;
@@ -41,59 +110,37 @@ body{
   position:relative;
   padding:26px;
   background:
-    linear-gradient(145deg,
-      #3a2a12,
-      #7d5a1f,
-      #c9a24a,
-      #7d5a1f,
-      #3a2a12
-    );
+    linear-gradient(145deg,#3a2a12,#7d5a1f,#c9a24a,#7d5a1f,#3a2a12);
   box-shadow:
     0 0 35px rgba(201,162,74,0.45),
     0 55px 110px rgba(0,0,0,0.95);
 }
 
-/* inner dark metal trim */
 .portrait-frame::before{
   content:"";
   position:absolute;
   inset:14px;
   border:3px solid rgba(20,14,6,0.85);
-  box-shadow:inset 0 0 18px rgba(0,0,0,0.8);
-  pointer-events:none;
 }
 
-/* inner velvet mat */
 .portrait-frame::after{
   content:"";
   position:absolute;
   inset:28px;
   border:1.5px solid rgba(201,162,74,0.35);
-  box-shadow:inset 0 0 30px rgba(0,0,0,0.7);
-  pointer-events:none;
 }
 
 .portrait-frame img{
   width:620px;
   display:block;
-  filter:contrast(1.1) brightness(0.95);
 }
-
-/* ================= */
-/* HEADER */
-/* ================= */
 
 h1{
   font-size:48px;
   letter-spacing:4px;
   color:#d4af37;
   margin-bottom:50px;
-  text-shadow:0 0 18px rgba(212,175,55,0.6);
 }
-
-/* ================= */
-/* DESCRIPTIONS */
-/* ================= */
 
 .description{
   max-width:900px;
@@ -106,10 +153,6 @@ h1{
 .description.secondary{
   margin-bottom:90px;
 }
-
-/* ================= */
-/* CROWNS */
-/* ================= */
 
 .crown-section{
   display:flex;
@@ -145,12 +188,7 @@ h1{
   font-size:17px;
   line-height:1.7;
   color:#dddddd;
-  opacity:0.95;
 }
-
-/* ================= */
-/* LORE */
-/* ================= */
 
 .lore{
   max-width:760px;
@@ -160,61 +198,50 @@ h1{
   margin-bottom:90px;
 }
 
-/* ================= */
-/* NAVIGATION */
-/* ================= */
-
-.navigation{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-
 .navigation a{
   font-size:22px;
   letter-spacing:3px;
   color:#d4af37;
   text-decoration:none;
-  transition:color 0.3s ease;
 }
 
-.navigation a:hover{
-  color:#ffffff;
-}
-
-.navigation .spacer{
-  height:30px;
-}
-
-/* ================= */
 /* MOBILE */
-/* ================= */
-
 @media(max-width:768px){
-  h1{font-size:36px;}
-  .description{font-size:19px;}
-  .lore{font-size:19px;}
   .portrait-frame img{width:360px;}
-  .crown-box img{width:190px;}
+  .zhmer-stand img{height:560px;}
+  .speech{
+    left:50%;
+    transform:translateX(-50%);
+    bottom:520px;
+    width:90%;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="page">
+<!-- ZHMER NPC -->
+<div class="zhmer-stand" id="zhmerStand">
+  <img src="king1.png" alt="Zhmer Smith">
+  <div class="speech">
+    <h2>ZHMER SMITH</h2>
+    <p id="kingDialogue"></p>
+    <button id="dialogueBtn" onclick="nextDialogue()">Continue</button>
+  </div>
+</div>
 
-  <!-- ROYAL MAFIA PORTRAIT -->
+<div class="page locked" id="page">
+
+  <!-- MEMBERS CONTENT -->
   <div class="portrait-wrapper">
     <div class="portrait-frame">
       <img src="group-photo.png" alt="Royal Dragon Gang">
     </div>
   </div>
 
-  <!-- TITLE -->
   <h1>THE ROYAL MEMBERS</h1>
 
-  <!-- DESCRIPTION -->
   <div class="description">
     RDG is an eleven-member group famously known as the Royalties in Devil’s Suit —
     rich, influential, and powerful figures who rule both the arena and the red ground.
@@ -225,11 +252,10 @@ h1{
     serve as the gang knights — loyal, fierce, and sworn to protect the throne.
   </div>
 
-  <!-- CROWNS -->
   <div class="crown-section">
 
     <div class="crown-box" onclick="location.href='kings.html'">
-      <img src="crown.png" alt="The Kings">
+      <img src="crown.png">
       <div class="crown-title">THE KINGS</div>
       <div class="crown-hint">
         Enter the chambers of the founders.<br>
@@ -238,7 +264,7 @@ h1{
     </div>
 
     <div class="crown-box" onclick="location.href='princes.html'">
-      <img src="prince.png" alt="The Princes">
+      <img src="prince.png">
       <div class="crown-title">THE PRINCES</div>
       <div class="crown-hint">
         Discover the knights of the throne.<br>
@@ -248,20 +274,47 @@ h1{
 
   </div>
 
-  <!-- LORE -->
   <div class="lore">
     The dragon watches all who enter.<br>
     Only those bound by loyalty may proceed.
   </div>
 
-  <!-- NAVIGATION -->
   <div class="navigation">
     <a href="lobby.html">← BACK TO THE ROYAL LOBBY</a>
-    <div class="spacer"></div>
-    <a href="index.html">← RETURN TO THE ENTRANCE</a>
   </div>
 
 </div>
+
+<script>
+const dialogues=[
+  "You have arrived at the <strong>Royal Members</strong>.",
+  "Before you stand two paths, each bound by loyalty and blood.",
+  "The <strong>Kings</strong> are the founders and pillars of the empire.",
+  "The <strong>Princes</strong> are the knights sworn to protect the throne.",
+  "Choose wisely. Every name you uncover carries weight."
+];
+
+let currentDialogue=0;
+
+window.addEventListener("load",()=>{
+  document.getElementById("page").classList.add("locked");
+  document.getElementById("zhmerStand").classList.add("show");
+  document.getElementById("kingDialogue").innerHTML=dialogues[0];
+});
+
+function nextDialogue(){
+  currentDialogue++;
+  if(currentDialogue < dialogues.length){
+    document.getElementById("kingDialogue").innerHTML = dialogues[currentDialogue];
+    if(currentDialogue === dialogues.length - 1){
+      document.getElementById("dialogueBtn").innerText = "Proceed";
+    }
+  }else{
+    document.getElementById("zhmerStand").classList.remove("show");
+    document.getElementById("page").classList.remove("locked");
+  }
+}
+</script>
 
 </body>
 </html>
