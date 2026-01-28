@@ -19,18 +19,16 @@ body{
   color:gold;
 }
 
+/* Disable interaction until dialogue ends */
+.page.locked{
+  pointer-events:none;
+}
+
 .page{
   min-height:100vh;
   display:flex;
   flex-direction:column;
   align-items:center;
-  transition:filter .6s ease;
-}
-
-/* BLUR */
-.blur{
-  filter:blur(6px);
-  pointer-events:none;
 }
 
 /* HEADER */
@@ -81,31 +79,37 @@ body{
 .nav:hover{opacity:.85;transform:translateY(2px);}
 
 /* =========================
-   ZHMER – PHYSICAL NPC
+   ZHMER NPC (BIGGER)
    ========================= */
 .zhmer-stand{
   position:fixed;
   bottom:0;
-  left:40px;
+  left:20px;
   z-index:9999;
-  display:none;
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity 1s ease, transform 1s ease;
+}
+
+.zhmer-stand.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
 .zhmer-stand img{
-  height:680px; /* BIG & DOMINANT */
-  filter:drop-shadow(0 0 40px rgba(255,215,0,.55));
-  opacity:.98;
+  height:820px; /* MUCH BIGGER */
+  filter:drop-shadow(0 0 45px rgba(255,215,0,.6));
 }
 
 /* SPEECH BUBBLE */
 .speech{
   position:absolute;
-  left:320px;
-  bottom:380px;
+  left:420px;
+  bottom:460px;
   background:#0b0b0b;
   border:3px solid gold;
-  padding:26px 30px;
-  width:420px;
+  padding:28px 32px;
+  width:460px;
   color:#fff;
   box-shadow:0 0 40px rgba(255,215,0,.35);
 }
@@ -113,16 +117,16 @@ body{
 .speech:after{
   content:"";
   position:absolute;
-  left:-20px;
-  top:60px;
-  border-width:10px 20px 10px 0;
+  left:-22px;
+  top:80px;
+  border-width:12px 22px 12px 0;
   border-style:solid;
   border-color:transparent gold transparent transparent;
 }
 
 .speech h2{
-  margin:0 0 12px;
-  font-size:28px;
+  margin:0 0 14px;
+  font-size:30px;
   letter-spacing:5px;
   color:gold;
 }
@@ -130,12 +134,12 @@ body{
 .speech p{
   font-size:18px;
   line-height:1.7;
-  min-height:90px;
+  min-height:100px;
 }
 
 .speech button{
-  margin-top:18px;
-  padding:12px 26px;
+  margin-top:20px;
+  padding:12px 28px;
   font-family:"Cinzel",serif;
   font-size:16px;
   letter-spacing:4px;
@@ -143,13 +147,17 @@ body{
   border:none;
   cursor:pointer;
 }
-
 .speech button:hover{background:#d4af37;}
 
 /* MOBILE */
 @media(max-width:768px){
-  .zhmer-stand img{height:420px;}
-  .speech{left:50%;transform:translateX(-50%);bottom:460px;width:90%;}
+  .zhmer-stand img{height:460px;}
+  .speech{
+    left:50%;
+    transform:translateX(-50%);
+    bottom:520px;
+    width:90%;
+  }
 }
 </style>
 </head>
@@ -159,14 +167,15 @@ body{
 <!-- ZHMER NPC -->
 <div class="zhmer-stand" id="zhmerStand">
   <img src="king1.png" alt="Zhmer Smith">
-  <div class="speech" id="speechBubble">
+  <div class="speech">
     <h2>ZHMER SMITH</h2>
     <p id="kingDialogue"></p>
     <button id="dialogueBtn" onclick="nextDialogue()">Continue</button>
   </div>
 </div>
 
-<div class="page">
+<div class="page locked" id="page">
+
   <div class="header">
     <div class="title">The Royal Lobby</div>
     <div class="subtitle">Choose your path</div>
@@ -246,8 +255,8 @@ const dialogues=[
 let currentDialogue=0;
 
 window.addEventListener("load",()=>{
-  document.querySelector(".page").classList.add("blur");
-  document.getElementById("zhmerStand").style.display="block";
+  document.getElementById("page").classList.add("locked");
+  document.getElementById("zhmerStand").classList.add("show");
   document.getElementById("kingDialogue").innerHTML=dialogues[0];
 });
 
@@ -259,8 +268,8 @@ function nextDialogue(){
       document.getElementById("dialogueBtn").innerText="Enter the Lobby";
     }
   }else{
-    document.getElementById("zhmerStand").style.display="none";
-    document.querySelector(".page").classList.remove("blur");
+    document.getElementById("zhmerStand").classList.remove("show");
+    document.getElementById("page").classList.remove("locked");
   }
 }
 </script>
