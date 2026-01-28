@@ -6,8 +6,13 @@
 <title>The Royal Members</title>
 
 <style>
-body{
+*{
   margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
   min-height:100vh;
   background:
     linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
@@ -29,6 +34,17 @@ body{
 /* LOCK INTERACTION UNTIL DIALOGUE ENDS */
 .page.locked{
   pointer-events:none;
+}
+
+/* CONTENT REVEAL (SAME AS LOBBY) */
+.lobby-content{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity 1.2s ease, transform 1.2s ease;
+}
+.lobby-content.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
 /* =========================
@@ -99,13 +115,11 @@ body{
 }
 
 /* =========================
-   ORIGINAL MEMBERS DESIGN
+   MEMBERS CONTENT
    ========================= */
-
 .portrait-wrapper{
   margin-bottom:80px;
 }
-
 .portrait-frame{
   position:relative;
   padding:26px;
@@ -115,21 +129,18 @@ body{
     0 0 35px rgba(201,162,74,0.45),
     0 55px 110px rgba(0,0,0,0.95);
 }
-
 .portrait-frame::before{
   content:"";
   position:absolute;
   inset:14px;
   border:3px solid rgba(20,14,6,0.85);
 }
-
 .portrait-frame::after{
   content:"";
   position:absolute;
   inset:28px;
   border:1.5px solid rgba(201,162,74,0.35);
 }
-
 .portrait-frame img{
   width:620px;
   display:block;
@@ -149,7 +160,6 @@ h1{
   font-weight:600;
   margin-bottom:40px;
 }
-
 .description.secondary{
   margin-bottom:90px;
 }
@@ -167,23 +177,19 @@ h1{
   transition:transform 0.4s ease;
   max-width:260px;
 }
-
 .crown-box:hover{
   transform:scale(1.06);
 }
-
 .crown-box img{
   width:240px;
   margin-bottom:18px;
 }
-
 .crown-title{
   font-size:22px;
   letter-spacing:3px;
   color:#d4af37;
   margin-bottom:14px;
 }
-
 .crown-hint{
   font-size:17px;
   line-height:1.7;
@@ -233,56 +239,59 @@ h1{
 
 <div class="page locked" id="page">
 
-  <!-- MEMBERS CONTENT -->
-  <div class="portrait-wrapper">
-    <div class="portrait-frame">
-      <img src="group-photo.png" alt="Royal Dragon Gang">
-    </div>
-  </div>
+  <!-- MEMBERS CONTENT (HIDDEN INITIALLY) -->
+  <div class="lobby-content" id="lobbyContent">
 
-  <h1>THE ROYAL MEMBERS</h1>
-
-  <div class="description">
-    RDG is an eleven-member group famously known as the Royalties in Devil’s Suit —
-    rich, influential, and powerful figures who rule both the arena and the red ground.
-  </div>
-
-  <div class="description secondary">
-    The RDG Kings stand as the founders and pillars of the empire, while the RDG Princes
-    serve as the gang knights — loyal, fierce, and sworn to protect the throne.
-  </div>
-
-  <div class="crown-section">
-
-    <div class="crown-box" onclick="location.href='kings.html'">
-      <img src="crown.png">
-      <div class="crown-title">THE KINGS</div>
-      <div class="crown-hint">
-        Enter the chambers of the founders.<br>
-        Power begins here.
+    <div class="portrait-wrapper">
+      <div class="portrait-frame">
+        <img src="group-photo.png" alt="Royal Dragon Gang">
       </div>
     </div>
 
-    <div class="crown-box" onclick="location.href='princes.html'">
-      <img src="prince.png">
-      <div class="crown-title">THE PRINCES</div>
-      <div class="crown-hint">
-        Discover the knights of the throne.<br>
-        Click to reveal their profiles.
+    <h1>THE ROYAL MEMBERS</h1>
+
+    <div class="description">
+      RDG is an eleven-member group famously known as the Royalties in Devil’s Suit —
+      rich, influential, and powerful figures who rule both the arena and the red ground.
+    </div>
+
+    <div class="description secondary">
+      The RDG Kings stand as the founders and pillars of the empire, while the RDG Princes
+      serve as the gang knights — loyal, fierce, and sworn to protect the throne.
+    </div>
+
+    <div class="crown-section">
+
+      <div class="crown-box" onclick="location.href='kings.html'">
+        <img src="crown.png">
+        <div class="crown-title">THE KINGS</div>
+        <div class="crown-hint">
+          Enter the chambers of the founders.<br>
+          Power begins here.
+        </div>
       </div>
+
+      <div class="crown-box" onclick="location.href='princes.html'">
+        <img src="prince.png">
+        <div class="crown-title">THE PRINCES</div>
+        <div class="crown-hint">
+          Discover the knights of the throne.<br>
+          Click to reveal their profiles.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="lore">
+      The dragon watches all who enter.<br>
+      Only those bound by loyalty may proceed.
+    </div>
+
+    <div class="navigation">
+      <a href="lobby.html">← BACK TO THE ROYAL LOBBY</a>
     </div>
 
   </div>
-
-  <div class="lore">
-    The dragon watches all who enter.<br>
-    Only those bound by loyalty may proceed.
-  </div>
-
-  <div class="navigation">
-    <a href="lobby.html">← BACK TO THE ROYAL LOBBY</a>
-  </div>
-
 </div>
 
 <script>
@@ -312,6 +321,7 @@ function nextDialogue(){
   }else{
     document.getElementById("zhmerStand").classList.remove("show");
     document.getElementById("page").classList.remove("locked");
+    document.getElementById("lobbyContent").classList.add("show");
   }
 }
 </script>
