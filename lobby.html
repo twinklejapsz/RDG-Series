@@ -19,70 +19,146 @@ body{
   color:gold;
 }
 
-/* PAGE */
 .page{
   min-height:100vh;
   display:flex;
   flex-direction:column;
   align-items:center;
 }
-.page.locked{ pointer-events:none; }
+
+/* LOCK PAGE UNTIL DIALOGUE ENDS */
+.page.locked{
+  pointer-events:none;
+}
 
 /* HEADER */
-.header{margin-top:28px;text-align:center;}
-.title{font-size:64px;letter-spacing:7px;text-shadow:0 0 24px rgba(255,215,0,.95);}
-.subtitle{margin-top:14px;font-size:26px;letter-spacing:6px;color:#e6c46a;}
+.header{
+  margin-top:28px;
+  text-align:center;
+}
+.title{
+  font-size:64px;
+  letter-spacing:7px;
+  text-shadow:0 0 24px rgba(255,215,0,.95);
+}
+.subtitle{
+  margin-top:14px;
+  font-size:26px;
+  letter-spacing:6px;
+  color:#e6c46a;
+}
 
-/* REVEAL SYSTEM */
-.reveal{opacity:0;transform:translateY(30px);}
-.reveal.show{opacity:1;transform:translateY(0);transition:1.2s ease;}
+/* CONTENT HIDDEN INITIALLY */
+.lobby-content{
+  opacity:0;
+  transition:opacity 1.2s ease;
+}
+.lobby-content.show{
+  opacity:1;
+}
 
 /* SPACING */
-.space-xl{height:70px;}
-.space-lg{height:50px;}
-.space-md{height:30px;}
+.space-xl{ height:70px; }
+.space-lg{ height:50px; }
+.space-md{ height:30px; }
 
-/* STORY */
-.story-zone{max-width:960px;text-align:center;padding:0 26px;}
-.story{font-size:24px;line-height:1.9;color:#fff;font-weight:600;text-shadow:0 0 14px rgba(0,0,0,.95);}
+/* DESCRIPTION */
+.story-zone{
+  max-width:960px;
+  text-align:center;
+  padding:0 26px;
+}
+.story{
+  font-size:24px;
+  line-height:1.9;
+  color:#ffffff;
+  font-weight:600;
+  text-shadow:0 0 14px rgba(0,0,0,.95);
+}
 
 /* DIVIDER */
 .divider{
-  width:360px;height:2px;margin:0 auto;
+  width:360px;
+  height:2px;
+  margin:0 auto;
   background:linear-gradient(to right,transparent,#d4af37,transparent);
   box-shadow:0 0 18px rgba(212,175,55,1);
 }
 
 /* WARNING */
-.warning{font-size:22px;letter-spacing:6px;color:#fff;text-align:center;}
+.warning{
+  font-size:22px;
+  letter-spacing:6px;
+  color:#ffffff;
+  text-align:center;
+}
 
 /* DOORS */
-.door-zone{display:flex;gap:140px;justify-content:center;text-align:center;}
-.door-wrapper{perspective:1600px;cursor:pointer;}
-.door-frame{width:320px;height:480px;position:relative;}
-.door{position:absolute;width:50%;height:100%;top:0;overflow:hidden;transition:transform 1.6s ease;}
-.door.left{left:0;transform-origin:left center;}
-.door.right{right:0;transform-origin:right center;}
-.door img{width:200%;height:100%;object-fit:cover;}
-.door.right img{margin-left:-100%;}
-.open .door.left{transform:rotateY(-80deg);}
-.open .door.right{transform:rotateY(80deg);}
-.label{margin-top:14px;font-size:18px;letter-spacing:4px;color:#e6c46a;}
-
-/* DOOR GLOW (ONE-TIME) */
-.door-glow{
-  animation:doorGlow 2s ease 1;
+.door-zone{
+  display:flex;
+  gap:140px;
+  justify-content:center;
+  text-align:center;
 }
-@keyframes doorGlow{
-  0%{filter:drop-shadow(0 0 0 gold);}
-  50%{filter:drop-shadow(0 0 25px gold);}
-  100%{filter:none;}
+.door-wrapper{
+  perspective:1600px;
+  cursor:pointer;
+}
+.door-frame{
+  width:320px;
+  height:480px;
+  position:relative;
+}
+.door{
+  position:absolute;
+  width:50%;
+  height:100%;
+  top:0;
+  overflow:hidden;
+  transition:transform 1.6s ease;
+}
+.door.left{
+  left:0;
+  transform-origin:left center;
+}
+.door.right{
+  right:0;
+  transform-origin:right center;
+}
+.door img{
+  width:200%;
+  height:100%;
+  object-fit:cover;
+}
+.door.right img{
+  margin-left:-100%;
+}
+.open .door.left{
+  transform:rotateY(-80deg);
+}
+.open .door.right{
+  transform:rotateY(80deg);
+}
+.label{
+  margin-top:14px;
+  font-size:18px;
+  letter-spacing:4px;
+  color:#e6c46a;
 }
 
-/* LORE */
-.lore-zone{display:flex;flex-direction:column;align-items:center;text-align:center;}
-.logo{width:110px;opacity:.9;cursor:pointer;}
-.lore{font-size:18px;letter-spacing:4px;color:#fff;max-width:460px;line-height:1.7;}
+/* LOGO + LORE (ORIGINAL CENTERING) */
+.logo{
+  width:110px;
+  opacity:.9;
+}
+.lore{
+  font-size:18px;
+  letter-spacing:4px;
+  color:#ffffff;
+  text-align:center;
+  max-width:460px;
+  line-height:1.7;
+}
 
 /* NAV */
 .nav{
@@ -92,12 +168,15 @@ body{
   cursor:pointer;
   color:#e6c46a;
 }
-.nav:hover{opacity:.85;transform:translateY(2px);}
+.nav:hover{
+  opacity:.85;
+  transform:translateY(2px);
+}
 
-/* RIGHT NAV (GARDEN) */
-.nav-right{
+/* RIGHT NAV – GARDEN */
+.nav-garden{
   position:fixed;
-  right:26px;
+  right:24px;
   top:50%;
   transform:rotate(90deg);
   font-size:20px;
@@ -107,12 +186,12 @@ body{
 }
 
 /* =========================
-   ZHMER NPC
+   ZHMER NPC (ENHANCEMENT)
    ========================= */
 .zhmer-stand{
   position:fixed;
   bottom:0;
-  left:10px;
+  left:20px;
   z-index:9999;
   opacity:0;
   transform:translateY(40px);
@@ -123,27 +202,31 @@ body{
   transform:translateY(0);
 }
 .zhmer-stand img{
-  height:920px; /* BIGGER */
-  animation:idleGlow 4s ease-in-out infinite;
-}
-@keyframes idleGlow{
-  0%,100%{filter:drop-shadow(0 0 25px rgba(255,215,0,.4));}
-  50%{filter:drop-shadow(0 0 45px rgba(255,215,0,.7));}
+  height:900px; /* BIGGER ONLY */
+  filter:drop-shadow(0 0 40px rgba(255,215,0,.6));
 }
 
-/* SPEECH */
+/* SPEECH BUBBLE */
 .speech{
   position:absolute;
-  left:480px;
+  left:460px;
   bottom:520px;
   background:#0b0b0b;
   border:3px solid gold;
   padding:28px 32px;
   width:480px;
-  color:#fff;
+  color:#ffffff;
 }
-.speech h2{margin:0 0 14px;font-size:30px;letter-spacing:5px;}
-.speech p{font-size:18px;line-height:1.7;min-height:100px;}
+.speech h2{
+  margin:0 0 14px;
+  font-size:30px;
+  letter-spacing:5px;
+}
+.speech p{
+  font-size:18px;
+  line-height:1.7;
+  min-height:110px;
+}
 .speech button{
   margin-top:20px;
   padding:12px 28px;
@@ -157,9 +240,32 @@ body{
 
 /* MOBILE */
 @media(max-width:768px){
-  .zhmer-stand img{height:480px;}
-  .speech{left:50%;transform:translateX(-50%);bottom:520px;width:90%;}
-  .nav-right{display:none;}
+  .title{font-size:46px;}
+  .subtitle{font-size:20px;}
+  .story{font-size:19px;}
+  .logo{width:90px;}
+  .lore{font-size:16px;}
+  .nav{font-size:20px;}
+  .door-zone{
+    flex-direction:column;
+    gap:50px;
+  }
+  .door-frame{
+    width:260px;
+    height:380px;
+  }
+  .zhmer-stand img{
+    height:460px;
+  }
+  .speech{
+    left:50%;
+    transform:translateX(-50%);
+    bottom:520px;
+    width:90%;
+  }
+  .nav-garden{
+    display:none;
+  }
 }
 </style>
 </head>
@@ -167,11 +273,11 @@ body{
 <body>
 
 <!-- RIGHT NAV -->
-<div class="nav-right" onclick="location.href='garden.html'">TO THE GARDEN</div>
+<div class="nav-garden" onclick="location.href='garden.html'">TO THE GARDEN</div>
 
 <!-- ZHMER -->
 <div class="zhmer-stand" id="zhmerStand">
-  <img src="king1.png" alt="Zhmer Smith">
+  <img src="king1.png" alt="ZHMER SMITH">
   <div class="speech">
     <h2>ZHMER SMITH</h2>
     <p id="kingDialogue"></p>
@@ -181,29 +287,43 @@ body{
 
 <div class="page locked" id="page">
 
+  <!-- HEADER (UNCHANGED) -->
   <div class="header">
     <div class="title">The Royal Lobby</div>
     <div class="subtitle">Choose your path</div>
   </div>
 
-  <div class="reveal" id="storyBlock">
+  <!-- ORIGINAL CONTENT (HIDDEN UNTIL DONE) -->
+  <div class="lobby-content" id="lobbyContent">
+
     <div class="space-xl"></div>
+    <div class="space-lg"></div>
+
     <div class="story-zone">
       <div class="story">
-        RDG Series follows the story of a well-known gang bound by loyalty and the streets they rule.
+        RDG Series follows the story of a well-known gang bound by loyalty, friendship,
+        and the streets they rule. Behind their tough image, each member hides a story
+        of love — some painful, some pure, and others fueled by hatred.
+        As they face conflicts, rivalries, and secrets from their past,
+        love becomes both their greatest strength and deepest weakness.
       </div>
     </div>
+
     <div class="space-md"></div>
     <div class="divider"></div>
-  </div>
 
-  <div class="reveal" id="doorsBlock">
     <div class="space-lg"></div>
-    <div class="warning">Once entered, there’s no turning back</div>
+    <div class="space-lg"></div>
+
+    <div class="warning">
+      Once entered, there’s no turning back
+    </div>
+
     <div class="space-lg"></div>
 
     <div class="door-zone">
-      <div class="door-wrapper door-glow" onclick="openDoor('owner','house-owner.html')">
+
+      <div class="door-wrapper" onclick="openDoor('owner','house-owner.html')">
         <div class="door-frame" id="owner">
           <div class="door left"><img src="lobby-door.jpg"></div>
           <div class="door right"><img src="lobby-door.jpg"></div>
@@ -211,30 +331,33 @@ body{
         <div class="label">House Owner</div>
       </div>
 
-      <div class="door-wrapper door-glow" onclick="openDoor('members','members.html')">
+      <div class="door-wrapper" onclick="openDoor('members','members.html')">
         <div class="door-frame" id="members">
           <div class="door left"><img src="lobby-door.jpg"></div>
           <div class="door right"><img src="lobby-door.jpg"></div>
         </div>
         <div class="label">Members</div>
       </div>
-    </div>
-  </div>
 
-  <div class="reveal" id="loreBlock">
+    </div>
+
     <div class="space-lg"></div>
-    <div class="lore-zone">
-      <img src="logo.png" class="logo" onclick="replayZhmer()">
-      <div class="space-md"></div>
-      <div class="lore">
-        The dragon watches all who enter.<br>
-        Only those bound by loyalty may proceed.
-      </div>
-    </div>
-    <div class="space-md"></div>
-    <div class="nav" onclick="goBack()">← To the Entrance</div>
-  </div>
+    <div class="space-lg"></div>
 
+    <img src="logo.png" class="logo" alt="Dragon Seal">
+
+    <div class="space-md"></div>
+
+    <div class="lore">
+      The dragon watches all who enter.<br>
+      Only those bound by loyalty may proceed.
+    </div>
+
+    <div class="space-md"></div>
+
+    <div class="nav" onclick="goBack()">← To the Entrance</div>
+
+  </div>
 </div>
 
 <script>
@@ -243,33 +366,38 @@ function openDoor(id,target){
   d.classList.add("open");
   setTimeout(()=>location.href=target,1600);
 }
-function goBack(){location.href="index.html";}
+function goBack(){
+  location.href="index.html";
+}
 
-/* DIALOGUE */
-const dialogues=[
-  "Welcome to the House of Dragon Royalties.",
-  "I am Zhmer Smith, First King of Royal Dragon Gang.",
-  "This hideout holds many paths. Some lead to danger.",
-  "Follow my guidance.",
-  "Proceed."
+/* ORIGINAL DIALOGUE — UNCHANGED */
+const dialogues = [
+  "Welcome to the <strong>House of Dragon Royalties</strong>.<br>You are now stepping into the lobby.",
+  "I am <strong>Zhmer Smith</strong>, First King of Royal Dragon Gang.<br>I'm one of the founder and the pillar of this gang.",
+  "This is our hideout, some paths can leads you to the other secret rooms.",
+  "What beneath those rooms are... <strong>DANGER!</strong>",
+  "You might get lost,<br>So let me be your guide.",
+  "This lobby is where all paths converge.<br>Every door beyond these walls carries its own story.",
+  "To your <strong>right</strong>, you will find the members of this house.<br>To your <strong>left</strong>, the homeowners’ quarters—and the Library."
 ];
 
-let current=0,typing=false;
+let current = 0;
+let typing = false;
 
 function typeText(text){
-  typing=true;
-  let i=0;
-  const el=document.getElementById("kingDialogue");
-  el.innerHTML="";
-  document.getElementById("dialogueBtn").disabled=true;
-  const interval=setInterval(()=>{
-    el.innerHTML+=text[i++];
-    if(i>=text.length){
+  typing = true;
+  const el = document.getElementById("kingDialogue");
+  el.innerHTML = "";
+  document.getElementById("dialogueBtn").disabled = true;
+  let i = 0;
+  const interval = setInterval(()=>{
+    el.innerHTML += text[i++];
+    if(i >= text.length){
       clearInterval(interval);
-      typing=false;
-      document.getElementById("dialogueBtn").disabled=false;
+      typing = false;
+      document.getElementById("dialogueBtn").disabled = false;
     }
-  },30);
+  }, 30);
 }
 
 window.addEventListener("load",()=>{
@@ -280,22 +408,16 @@ window.addEventListener("load",()=>{
 function nextDialogue(){
   if(typing) return;
   current++;
-  if(current<dialogues.length){
+  if(current < dialogues.length){
     typeText(dialogues[current]);
+    if(current === dialogues.length - 1){
+      document.getElementById("dialogueBtn").innerText = "Enter the Lobby";
+    }
   }else{
     document.getElementById("zhmerStand").classList.remove("show");
     document.getElementById("page").classList.remove("locked");
-    document.getElementById("storyBlock").classList.add("show");
-    setTimeout(()=>document.getElementById("doorsBlock").classList.add("show"),600);
-    setTimeout(()=>document.getElementById("loreBlock").classList.add("show"),1200);
+    document.getElementById("lobbyContent").classList.add("show");
   }
-}
-
-function replayZhmer(){
-  current=0;
-  document.getElementById("page").classList.add("locked");
-  document.getElementById("zhmerStand").classList.add("show");
-  typeText(dialogues[0]);
 }
 </script>
 
