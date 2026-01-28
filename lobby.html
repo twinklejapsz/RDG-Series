@@ -7,10 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ======================
-   ORIGINAL LOBBY STYLES
-   (UNCHANGED)
-====================== */
 body{
   margin:0;
   min-height:100vh;
@@ -23,11 +19,17 @@ body{
   color:gold;
 }
 
+/* PAGE */
 .page{
   min-height:100vh;
   display:flex;
   flex-direction:column;
   align-items:center;
+}
+
+/* LOCK INTERACTION UNTIL DIALOGUE ENDS */
+.page.locked{
+  pointer-events:none;
 }
 
 /* HEADER */
@@ -47,10 +49,21 @@ body{
   color:#e6c46a;
 }
 
+/* CONTENT REVEAL */
+.lobby-content{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity 1.2s ease, transform 1.2s ease;
+}
+.lobby-content.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
 /* SPACING */
-.space-xl{ height:70px; }
-.space-lg{ height:50px; }
-.space-md{ height:30px; }
+.space-xl{height:70px;}
+.space-lg{height:50px;}
+.space-md{height:30px;}
 
 /* STORY */
 .story-zone{
@@ -123,8 +136,12 @@ body{
 .door.right img{
   margin-left:-100%;
 }
-.open .door.left{ transform:rotateY(-80deg); }
-.open .door.right{ transform:rotateY(80deg); }
+.open .door.left{
+  transform:rotateY(-80deg);
+}
+.open .door.right{
+  transform:rotateY(80deg);
+}
 .label{
   margin-top:14px;
   font-size:18px;
@@ -132,7 +149,13 @@ body{
   color:#e6c46a;
 }
 
-/* LOGO + LORE */
+/* CENTERED LOGO + LORE (RESTORED) */
+.lore-zone{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
 .logo{
   width:110px;
   opacity:.9;
@@ -141,7 +164,6 @@ body{
   font-size:18px;
   letter-spacing:4px;
   color:#ffffff;
-  text-align:center;
   max-width:460px;
   line-height:1.7;
 }
@@ -159,61 +181,59 @@ body{
   transform:translateY(2px);
 }
 
-/* ======================
-   ZHMER OVERLAY (NEW)
-====================== */
-.zhmer-overlay{
+/* =========================
+   ZHMER NPC
+   ========================= */
+.zhmer-stand{
   position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.55);
+  bottom:0;
+  left:20px;
   z-index:9999;
-  display:flex;
-  align-items:flex-end;
-  justify-content:flex-start;
-  padding:40px;
-  animation:fadeIn .8s ease forwards;
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity 1s ease, transform 1s ease;
 }
-
-@keyframes fadeIn{
-  from{opacity:0;}
-  to{opacity:1;}
+.zhmer-stand.show{
+  opacity:1;
+  transform:translateY(0);
 }
-
-.zhmer{
-  position:relative;
-  display:flex;
-  align-items:flex-end;
-}
-
-.zhmer img{
-  height:90vh;
-  max-height:900px;
-  filter:drop-shadow(0 0 35px rgba(255,215,0,.6));
+.zhmer-stand img{
+  height:820px;
+  filter:drop-shadow(0 0 45px rgba(255,215,0,.6));
 }
 
 /* SPEECH BUBBLE */
 .speech{
-  margin-left:30px;
-  margin-bottom:120px;
+  position:absolute;
+  left:420px;
+  bottom:460px;
   background:#0b0b0b;
   border:3px solid gold;
   padding:28px 32px;
   width:460px;
   color:#ffffff;
+  box-shadow:0 0 40px rgba(255,215,0,.35);
 }
-
+.speech:after{
+  content:"";
+  position:absolute;
+  left:-22px;
+  top:80px;
+  border-width:12px 22px 12px 0;
+  border-style:solid;
+  border-color:transparent gold transparent transparent;
+}
 .speech h2{
   margin:0 0 14px;
   font-size:30px;
   letter-spacing:5px;
+  color:gold;
 }
-
 .speech p{
   font-size:18px;
   line-height:1.7;
-  min-height:120px;
+  min-height:100px;
 }
-
 .speech button{
   margin-top:20px;
   padding:12px 28px;
@@ -224,18 +244,33 @@ body{
   border:none;
   cursor:pointer;
 }
+.speech button:hover{
+  background:#d4af37;
+}
 
 /* MOBILE */
 @media(max-width:768px){
-  .zhmer{
+  .title{font-size:46px;}
+  .subtitle{font-size:20px;}
+  .story{font-size:19px;}
+  .logo{width:90px;}
+  .lore{font-size:16px;}
+  .nav{font-size:20px;}
+  .door-zone{
     flex-direction:column;
-    align-items:center;
+    gap:50px;
   }
-  .zhmer img{
-    height:55vh;
+  .door-frame{
+    width:260px;
+    height:380px;
+  }
+  .zhmer-stand img{
+    height:460px;
   }
   .speech{
-    margin:20px 0 0;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:520px;
     width:90%;
   }
 }
@@ -244,91 +279,87 @@ body{
 
 <body>
 
-<!-- ======================
-     ZHMER OVERLAY
-====================== -->
-<div class="zhmer-overlay" id="overlay">
-  <div class="zhmer">
-    <img src="king1.png" alt="Zhmer Smith">
-    <div class="speech">
-      <h2>ZHMER SMITH</h2>
-      <p id="dialogue"></p>
-      <button id="btn" onclick="nextDialogue()" disabled>Continue</button>
-    </div>
+<!-- ZHMER NPC -->
+<div class="zhmer-stand" id="zhmerStand">
+  <img src="king1.png" alt="Zhmer Smith">
+  <div class="speech">
+    <h2>ZHMER SMITH</h2>
+    <p id="kingDialogue"></p>
+    <button id="dialogueBtn" onclick="nextDialogue()">Continue</button>
   </div>
 </div>
 
-<!-- ======================
-     ORIGINAL LOBBY (UNCHANGED)
-====================== -->
-<div class="page">
+<div class="page locked" id="page">
 
+  <!-- HEADER (UNCHANGED) -->
   <div class="header">
     <div class="title">The Royal Lobby</div>
     <div class="subtitle">Choose your path</div>
   </div>
 
-  <div class="space-xl"></div>
-  <div class="space-lg"></div>
+  <!-- LOBBY CONTENT -->
+  <div class="lobby-content" id="lobbyContent">
 
-  <div class="story-zone">
-    <div class="story">
-      RDG Series follows the story of a well-known gang bound by loyalty, friendship,
-      and the streets they rule. Behind their tough image, each member hides a story
-      of love — some painful, some pure, and others fueled by hatred.
-      As they face conflicts, rivalries, and secrets from their past,
-      love becomes both their greatest strength and deepest weakness.
-    </div>
-  </div>
+    <div class="space-xl"></div>
+    <div class="space-lg"></div>
 
-  <div class="space-md"></div>
-  <div class="divider"></div>
-
-  <div class="space-lg"></div>
-  <div class="space-lg"></div>
-
-  <div class="warning">
-    Once entered, there’s no turning back
-  </div>
-
-  <div class="space-lg"></div>
-
-  <div class="door-zone">
-
-    <div class="door-wrapper" onclick="openDoor('owner','house-owner.html')">
-      <div class="door-frame" id="owner">
-        <div class="door left"><img src="lobby-door.jpg"></div>
-        <div class="door right"><img src="lobby-door.jpg"></div>
+    <div class="story-zone">
+      <div class="story">
+        RDG Series follows the story of a well-known gang bound by loyalty, friendship,
+        and the streets they rule.
       </div>
-      <div class="label">House Owner</div>
     </div>
 
-    <div class="door-wrapper" onclick="openDoor('members','members.html')">
-      <div class="door-frame" id="members">
-        <div class="door left"><img src="lobby-door.jpg"></div>
-        <div class="door right"><img src="lobby-door.jpg"></div>
+    <div class="space-md"></div>
+    <div class="divider"></div>
+
+    <div class="space-lg"></div>
+    <div class="space-lg"></div>
+
+    <div class="warning">
+      Once entered, there’s no turning back
+    </div>
+
+    <div class="space-lg"></div>
+
+    <div class="door-zone">
+
+      <div class="door-wrapper" onclick="openDoor('owner','house-owner.html')">
+        <div class="door-frame" id="owner">
+          <div class="door left"><img src="lobby-door.jpg"></div>
+          <div class="door right"><img src="lobby-door.jpg"></div>
+        </div>
+        <div class="label">House Owner</div>
       </div>
-      <div class="label">Members</div>
+
+      <div class="door-wrapper" onclick="openDoor('members','members.html')">
+        <div class="door-frame" id="members">
+          <div class="door left"><img src="lobby-door.jpg"></div>
+          <div class="door right"><img src="lobby-door.jpg"></div>
+        </div>
+        <div class="label">Members</div>
+      </div>
+
     </div>
 
+    <div class="space-lg"></div>
+    <div class="space-lg"></div>
+
+    <!-- RESTORED CENTER -->
+    <div class="lore-zone">
+      <img src="logo.png" class="logo" alt="Dragon Seal">
+      <div class="space-md"></div>
+      <div class="lore">
+        The dragon watches all who enter.<br>
+        Only those bound by loyalty may proceed.
+      </div>
+    </div>
+
+    <div class="space-md"></div>
+
+    <div class="nav" onclick="goBack()">← To the Entrance</div>
+
   </div>
-
-  <div class="space-lg"></div>
-  <div class="space-lg"></div>
-
-  <img src="logo.png" class="logo" alt="Dragon Seal">
-
-  <div class="space-md"></div>
-
-  <div class="lore">
-    The dragon watches all who enter.<br>
-    Only those bound by loyalty may proceed.
-  </div>
-
-  <div class="space-md"></div>
-
-  <div class="nav" onclick="location.href='index.html'">← To the Entrance</div>
-
 </div>
 
 <script>
@@ -337,54 +368,37 @@ function openDoor(id,target){
   d.classList.add("open");
   setTimeout(()=>location.href=target,1600);
 }
-
-/* ORIGINAL DIALOGUE (UNCHANGED) */
-const dialogues=[
-  "Welcome to the <strong>House of Dragon Royalties</strong>.<br>You are now stepping into the lobby.",
-  "I am <strong>Zhmer Smith</strong>, First King of Royal Dragon Gang.<br>I'm one of the founder and the pillar of this gang.",
-  "This is our hideout, some paths can leads you to the other secret rooms.",
-  "What beneath those rooms are... <strong>DANGER!</strong>",
-  "You might get lost,<br>So let me be your guide.",
-  "This lobby is where all paths converge.<br>Every door beyond these walls carries its own story.",
-  "To your <strong>right</strong>, you will find the members of this house.<br>To your <strong>left</strong>, the homeowners’ quarters—and the Library."
-];
-
-let i=0, typing=false;
-
-function typeText(text){
-  typing=true;
-  const el=document.getElementById("dialogue");
-  const btn=document.getElementById("btn");
-  el.innerHTML="";
-  btn.disabled=true;
-  let c=0;
-  const t=setInterval(()=>{
-    el.innerHTML+=text[c++];
-    if(c>=text.length){
-      clearInterval(t);
-      typing=false;
-      btn.disabled=false;
-    }
-  },30);
+function goBack(){
+  location.href="index.html";
 }
 
-window.onload=()=>{
-  i=0;
-  typeText(dialogues[0]);
-};
+const dialogues=[
+  "Welcome to the <strong>House of Dragon Royalties</strong>.",
+  "I am <strong>Zhmer Smith</strong>, First King of Royal Dragon Gang.",
+  "This hideout holds many paths… some lead to danger.",
+  "Let me guide you.",
+  "To your <strong>right</strong> are the members.<br>To your <strong>left</strong>, the homeowners and the Library."
+];
+
+let currentDialogue=0;
+
+window.addEventListener("load",()=>{
+  document.getElementById("page").classList.add("locked");
+  document.getElementById("zhmerStand").classList.add("show");
+  document.getElementById("kingDialogue").innerHTML=dialogues[0];
+});
 
 function nextDialogue(){
-  if(typing) return;
-  i++;
-  if(i<dialogues.length){
-    typeText(dialogues[i]);
-    if(i===dialogues.length-1){
-      document.getElementById("btn").innerText="Enter the Lobby";
+  currentDialogue++;
+  if(currentDialogue < dialogues.length){
+    document.getElementById("kingDialogue").innerHTML = dialogues[currentDialogue];
+    if(currentDialogue === dialogues.length - 1){
+      document.getElementById("dialogueBtn").innerText = "Enter the Lobby";
     }
   }else{
-    const overlay=document.getElementById("overlay");
-    overlay.style.opacity=0;
-    setTimeout(()=>overlay.remove(),600);
+    document.getElementById("zhmerStand").classList.remove("show");
+    document.getElementById("page").classList.remove("locked");
+    document.getElementById("lobbyContent").classList.add("show");
   }
 }
 </script>
