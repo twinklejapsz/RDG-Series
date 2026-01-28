@@ -179,16 +179,22 @@ body{
   background:#0b0b0b;
   border:3px solid gold;
   padding:40px;
-  max-width:640px;
-  width:90%;
+  max-width:700px;
+  width:92%;
   text-align:center;
   box-shadow:0 0 40px rgba(255,215,0,.35);
+}
+
+.king-img{
+  width:180px;
+  margin-bottom:18px;
+  filter:drop-shadow(0 0 18px rgba(255,215,0,.6));
 }
 
 .king-title{
   font-size:32px;
   letter-spacing:6px;
-  margin-bottom:22px;
+  margin-bottom:18px;
 }
 
 .king-text{
@@ -228,6 +234,9 @@ body{
   .door-frame{
     width:260px;
     height:380px;
+  }
+  .king-img{
+    width:140px;
   }
 }
 </style>
@@ -307,7 +316,8 @@ body{
 <!-- KING1 MODAL -->
 <div class="modal" id="kingWelcome">
   <div class="modal-content king-modal">
-    <h2 class="king-title">👑 King1</h2>
+    <img src="king1.png" alt="King1" class="king-img">
+    <h2 class="king-title">King1</h2>
     <p id="kingDialogue" class="king-text"></p>
     <button class="enter-btn" id="dialogueBtn" onclick="nextDialogue()">Continue</button>
   </div>
@@ -329,7 +339,7 @@ window.addEventListener("pageshow",()=>{
 /* KING1 DIALOGUE */
 const dialogues = [
   "Welcome to the <strong>House of Dragon Royalty</strong>.<br>You are now stepping into the lobby.",
-  "I am <strong>King1</strong>, sovereign of this house.<br>Keeper of its halls and guardian of its name.",
+  "I am <strong>Zhmer</strong>, First King of Royal Dragon Gang.<br>I ruled this place next to house owner.",
   "This lobby is where all paths converge.<br>Every door beyond these walls carries its own story.",
   "To your <strong>right</strong>, you will find the members of this house.<br>To your <strong>left</strong>, the homeowners’ quarters—and the Library."
 ];
