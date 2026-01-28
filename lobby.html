@@ -26,7 +26,7 @@ body{
   align-items:center;
 }
 
-/* LOCK PAGE UNTIL DIALOGUE ENDS */
+/* LOCK INTERACTION */
 .page.locked{
   pointer-events:none;
 }
@@ -48,21 +48,23 @@ body{
   color:#e6c46a;
 }
 
-/* CONTENT HIDDEN INITIALLY */
+/* HIDDEN CONTENT UNTIL DONE */
 .lobby-content{
   opacity:0;
+  visibility:hidden;
   transition:opacity 1.2s ease;
 }
 .lobby-content.show{
   opacity:1;
+  visibility:visible;
 }
 
 /* SPACING */
-.space-xl{ height:70px; }
-.space-lg{ height:50px; }
-.space-md{ height:30px; }
+.space-xl{height:70px;}
+.space-lg{height:50px;}
+.space-md{height:30px;}
 
-/* DESCRIPTION */
+/* STORY */
 .story-zone{
   max-width:960px;
   text-align:center;
@@ -133,12 +135,8 @@ body{
 .door.right img{
   margin-left:-100%;
 }
-.open .door.left{
-  transform:rotateY(-80deg);
-}
-.open .door.right{
-  transform:rotateY(80deg);
-}
+.open .door.left{transform:rotateY(-80deg);}
+.open .door.right{transform:rotateY(80deg);}
 .label{
   margin-top:14px;
   font-size:18px;
@@ -146,7 +144,7 @@ body{
   color:#e6c46a;
 }
 
-/* LOGO + LORE (ORIGINAL CENTERING) */
+/* LOGO + LORE (ORIGINAL POSITION) */
 .logo{
   width:110px;
   opacity:.9;
@@ -176,7 +174,7 @@ body{
 /* RIGHT NAV – GARDEN */
 .nav-garden{
   position:fixed;
-  right:24px;
+  right:22px;
   top:50%;
   transform:rotate(90deg);
   font-size:20px;
@@ -186,24 +184,24 @@ body{
 }
 
 /* =========================
-   ZHMER NPC (ENHANCEMENT)
+   ZHMER NPC
    ========================= */
-.zhmer-stand{
+.zhmer{
   position:fixed;
   bottom:0;
-  left:20px;
+  left:10px;
   z-index:9999;
   opacity:0;
   transform:translateY(40px);
   transition:opacity 1s ease, transform 1s ease;
 }
-.zhmer-stand.show{
+.zhmer.show{
   opacity:1;
   transform:translateY(0);
 }
-.zhmer-stand img{
-  height:900px; /* BIGGER ONLY */
-  filter:drop-shadow(0 0 40px rgba(255,215,0,.6));
+.zhmer img{
+  height:900px;
+  filter:drop-shadow(0 0 35px rgba(255,215,0,.6));
 }
 
 /* SPEECH BUBBLE */
@@ -225,7 +223,7 @@ body{
 .speech p{
   font-size:18px;
   line-height:1.7;
-  min-height:110px;
+  min-height:120px;
 }
 .speech button{
   margin-top:20px;
@@ -246,55 +244,42 @@ body{
   .logo{width:90px;}
   .lore{font-size:16px;}
   .nav{font-size:20px;}
-  .door-zone{
-    flex-direction:column;
-    gap:50px;
-  }
-  .door-frame{
-    width:260px;
-    height:380px;
-  }
-  .zhmer-stand img{
-    height:460px;
-  }
+  .door-zone{flex-direction:column;gap:50px;}
+  .door-frame{width:260px;height:380px;}
+  .zhmer img{height:460px;}
   .speech{
     left:50%;
     transform:translateX(-50%);
     bottom:520px;
     width:90%;
   }
-  .nav-garden{
-    display:none;
-  }
+  .nav-garden{display:none;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- RIGHT NAV -->
 <div class="nav-garden" onclick="location.href='garden.html'">TO THE GARDEN</div>
 
 <!-- ZHMER -->
-<div class="zhmer-stand" id="zhmerStand">
-  <img src="king1.png" alt="ZHMER SMITH">
+<div class="zhmer" id="zhmer">
+  <img src="king1.png" alt="Zhmer Smith">
   <div class="speech">
     <h2>ZHMER SMITH</h2>
-    <p id="kingDialogue"></p>
-    <button id="dialogueBtn" onclick="nextDialogue()" disabled>Continue</button>
+    <p id="dialogue"></p>
+    <button id="btn" onclick="nextDialogue()" disabled>Continue</button>
   </div>
 </div>
 
 <div class="page locked" id="page">
 
-  <!-- HEADER (UNCHANGED) -->
   <div class="header">
     <div class="title">The Royal Lobby</div>
     <div class="subtitle">Choose your path</div>
   </div>
 
-  <!-- ORIGINAL CONTENT (HIDDEN UNTIL DONE) -->
-  <div class="lobby-content" id="lobbyContent">
+  <div class="lobby-content" id="content">
 
     <div class="space-xl"></div>
     <div class="space-lg"></div>
@@ -355,7 +340,7 @@ body{
 
     <div class="space-md"></div>
 
-    <div class="nav" onclick="goBack()">← To the Entrance</div>
+    <div class="nav" onclick="location.href='index.html'">← To the Entrance</div>
 
   </div>
 </div>
@@ -366,12 +351,9 @@ function openDoor(id,target){
   d.classList.add("open");
   setTimeout(()=>location.href=target,1600);
 }
-function goBack(){
-  location.href="index.html";
-}
 
 /* ORIGINAL DIALOGUE — UNCHANGED */
-const dialogues = [
+const dialogues=[
   "Welcome to the <strong>House of Dragon Royalties</strong>.<br>You are now stepping into the lobby.",
   "I am <strong>Zhmer Smith</strong>, First King of Royal Dragon Gang.<br>I'm one of the founder and the pillar of this gang.",
   "This is our hideout, some paths can leads you to the other secret rooms.",
@@ -381,42 +363,43 @@ const dialogues = [
   "To your <strong>right</strong>, you will find the members of this house.<br>To your <strong>left</strong>, the homeowners’ quarters—and the Library."
 ];
 
-let current = 0;
-let typing = false;
+let i=0, typing=false;
 
-function typeText(text){
-  typing = true;
-  const el = document.getElementById("kingDialogue");
-  el.innerHTML = "";
-  document.getElementById("dialogueBtn").disabled = true;
-  let i = 0;
-  const interval = setInterval(()=>{
-    el.innerHTML += text[i++];
-    if(i >= text.length){
-      clearInterval(interval);
-      typing = false;
-      document.getElementById("dialogueBtn").disabled = false;
+function type(text){
+  typing=true;
+  const el=document.getElementById("dialogue");
+  const btn=document.getElementById("btn");
+  el.innerHTML="";
+  btn.disabled=true;
+  let c=0;
+  const t=setInterval(()=>{
+    el.innerHTML+=text[c++];
+    if(c>=text.length){
+      clearInterval(t);
+      typing=false;
+      btn.disabled=false;
     }
-  }, 30);
+  },30);
 }
 
-window.addEventListener("load",()=>{
-  document.getElementById("zhmerStand").classList.add("show");
-  typeText(dialogues[0]);
-});
+window.onload=()=>{
+  i=0;
+  document.getElementById("zhmer").classList.add("show");
+  type(dialogues[0]);
+};
 
 function nextDialogue(){
   if(typing) return;
-  current++;
-  if(current < dialogues.length){
-    typeText(dialogues[current]);
-    if(current === dialogues.length - 1){
-      document.getElementById("dialogueBtn").innerText = "Enter the Lobby";
+  i++;
+  if(i<dialogues.length){
+    type(dialogues[i]);
+    if(i===dialogues.length-1){
+      document.getElementById("btn").innerText="Enter the Lobby";
     }
   }else{
-    document.getElementById("zhmerStand").classList.remove("show");
+    document.getElementById("zhmer").classList.remove("show");
     document.getElementById("page").classList.remove("locked");
-    document.getElementById("lobbyContent").classList.add("show");
+    document.getElementById("content").classList.add("show");
   }
 }
 </script>
