@@ -24,6 +24,13 @@ body{
   display:flex;
   flex-direction:column;
   align-items:center;
+  transition:filter .6s ease;
+}
+
+/* BLUR EFFECT */
+.blur{
+  filter:blur(6px);
+  pointer-events:none;
 }
 
 /* HEADER */
@@ -164,7 +171,22 @@ body{
   transform:translateY(2px);
 }
 
-/* ZHMER SMITH MODAL */
+/* ZHMER STANDING */
+.zhmer-stand{
+  position:fixed;
+  bottom:0;
+  left:60px;
+  z-index:9998;
+  display:none;
+}
+
+.zhmer-stand img{
+  height:520px;
+  opacity:.96;
+  filter:drop-shadow(0 0 30px rgba(255,215,0,.45));
+}
+
+/* MODAL */
 .modal{
   position:fixed;
   inset:0;
@@ -183,12 +205,6 @@ body{
   width:92%;
   text-align:center;
   box-shadow:0 0 40px rgba(255,215,0,.35);
-}
-
-.king-img{
-  width:180px;
-  margin-bottom:18px;
-  filter:drop-shadow(0 0 18px rgba(255,215,0,.6));
 }
 
 .king-title{
@@ -214,7 +230,6 @@ body{
   border:none;
   cursor:pointer;
 }
-
 .enter-btn:hover{
   background:#d4af37;
 }
@@ -227,22 +242,19 @@ body{
   .logo{width:90px;}
   .lore{font-size:16px;}
   .nav{font-size:20px;}
-  .door-zone{
-    flex-direction:column;
-    gap:50px;
-  }
-  .door-frame{
-    width:260px;
-    height:380px;
-  }
-  .king-img{
-    width:140px;
-  }
+  .door-zone{flex-direction:column;gap:50px;}
+  .door-frame{width:260px;height:380px;}
+  .zhmer-stand img{height:380px;}
 }
 </style>
 </head>
 
 <body>
+
+<!-- ZHMER STANDING -->
+<div class="zhmer-stand" id="zhmerStand">
+  <img src="king1.png" alt="Zhmer Smith">
+</div>
 
 <div class="page">
 
@@ -259,24 +271,20 @@ body{
       RDG Series follows the story of a well-known gang bound by loyalty, friendship,
       and the streets they rule. Behind their tough image, each member hides a story
       of love — some painful, some pure, and others fueled by hatred.
-      As they face conflicts, rivalries, and secrets from their past,
-      love becomes both their greatest strength and deepest weakness.
     </div>
   </div>
 
   <div class="space-md"></div>
   <div class="divider"></div>
+
   <div class="space-lg"></div>
   <div class="space-lg"></div>
 
-  <div class="warning">
-    Once entered, there’s no turning back
-  </div>
+  <div class="warning">Once entered, there’s no turning back</div>
 
   <div class="space-lg"></div>
 
   <div class="door-zone">
-
     <div class="door-wrapper" onclick="openDoor('owner','house-owner.html')">
       <div class="door-frame" id="owner">
         <div class="door left"><img src="lobby-door.jpg"></div>
@@ -292,7 +300,6 @@ body{
       </div>
       <div class="label">Members</div>
     </div>
-
   </div>
 
   <div class="space-lg"></div>
@@ -313,10 +320,9 @@ body{
 
 </div>
 
-<!-- ZHMER SMITH MODAL -->
+<!-- DIALOGUE MODAL -->
 <div class="modal" id="kingWelcome">
-  <div class="modal-content king-modal">
-    <img src="king1.png" alt="ZHMER SMITH" class="king-img">
+  <div class="king-modal">
     <h2 class="king-title">ZHMER SMITH</h2>
     <p id="kingDialogue" class="king-text"></p>
     <button class="enter-btn" id="dialogueBtn" onclick="nextDialogue()">Continue</button>
@@ -339,17 +345,19 @@ window.addEventListener("pageshow",()=>{
 /* ZHMER DIALOGUE */
 const dialogues = [
   "Welcome to the <strong>House of Dragon Royalties</strong>.<br>You are now stepping into the lobby.",
-  "I am <strong>Zhmer Smith</strong>, First King of Royal Dragon Gang.<br>I'm one of the founder and the pillar of this gang.",
-  "This is our hideout, some paths can leads you to the other secret rooms.",
-  "What beneath those rooms are... <strong>DANGER!</strong>",
-  "You might get lost,<br>So let me be your guide.",
-  "This lobby is where all paths converge.<br>Every door beyond these walls carries its own story.",
-  "To your <strong>right</strong>, you will find the members of this house.<br>To your <strong>left</strong>, the homeowners’ quarters—and the Library."
+  "I am <strong>Zhmer Smith</strong>, First King of Royal Dragon Gang.<br>One of its founders and its pillar.",
+  "This is our hideout. Some paths may lead you to secret rooms.",
+  "What lies beneath those rooms is <strong>DANGER</strong>.",
+  "Let me guide you.",
+  "This lobby is where all paths converge.",
+  "To your <strong>right</strong> are the members.<br>To your <strong>left</strong>, the homeowners and the Library."
 ];
 
 let currentDialogue = 0;
 
 window.addEventListener("load",()=>{
+  document.querySelector(".page").classList.add("blur");
+  document.getElementById("zhmerStand").style.display="block";
   document.getElementById("kingWelcome").style.display="flex";
   document.getElementById("kingDialogue").innerHTML = dialogues[0];
 });
@@ -363,6 +371,8 @@ function nextDialogue(){
     }
   }else{
     document.getElementById("kingWelcome").style.display="none";
+    document.getElementById("zhmerStand").style.display="none";
+    document.querySelector(".page").classList.remove("blur");
   }
 }
 </script>
