@@ -74,7 +74,7 @@ body{
 }
 
 /* =========================
-   ZHMER NPC (SAME AS LOBBY)
+   ZHMER NPC
    ========================= */
 .zhmer-stand{
   position:fixed;
@@ -141,12 +141,17 @@ body{
 }
 
 /* =========================
-   ORIGINAL MEMBERS CONTENT
+   PORTRAIT (FIXED)
    ========================= */
 .portrait-wrapper{
   margin-bottom:80px;
+  display:flex;
+  justify-content:center;
 }
+
 .portrait-frame{
+  width:fit-content;
+  margin:0 auto;
   position:relative;
   padding:26px;
   background:
@@ -160,6 +165,9 @@ body{
   display:block;
 }
 
+/* =========================
+   TEXT CONTENT
+   ========================= */
 h1{
   font-size:48px;
   letter-spacing:4px;
@@ -178,6 +186,9 @@ h1{
   margin-bottom:90px;
 }
 
+/* =========================
+   CROWNS
+   ========================= */
 .crown-section{
   display:flex;
   gap:130px;
@@ -209,14 +220,21 @@ h1{
   color:#dddddd;
 }
 
+/* =========================
+   LORE (FIXED)
+   ========================= */
 .lore{
   max-width:760px;
   font-size:22px;
   font-weight:600;
   line-height:1.9;
-  margin-bottom:90px;
+  margin:0 auto 90px;
+  text-align:center;
 }
 
+/* =========================
+   NAV
+   ========================= */
 .navigation a{
   font-size:22px;
   letter-spacing:3px;
@@ -224,7 +242,9 @@ h1{
   text-decoration:none;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+   ========================= */
 @media(max-width:768px){
   .title{font-size:46px;}
   .subtitle{font-size:20px;}
@@ -254,13 +274,13 @@ h1{
 
 <div class="page locked" id="page">
 
-  <!-- HEADER (VISIBLE DURING DIALOGUE) -->
+  <!-- HEADER -->
   <div class="header">
     <div class="title">THE ROYAL MEMBERS</div>
     <div class="subtitle">Choose your path</div>
   </div>
 
-  <!-- MEMBERS CONTENT (HIDDEN INITIALLY) -->
+  <!-- MEMBERS CONTENT -->
   <div class="members-content" id="membersContent">
 
     <div class="portrait-wrapper">
